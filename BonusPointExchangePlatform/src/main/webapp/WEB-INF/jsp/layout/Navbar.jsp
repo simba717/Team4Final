@@ -216,8 +216,7 @@
 	<script src="${contextRoot}/js/mail-script.js"></script>
 	<script src="${contextRoot}/js/main.js"></script>
 
-	<br>
-	<br>
+	
 	<script>
 // 	簽到禮
 		var signIn = document.getElementById("signIn")
@@ -311,7 +310,7 @@
 		login();
 		
 	</script>
-	Hi ${member.name}
+
 </body>
 
 </html>

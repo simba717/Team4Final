@@ -625,24 +625,36 @@ function gotoPage1(pageNum1){
 
 //**********儲值金兌換前做確認***********
 function check(){
-	var check = confirm("確定要兌換嗎?");
+// 	var check = confirm("確定要兌換嗎?");
 	
-	if(check==true){
-		newChange();
-	}else{
-		return false;
-	}
+// 	if(check==true){
+// 		newChange();
+// 	}else{
+// 		return false;
+// 	}
+Swal.fire({
+	icon: 'question',
+	title:'請問是否要兌換',
+    color: "#7373b9",
+    showCancelButton: true,
+    cancelButtonText:"取消",
+    cancelButtonColor: "#FF0000",
+    confirmButtonText: '確定',
+    confirmButtonColor: "#0000e3"
+}).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire('兌換成功', '', 'success')
+        newChange();
+    } 
+})  
 	
 }
-
-
-
-
 
 
 //*********兌換儲值金***********
 function newChange(){
 	
+
 	console.log(555)
 		var value = document.getElementById("bank_amount").value;
 		var url = "<c:url value='/edit/changeAmount'/>"
@@ -658,14 +670,16 @@ function newChange(){
 		contentType:'application/json;charset=UTF-8',
 		dataType:'json',
 		error:function(){
-			alert("ajax error")
+// 			alert("ajax error")
+			 Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error')
 		},
 		
 		success:function(data){
 			console.log(data);
 			
 		if(data[0]==null ){
-			alert("兌換失敗 , 請確認銀行帳戶餘額")
+			Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error')
+// 			alert("兌換失敗 , 請確認銀行帳戶餘額")
 		}else{
 			console.log("22222222");
 			rowTotal=data.length;
@@ -673,7 +687,8 @@ function newChange(){
 			pageTotal=Math.ceil(rowTotal/pageSize);
 			console.log(pageTotal)
 			currentPage=1;
-			alert("兌換成功")
+			 Swal.fire('兌換成功', '可至兌換紀錄做查詢', 'success')
+// 			alert("兌換成功")
 			$("#table tbody").empty();
 		if(pageTotal==1){
 			$("#page_ul").empty();
@@ -714,10 +729,11 @@ function newChange(){
 		
 		
 		}
-		window.location.reload();
+ 		
 		}
 		
 	})
+// 	window.location.reload();
 }; 
 
 

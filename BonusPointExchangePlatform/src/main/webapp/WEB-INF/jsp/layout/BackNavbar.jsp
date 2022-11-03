@@ -16,7 +16,9 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="${contextRoot}/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous"></script>
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -32,16 +34,16 @@
 <link rel="stylesheet" href="${contextRoot}/css/style1.css">
 <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 <script>
-// 	window.onload = function(){
 
-// 	 if(${employee.account.account_type} == 2) {
-// 		 $("#highclass").visibility ='hidden';
-// 	 }else{
-// 		 $("#highclass").visibility ='visible';
-// 	 }
+    $(function() {
 	
+	 if(${account.account_type} == 3) {
+		 $("#highclass").css('visibility','visible');
+	 }else{
+		 $("#highclass").css('visibility','hidden');
+	 }
 	
-// 	}
+ 	})
 	
 </script>
 </head>
@@ -60,9 +62,8 @@
 												class="ti-angle-down1"></i></a>
 											<ul class="submenu">
 												<li><a href="${contextRoot}/backend/EditEmployeeByEmployee">編輯個人資料</a></li>
-<%-- 												<li><a href="${contextRoot}/EditByEmployee">編輯會員資料</a></li> --%>
 												<li><a href="${contextRoot}/EditByRoot">編輯會員資料</a></li>
-												<li id="highclass" style="visibility:visible"><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
+												<li id="highclass" style="visibility:hidden"><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
 											</ul></li>
 										<li><a href="#">活動管理系統<i
 												class="ti-angle-down"></i></a>
@@ -131,6 +132,8 @@
 			</div>
 		</div>
 	</header>
+	
+	
 
 
 
@@ -183,10 +186,9 @@
 		}
 	}
 	loginback();
-	${employee.account.account_type}
+
 	</script>
- Hi ${employee.name}
- ${employee.account.account_type}
+
 </body>
 
 </html>

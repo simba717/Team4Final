@@ -1007,14 +1007,14 @@ function bonusTotal(){
 							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
 						</ol>
 						<div class="carousel-inner">
-							<div class="carousel-item active" data-bs-interval="1000">
-								<img src="img2/bonusphoto.png" class="d-block w-100" alt="...">
+							<div class="carousel-item active" data-bs-interval="3000">
+								<img src="img2/bonusphoto.png" style ="height:500px;width:620px" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="img2/bonusphoto.png" class="d-block w-100" alt="...">
+								<img src="img2/bonusphoto.png" style ="height:500px;width:620px" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="img2/bonusphoto.png"  class="d-block w-100" alt="...">
+								<img src="img2/bonusphoto.png"  style ="height:500px;width:620px" alt="...">
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
@@ -1029,7 +1029,7 @@ function bonusTotal(){
 						</button>
 					</div>
 				</div>
-				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6" >
+				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6" style="width:500px">
 					<div class="about_info">
 						<div class="section_title mb-20px">
 							<h1>您目前擁有的紅利 :</h1>

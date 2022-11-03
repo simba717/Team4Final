@@ -514,6 +514,7 @@
 	// 	*************windowload會員**************
 
 	function page() {
+		console.log(123)
 		$("#page_ul").empty();
 		var url = "<c:url value='/backned/allMember'/>"
 		var value1 = document.getElementById("search").value
@@ -537,6 +538,7 @@
 					},
 
 					success : function(data) {
+						console.log(456)
 						rowTotal = data.length;
 						pageTotal = Math.ceil(rowTotal / pageSize);
 						currentPage = 1;

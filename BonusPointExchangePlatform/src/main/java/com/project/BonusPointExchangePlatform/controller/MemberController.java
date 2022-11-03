@@ -109,7 +109,7 @@ public class MemberController {
 		
 			String orderby = member.getOrderby();
 			List<MemberDto> m1 =mService.getAllMember(orderby);
-		
+		System.out.println(123);
 
 				if(m1!=null) {	
 

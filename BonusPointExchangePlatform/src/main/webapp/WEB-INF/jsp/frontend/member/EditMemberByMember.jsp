@@ -122,7 +122,7 @@
 									.attr("value", data.account.member.email);
 							$("#phone")
 									.attr("value", data.account.member.phone);
-							if( data.account.member.image != null){
+							if( data.account.member.image != ""){
 							$("#preview_img").attr("src",
 									imageurl +  data.account.member.image);
 							}

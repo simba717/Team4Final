@@ -40,7 +40,7 @@ import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.MailService;
 
 @Controller
-@SessionAttributes(names = "employee")
+@SessionAttributes(names = {"employee","account_type"})
 public class EmployeeController {
 	
 	@Autowired
@@ -337,6 +337,8 @@ public class EmployeeController {
 			Account user = loginService.getBeanByAccPwd(account, password);
 			System.out.println(user.getEmployee().getName());
 			m.addAttribute("employee", user.getEmployee());
+			m.addAttribute("account_type", user.getAccount_type());
+
 
 			return "/layout/BackNavbar";
 		}

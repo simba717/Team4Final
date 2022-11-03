@@ -14,8 +14,8 @@ import com.project.BonusPointExchangePlatform.dao.MemberDao;
 import com.project.BonusPointExchangePlatform.dao.WalletDao;
 
 import com.project.BonusPointExchangePlatform.dto.BackendLookGameBonusOfMemberDto;
-import com.project.BonusPointExchangePlatform.dto.FrontendGameRecoedDto;
 
+import com.project.BonusPointExchangePlatform.dto.GameDto;
 import com.project.BonusPointExchangePlatform.model.Game;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Wallet;
@@ -79,45 +79,64 @@ public class GameService {
 	
 //////////////瑋煊的頭//////////////////
 
-//將會員遊戲紀錄塞進Dto
-public List<FrontendGameRecoedDto> findGameRecordsByMember(int member_id) {
+//前台將會員遊戲紀錄塞進Dto
+public List<GameDto> findGameRecordsByMember(int member_id) {
 
 List<Game> gameRecords = gameDao.findGameRecordsByMember(member_id);
 
-List<FrontendGameRecoedDto> gameRecordsDto = new ArrayList<>();
+List<GameDto> gameDto = new ArrayList<>();
 //
 for(Game gameRecord : gameRecords) {
-	FrontendGameRecoedDto gameRecordDto = new FrontendGameRecoedDto();
+	GameDto gameRecordDto = new GameDto();
 	gameRecordDto.setGameId(gameRecord.getId());
-	gameRecordDto.setGameName(gameRecord.getGame_type());
+	gameRecordDto.setGameType(gameRecord.getGame_type());
 	gameRecordDto.setGameScore(gameRecord.getGame_score());
 	gameRecordDto.setPlayTime(gameRecord.getCreate_at());
 	gameRecordDto.setBonusPoint(gameRecord.getWallet().getBonus_point());
 	
 //	gameRecordDto.setGame(gameRecord);
 //	gameRecordDto.setWallet(gameRecord.getWallet());
-	gameRecordsDto.add(gameRecordDto);
+	gameDto.add(gameRecordDto);
 }	
 
-return gameRecordsDto;
+return gameDto;
 }
 
-//將會員經遊戲取得的紅利塞進Dto
-public List<BackendLookGameBonusOfMemberDto> findGameBonusOfAllMember() {
+//後台將所有會員經遊戲取得的紅利塞進Dto
+public List<GameDto> findGameBonusOfAllMember() {
 
 List<Wallet> allMemberGameBonus = walletDao.findGameBonusOfAllMember();
-List<BackendLookGameBonusOfMemberDto> allMemberGameBonusDto = new ArrayList<>();
+List<GameDto> allMemberGameBonusDto = new ArrayList<>();
 
 for(Wallet memberGameBonus : allMemberGameBonus) {
-	BackendLookGameBonusOfMemberDto memberGameBonusDto = new BackendLookGameBonusOfMemberDto();
+	GameDto memberGameBonusDto = new GameDto();
 	memberGameBonusDto.setMemberId(memberGameBonus.getMember().getId());
-	memberGameBonusDto.setGameBonus(memberGameBonus.getBonus_point());
+	memberGameBonusDto.setMemberName(memberGameBonus.getMember().getName());
+	memberGameBonusDto.setGameType(memberGameBonus.getGame().getGame_type());
+	memberGameBonusDto.setBonusPoint(memberGameBonus.getBonus_point());
 	allMemberGameBonusDto.add(memberGameBonusDto);
 }	
 
 return allMemberGameBonusDto;
 }
 
+//後台將單一會員經遊戲取得的紅利塞進Dto
+public List<GameDto> findGameBonusOfOneMember(int member_id) {
+
+List<Wallet> oneMemberGameBonus = walletDao.findGameBonusOfOneMember(member_id);
+List<GameDto> oneMemberGameBonusDto = new ArrayList<>();
+
+for(Wallet GameBonus : oneMemberGameBonus) {
+	GameDto GameBonusDto = new GameDto();
+	GameBonusDto.setMemberId(GameBonus.getMember().getId());
+	GameBonusDto.setMemberName(GameBonus.getMember().getName());
+	GameBonusDto.setGameType(GameBonus.getGame().getGame_type());
+	GameBonusDto.setBonusPoint(GameBonus.getBonus_point());
+	oneMemberGameBonusDto.add(GameBonusDto);
+}	
+
+return oneMemberGameBonusDto;
+}
 
 //////////////瑋煊的腳//////////////////
 	

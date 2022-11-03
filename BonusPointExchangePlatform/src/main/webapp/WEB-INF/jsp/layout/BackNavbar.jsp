@@ -114,8 +114,8 @@
 									</ul>
 								</div>
 								<div class="book_btn d-none d-xl-block">
-									<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
-									<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn" style="display: none">登出</a>
+									<a class="#" href="${contextRoot}/loginEmp" id="loginbtn" style="background-color: white;color: orange">登入</a>
+									<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"  style="background-color: white;color: orange;display: none">登出</a>
 								</div>
 								<div style="display: none" id="histatus">
 									<a style="color:white">Hi ${employee.name}</a>

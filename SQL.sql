@@ -363,6 +363,7 @@ DBCC CHECKIDENT('Product', RESEED,3 );
 select * from Game
 select * from Member_Game
 select * from Member
+select * from Wallet
 
 select * from Product
 select * from Employee
@@ -393,3 +394,14 @@ update Account set account_type = 1 where id = 2
 
 select top 1.id from game where game_type='Ã±¨ì' and update_at >'2022/11/02'
 order by update_at desc
+
+select * from Member where convert(nvarchar,birth,23)= '2000-01-01' and id= 1
+
+select * from Member where birth like '%-01-01%';
+
+update Member set birth='2000-11-03' where id = 1
+
+select * from Member where convert(nvarchar,birth,23) like '%-01-01%' and id= 1
+
+
+

@@ -312,7 +312,7 @@ function displayData3(data) {
     if (listorder.length > 0) {
     	for (var k in listorder){
     		htmlSeg += `<div class="container p-0 m-0">`
-    		htmlSeg += `<a href="https://tw.yahoo.com/" class="list-group-item list-group-item-action m-0 p-0">`;
+    		htmlSeg += `<a href=`+"${pageContext.request.contextPath}/product/pillSessionClear"+` class="list-group-item list-group-item-action m-0 p-0">`;
     		htmlSeg += `<img src=`+"${pageContext.request.contextPath}/product/downloadImage/"+listorder[k].product.id+` style="width:100px;height: 124px;" class=" rounded mx-auto pt-4">`;
     		htmlSeg += `<ul class="list-group list-group-flush float-end pt-4 fst-italic" style="width: 250px;">`;
     		htmlSeg += `<li class="list-group-item">商品名字: <span>`+listorder[k].product.product_name+`</span></li>`;

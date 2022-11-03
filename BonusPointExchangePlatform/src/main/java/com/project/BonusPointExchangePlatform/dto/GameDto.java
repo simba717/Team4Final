@@ -8,17 +8,17 @@ import com.project.BonusPointExchangePlatform.model.Game;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Wallet;
 
-public class FrontendGameRecoedDto implements Serializable{
+public class GameDto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-//	private Game game;
-//	
-//	private Wallet wallet;
+	private int memberId;
+	
+	private String memberName;
 	
 	private int gameId;
 	
-	private String gameName;
+	private String gameType;
 	
 	private int gameScore;
 	
@@ -27,10 +27,32 @@ public class FrontendGameRecoedDto implements Serializable{
 	private int bonusPoint;
 	
 
-	public FrontendGameRecoedDto() {
+	public GameDto() {
 	}
 	
 	
+	
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+	
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+
+
 	public int getGameId() {
 		return gameId;
 	}
@@ -39,32 +61,14 @@ public class FrontendGameRecoedDto implements Serializable{
 		this.gameId = gameId;
 	}
 
-//	public Game getGame() {
-//		return game;
-//	}
-//
-//	public void setGame(Game game) {
-//		this.game = game;
-//	}
-//
-//	public Wallet getWallet() {
-//		return wallet;
-//	}
-//
-//	public void setWallet(Wallet wallet) {
-//		this.wallet = wallet;
-//	}
-
-
-	public String getGameName() {
-		return gameName;
+	
+	public String getGameType() {
+		return gameType;
 	}
 
-
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
 	}
-
 
 	public int getGameScore() {
 		return gameScore;

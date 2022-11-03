@@ -1,8 +1,10 @@
 package com.project.BonusPointExchangePlatform.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 			+ "order by create_at desc ", nativeQuery = true)
 	Wallet findBySourceTypeAndMember(@Param(value = "member_id") Member member,
 			@Param(value = "source_type") String source_type);
+
 
 	// 庭偉
 	@Query(value = "select sum(bonus_point) from Wallet where member_id =:id", nativeQuery = true)
@@ -68,24 +71,39 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * from Wallet where member_id=:member_id and source_type!='回饋' ", nativeQuery = true)
 	List<Wallet> findMemberBonusAmount(@Param(value = "member_id") Member member_id);
 
+	@Modifying
+	@Query(value = "insert into Wallet(source_type, wallet_amount, bonus_point,credit_card_amount,member_id,bank_id,game_id) "
+			+ "values('活動獎勵', 0 , 500 , 0 , :member_id , null , (select top 1.id from game where game_type='簽到' and update_at >:update_at "
+			+ " order by update_at desc)) " , nativeQuery = true)
+	void insertSignWallet(@Param(value = "member_id") Member member_id,
+			              @Param(value = "update_at") Date update_at);
+	
+	
+	@Modifying
+	@Query(value = "insert into Wallet(source_type, wallet_amount, bonus_point,credit_card_amount,member_id,bank_id,game_id) "
+			+ "values('活動獎勵', 0 , 10000 , 0 , :member_id , null , (select top 1.id from game where game_type='生日禮' and update_at >:update_at "
+			+ " order by update_at desc)) " , nativeQuery = true)
+	void insertBirthWallet(@Param(value = "member_id") Member member_id,
+			               @Param(value = "update_at") Date update_at);
+
 //////////////瑋煊的頭//////////////////////////////////
 
-//後台員工查詢會員透過遊戲取得的總紅利: 會員Id 取得紅利加總
-//查詢單筆
-//@Query(value = " select "
-//		+ " member_id, SUM(bonus_point) as [total_bonus] "
-//		+ " from Wallet "
-//		+ "	where source_type = '遊戲' and member_id = :id "
-//		+ " group by member_id ", nativeQuery = true)
-
-//無法將加總分組後的結果輸出成JSON
-	@Query(value = " select * from Wallet where source_type = '遊戲' ", nativeQuery = true)
-//@Query(value = " select "
-//	+ "	member_id, SUM(bonus_point) as [total_bonus] "
-//	+ "from Wallet "
-//	+ "	where source_type = '遊戲'"
-//	+ "group by member_id ", nativeQuery = true)
+	//後台員工查詢遊戲所有發放的紅利
+	@Query(value = "select * "
+			+ "	from Wallet w "
+			+ "	join Game g on w.game_id = g.id "
+			+ "	where w.source_type = '遊戲'", nativeQuery = true)
 	List<Wallet> findGameBonusOfAllMember();
+	
+	
+	
+	//後台員工查詢遊戲發放給單一會員的紅利(還是多筆資料)
+	@Query(value = "select * "
+			+ "	from Wallet w "
+			+ "	join Game g on w.game_id = g.id "
+			+ "	where w.source_type = '遊戲' and member_id = :member_id", nativeQuery = true)
+	List<Wallet> findGameBonusOfOneMember(@Param(value = "member_id") int member_id);
+	
 
 //////////////瑋煊的腳/////////////////////
 

@@ -205,6 +205,7 @@
 	<script src="${contextRoot}/js/jquery.slicknav.min.js"></script>
 	<script src="${contextRoot}/js/jquery.magnific-popup.min.js"></script>
 	<script src="${contextRoot}/js/plugins.js"></script>
+	<script src="${contextRoot}/js/sweetalert2.all.min.js"></script>
 <%-- 	<script src="${contextRoot}/js/all.min.js"></script> --%>
 
 	<!--contact js-->
@@ -218,7 +219,7 @@
 	<br>
 	<br>
 	<script>
-// 	註冊
+// 	簽到禮
 		var signIn = document.getElementById("signIn")
 		signIn.onclick = function() {
 			let xhr = new XMLHttpRequest();
@@ -226,8 +227,12 @@
 			xhr.send();
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
-					var signAlert = JSON.parse(xhr.responseText);
-					alert(signAlert.game_type);
+					let signAlert = JSON.parse(xhr.responseText);
+					if(signAlert.game_type=="已完成簽到"){
+						Swal.fire("成功!",signAlert.game_type, "success")
+					}else{
+						Swal.fire("失敗!",signAlert.game_type, "error")
+					}
 				}
 			}
 		}
@@ -267,7 +272,7 @@
 			    if (listorder.length > 0) {
 			    	for (var k in listorder){
 			    		htmlSeg += `<div class="container p-0 m-0">`
-			    		htmlSeg += `<a href="https://tw.yahoo.com/" class="list-group-item list-group-item-action m-0 p-0">`;
+			    		htmlSeg += `<a href=`+"${pageContext.request.contextPath}/product/pillSessionClear"+` class="list-group-item list-group-item-action m-0 p-0">`;
 			    		htmlSeg += `<img src=`+"${pageContext.request.contextPath}/product/downloadImage/"+listorder[k].product.id+` style="width:100px;height: 124px;" class=" rounded mx-auto pt-4">`;
 			    		htmlSeg += `<ul class="list-group list-group-flush float-end pt-4 fst-italic" style="width: 250px;">`;
 			    		htmlSeg += `<li class="list-group-item">商品名字: <span>`+listorder[k].product.product_name+`</span></li>`;

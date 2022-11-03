@@ -51,4 +51,8 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 	@Query(value = "select * from Member "
 			+ "where bank_id= :bank_id", nativeQuery = true)
 	Member checkReapeatByBankId(@Param(value = "bank_id") Integer bank_id);
+	
+	//顯浩
+	@Query(value = "select * from Member where convert(nvarchar,birth,23) like :birth and id= :merber_id", nativeQuery = true)
+	Member checkBirth(@Param(value = "birth") String birh,@Param(value = "merber_id") Integer merber_id);
 }

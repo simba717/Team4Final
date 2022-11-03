@@ -63,8 +63,10 @@ public class EmployeeController {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
 		
+
 		if( employee == null) {
 			return "/backend/entrance/newloginemp";
+
 		}
 		return "/backend/personManage/EditMemberByRoot";
 	}	
@@ -77,8 +79,10 @@ public class EmployeeController {
 		
 	Employee employee = (Employee)session.getAttribute("employee");
 		
+
 		if( employee == null) {
 			return "/backend/entrance/newloginemp";
+
 		}
 		return "/backend/personManage/EditEmployeeByRoot";
 	}	
@@ -88,6 +92,7 @@ public class EmployeeController {
 	public String EmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
+
 		if( employee == null) {
 			return "/backend/entrance/newloginemp";
 		}
@@ -100,6 +105,7 @@ public class EmployeeController {
 	public String newEmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
+
 		if( employee == null) {
 			return "/backend/entrance/newloginemp";
 		}

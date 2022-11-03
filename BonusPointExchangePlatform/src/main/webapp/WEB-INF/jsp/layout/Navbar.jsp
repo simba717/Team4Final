@@ -311,7 +311,6 @@
 		login();
 		
 	</script>
-	Hi ${member.name}
 </body>
 
 </html>

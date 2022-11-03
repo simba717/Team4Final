@@ -15,7 +15,7 @@ import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.OrdersService;
 
 @Controller
-@SessionAttributes(names = {" member","employee"})
+@SessionAttributes(names = {"member","employee"})
 public class LoginController {
 
 	/* 測試登入狀態 */

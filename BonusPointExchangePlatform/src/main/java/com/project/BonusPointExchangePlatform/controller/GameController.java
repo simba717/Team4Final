@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.BonusPointExchangePlatform.dto.BackendLookGameBonusOfMemberDto;
+import com.project.BonusPointExchangePlatform.dto.FrontendGameRecoedDto;
 import com.project.BonusPointExchangePlatform.model.Game;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.service.GameService;
@@ -78,4 +80,59 @@ public class GameController {
 //		m.addAttribute("list",getDate);
 		return getDate;
 	}
+	
+	
+//////////////瑋煊的頭//////////////////////////////////
+
+/////////////// 員工查詢會員遊戲紅利/////////////////////////////////////////////
+// navbar連結JSP
+@GetMapping("/game/findMemberGameBonus")
+public String findAllGames() {
+
+return "/backend/campaign/memberGameBonus";
+}
+
+// 將會員遊戲紅利加總的JSON傳到後台
+@GetMapping(value = "/backend/campaign/getGameBonusOfAllMember", produces = { "application/json; charset=UTF-8" })
+@ResponseBody
+public List<BackendLookGameBonusOfMemberDto> getGameBonusOfAllMember() {
+List<BackendLookGameBonusOfMemberDto> GameBonusOfAllMember = gService.findGameBonusOfAllMember();
+
+return GameBonusOfAllMember;
+}
+
+/////////////////員工查詢會員遊戲紅利/////////////////////////////////////////
+
+/////////////////////// 會員查詢遊戲紀錄OK//////////////////////////
+// navbar連結JSP
+@GetMapping("/campaign/gameRecord")
+public String gameRecord() {
+
+return "frontend/campaign/gameRecord";
+}
+
+// 將會員遊戲紀錄的JSON傳到前台
+@GetMapping(value = "/frontend/campaign/memberGameRecords", produces = { "application/json; charset=UTF-8" })
+@ResponseBody
+public List<FrontendGameRecoedDto> getGameRecordsByMember(HttpSession session) {
+Member member = (Member) session.getAttribute("member");
+System.out.println(member.getName());
+List<FrontendGameRecoedDto> memberGameRecords = gService.findGameRecordsByMember(member.getId());
+
+return memberGameRecords;
+}
+
+/////////////////////// 會員查詢遊戲紀錄OK//////////////////////////
+
+// 連結遊戲頁面
+@GetMapping("/campaign/game")
+public String gamePage() {
+
+return "frontend/campaign/game";
+}
+
+//////////////瑋煊的腳//////////////////////////////////
+	
+	
+	
 }

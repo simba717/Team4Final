@@ -120,6 +120,8 @@
 									<a style="color:white">Hi ${employee.name}</a>
 								</div>
 							</div>
+							<input type="button" value="切換至前台會員頁面" onclick="location.href='${contextRoot}/toFront'">
+							
 						</div>
 						<div class="col-12">
 							<div class="mobile_menu d-block d-lg-none"></div>
@@ -183,7 +185,8 @@
 	loginback();
 	${employee.account.account_type}
 	</script>
-
+ Hi ${employee.name}
+ ${employee.account.account_type}
 </body>
 
 </html>

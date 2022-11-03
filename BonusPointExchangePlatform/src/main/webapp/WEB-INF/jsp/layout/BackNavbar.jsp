@@ -68,8 +68,8 @@
 										<li><a href="#">活動管理系統<i
 												class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">會員活動管理</a></li>
-												<li><a href="#">遊戲活動管理</a></li>
+												<li><a href="${contextRoot}/campaign/findAll">會員活動管理</a></li>
+												<li><a href="${contextRoot}/game/findMemberGameBonus">會員遊戲紅利</a></li>
 											</ul></li>
 
 										<li><a href="#">商城管理系統<i

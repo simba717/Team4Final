@@ -110,8 +110,11 @@
 								</div>
 								<div style="display: none" id="histatus">
 									<a style="color:white">Hi ${member.name}</a>
-								</div>
+								</div>								
 							</div>
+							<input type="button" value="切換至後台管理頁面" onclick="location.href='${contextRoot}/toBack'">
+							
+							
 						</div>
 						<div class="col-12">
 							<div class="mobile_menu d-block d-lg-none"></div>
@@ -302,6 +305,7 @@
 		login();
 		
 	</script>
+	Hi ${member.name}
 </body>
 
 </html>

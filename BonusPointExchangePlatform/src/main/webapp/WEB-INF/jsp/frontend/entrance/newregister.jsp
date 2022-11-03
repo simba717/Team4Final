@@ -296,9 +296,11 @@ window.onload = function() {
 	
 	var alink = document.getElementById("accountCheckBtn");
 	var div = document.getElementById('resultAcc');
+	
 	alink.onclick = function() {
 	  var accValue = document.getElementById("account").value;
 	  if (!accValue) {
+			$("#idsubmit").prop("disabled", true)
 		div.innerHTML = "<font color='blue' size='-1'>請輸入帳號...</font>";
 		return;
 	  }

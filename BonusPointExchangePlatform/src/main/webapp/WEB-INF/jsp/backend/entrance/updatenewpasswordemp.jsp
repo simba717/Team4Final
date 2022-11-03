@@ -23,7 +23,7 @@
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
+	height: 70vh;
 	margin: -20px 0 50px;
 }
 
@@ -260,45 +260,7 @@ z-index
 
 </style>
 
-<script>
 
-window.onload = function() {
-
-	var checkcodelink = document.getElementById("checkcodeCheckBtn");
-	var checkcodediv = document.getElementById('resultCheckCode');
-	checkcodelink.onclick = function() {
-	  var checkcodeValue = document.getElementById("checkcode").value;
-	  if (!checkcodeValue) {
-		 checkcodediv.innerHTML = "<font color='blue' size='-1'>請輸入驗證碼...</font>";
-		return;
-	  }
-	  var xhr = new XMLHttpRequest();
-	  xhr.open("POST", "<c:url value='/checkCodeCheck'/>", true);
-	  xhr.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded");
-	  xhr.send("checkcode=" + checkcodeValue);
-	  var message = "";
-	  xhr.onreadystatechange = function() {
-	    // 伺服器請求完成
-	    if (xhr.readyState == 4 && xhr.status == 200) {
-		   var result = JSON.parse(xhr.responseText);
-		   if (result == true) {
-			  message = "<font color='green' size='-2'>驗證碼正確</font>";
-		   }else {
-			  message = "<font color='red' size='-2'>驗證碼錯誤請重新輸入驗證碼</font>"; 
-		   }
-		   checkcodediv.innerHTML = message;
-	    }
-     }
-   }
-
-
-
-
-}
-
-
-</script>
 
 
 
@@ -310,23 +272,18 @@ window.onload = function() {
 	<div class="logincontainer" id="logincontainer">
 	
 		<div class="form-logincontainer sign-in-container">
-				<form class="loginform" action="updatenewpassword" method="post">
+				<form class="loginform" action="updatenewpasswordemp" method="post">
 			
 				<h1 class="logingh1">Check-Code</h1>
 				
 				<input type="text" name="checkcode" id="checkcode" placeholder="請輸入您的驗證碼" />
-				<a href='#' id='checkcodeCheckBtn' style='font-size: 10pt;color:orange;'>檢查驗證碼</a>
 						<div id='resultCheckCode' style="height: 10px;"></div> 				
 				<br>
 				
 				<input type="password" name="password" placeholder="請輸入您的新密碼" id="password" /> 
 				<label style="color: gray; font-size: 10px; text-align: left;">(至少6個字且必須包含英數字、特殊字元[!@#$%^&*])</label>
 				<span id="pwHelp"></span>
-				<br> 
-				<input type="password" name="checkpassword" placeholder="確認密碼"  id="checkpassword"/> 
-				<span id="chpwHelp"></span> 
 				
-				<br>
 				<br>
 				
 				
@@ -339,17 +296,16 @@ window.onload = function() {
 	</div>
 
 	<script type="text/javascript">
-	let pwdflag, chpwflag= false;
+	let pwdflag, checkCodeflag= false;
+
 
 	document.getElementById("password").addEventListener("blur",function() {
 
 		let pwId = document.getElementById("password");
-		let chpwId = document.getElementById("checkpassword");
+	
 		let pwVal = pwId.value;
-		let chpwVal=chpwId.value;
 		let pwLen = pwVal.length;
 		let pwsp = document.getElementById("pwHelp");
-		let chpwsp = document.getElementById("chpwHelp");
 
 		let pwCh, flag1 = false, flag2 = false, flag3 = false;
 		let pwre = new RegExp(/[!@#$%^&*]/);
@@ -418,31 +374,45 @@ window.onload = function() {
 document.getElementById("password").addEventListener("blur", finalcheck)
 	
 	
-	document.getElementById("checkpassword").addEventListener("blur",function() {
-		let pwId = document.getElementById("password");
-		let chpwId = document.getElementById("checkpassword");
-		let pwVal = pwId.value;
-		let chpwVal=chpwId.value;
-		let chpwsp = document.getElementById("chpwHelp");
+		document.getElementById("checkcode").addEventListener("blur",function () {
+			  var checkcodediv = document.getElementById("resultCheckCode");
+			  var checkcodeValue = document.getElementById("checkcode").value;
+			  if (!checkcodeValue) {					   
+				  checkCodeflag=false;
 
-		
-		if (pwVal == chpwVal) {
-			chpwsp.innerHTML = "正確";
-			document.getElementById("chpwHelp").style.color = "green";
-			chpwflag = true;}
+				 checkcodediv.innerHTML = "<font color='blue' size='-1'>請輸入驗證碼...</font>";
+				return;
+			  }
+			  var xhr = new XMLHttpRequest();
+			  xhr.open("POST", "<c:url value='/checkCodeCheck'/>", true);
+			  xhr.setRequestHeader("Content-Type",
+						"application/x-www-form-urlencoded");
+			  xhr.send("checkcode=" + checkcodeValue);
+			  var message = "";
+			  xhr.onreadystatechange = function() {
+			    // 伺服器請求完成
+			    if (xhr.readyState == 4 && xhr.status == 200) {
+				   var result = JSON.parse(xhr.responseText);
+				   if (result == true) {
+					   checkCodeflag=true;
+					  message = "<font color='green' size='-2'>驗證碼正確</font>";
+				   }else {
+					   checkCodeflag=false;
 
-			else{
-				chpwsp.innerHTML = "請確認密碼輸入是否相同";
-			document.getElementById("chpwHelp").style.color = "red";
-			chpwflag = false;
-			}
-			})
-	document.getElementById("checkpassword").addEventListener("blur", finalcheck)
+					  message = "<font color='red' size='-2'>驗證碼錯誤請重新輸入驗證碼</font>"; 
+				   }
+				   checkcodediv.innerHTML = message;
+			    }
+		   }
+		 })
+document.getElementById("checkcode").addEventListener("blur", finalcheck)
 
+	
+	
 	
 	
 		function finalcheck() {
-			if (chpwflag && pwdflag) {
+			if ( pwdflag && checkCodeflag) {
 				document.getElementById("idsubmit").removeAttribute("disabled")
 			} else {
 				document.getElementById("idsubmit").setAttribute("disabled",

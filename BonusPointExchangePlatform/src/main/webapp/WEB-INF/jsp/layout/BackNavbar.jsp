@@ -106,7 +106,7 @@
 									<a style="color:white">Hi ${employee.name}</a>
 								</div>
 							</div>
-							<input type="button" value="切換至前台會員頁面" onclick="location.href='${contextRoot}/toFront'">
+							<input type="button" value="切換至前台會員頁面" onclick="location.href='${contextRoot}/toFront'" style="width:180px;height:40px;">
 							
 						</div>
 						<div class="col-12">
@@ -171,8 +171,7 @@
 	loginback();
 	
 	</script>
- Hi ${employee.name}
- ${employee.account.account_type}
+
 </body>
 
 </html>

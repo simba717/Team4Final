@@ -112,7 +112,7 @@
 									<a style="color:white">Hi ${member.name}</a>
 								</div>								
 							</div>
-							<input type="button" value="切換至後台管理頁面" onclick="location.href='${contextRoot}/toBack'">
+							<input type="button" value="切換至後台管理頁面" onclick="location.href='${contextRoot}/toBack'" style="width:180px;height:40px;">
 							
 							
 						</div>

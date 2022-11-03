@@ -40,7 +40,12 @@ import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.MailService;
 
 @Controller
+<<<<<<< HEAD
 @SessionAttributes(names = {"employee","account"})
+=======
+@SessionAttributes(names = {"employee","account"} )
+
+>>>>>>> c9e1dd00c2143124a941c4668b474910925b2104
 public class EmployeeController {
 	
 	@Autowired

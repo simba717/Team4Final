@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>Check and Edit Member</title>
 <style>
-ul {
+#news {
 	list-style: none;
 	height: 25px;
 	overflow: hidden;
@@ -189,25 +189,52 @@ ul {
 
 		//************確認密碼*************
 		function checkPassword() {
-			let StrObj = document.getElementById("password");
-			let showpassword = document.getElementById("idsp1");
-			let v = document.querySelector("#password");
-			StrObjname = StrObj.value;
-			if (StrObjname.charAt(0) != "") {
-
-				showpassword.innerHTML = ("輸入正確");
-				v.classList.remove("is-invalid");
-				v.classList.add("is-valid");
-				showpassword.style = "color:green;font-size:14px";
-
-			} else {
-				showpassword.innerHTML = ("不可輸入空值");
-				v.classList.remove("is-valid");
-				v.classList.add("is-invalid");
-				showpassword.style = "color:red;font-size:14px";
-
-			}
-			
+			  let c1 = false; let c2 = false; c3 = false;
+              let ThePwdObjVal = document.getElementById("password").value;
+              let showpwd = document.getElementById("idsp1");
+          	let v = document.querySelector("#password");
+              let pwdvallength = ThePwdObjVal.length;
+              if (ThePwdObjVal != "") {
+                  if (pwdvallength >= 6) {
+                      for (let i = 0; i < pwdvallength; i++) {
+                          let ch = ThePwdObjVal.charAt(i).toUpperCase();
+                          if (ch == "\u0021" || ch == "\u0040" || ch == "\u0023" || ch == "\u0022" || ch == "\u0024" || ch == "\u0025" || ch == "\u005e" || ch == "\u0026" || ch == "\u002a") {
+                              c1 = true;
+                          }
+                          if ((ch >= "A" && ch <= "Z")) {
+                              c2 = true;
+                          }
+                          if ((ch >= "0" && ch <= "9")) {
+                              c3 = true
+                          }
+                          if (c1 == true && c2 == true && c3 == true) {
+                              break;
+                          }
+                      }
+                      if (c1 == true && c2 == true && c3 == true) {
+                    		v.classList.remove("is-invalid");
+							v.classList.add("is-valid");
+                    	  showpwd.innerHTML = ("輸入正確");
+                    	  showpwd.style = "color:green;font-size:14px";
+                      } else {
+                      	v.classList.remove("is-valid");
+						v.classList.add("is-invalid");
+                	  showpwd.innerHTML = ("密碼至少包含一個特殊符號、數字、英文");
+                	  showpwd.style = "color:red;font-size:14px";
+                      }
+                  } else {
+                	  	v.classList.remove("is-valid");
+						v.classList.add("is-invalid");
+              	  showpwd.innerHTML = ("密碼最少六位數");
+              	  showpwd.style = "color:red;font-size:14px";
+                  }
+              } else {
+            	  	v.classList.remove("is-valid");
+					v.classList.add("is-invalid");
+            	  showpwd.innerHTML = ("不可輸入空值");
+            	  showpwd.style = "color:red;font-size:14px";
+              }
+              
 			if ($("#password").val() == "" || $("#username").val() == "" || $("#birth").val() == ""
 				|| $("#email").val() == ""
 				|| $("#phone").val() == "" ) {
@@ -233,10 +260,10 @@ ul {
 							showname.innerHTML = ("輸入正確")
 							showname.style = "color:green;font-size:14px";
 						} else {
-							v.classList.remove("is-valid");
-							v.classList.add("is-invalid");
+							v.classList.remove("is-invalid");
+							v.classList.add("is-valid");
 							showname.innerHTML = ("建議輸入中文")
-							showname.style = "color:red;font-size:14px";
+							showname.style = "color:green;font-size:14px";
 							break;
 						}
 					}
@@ -364,7 +391,7 @@ ul {
 
 	<div
 		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
-		style="height: 700px; width: 600px; margin-left: 120px; float: left;">
+		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
 		<div class="card" style="border-radius: 30px 30px 30px 30px;">
 			<div class="card-body" style="height: 600px; margin-top: 40px">
 				<h3 class="card-title">會員個人資料編輯</h3>
@@ -378,15 +405,16 @@ ul {
 							style="backround-color:grey">
 					</div>
 					<div class="form-group">
-
-						<label for="exampleInputEmail3">Password</label><input
+							<div
+							style="text-align: right; margin-right: 440px; margin-bottom: -22px">
+							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
+						</div>
+						<label for="exampleInputEmail3">Password</label>
+							<input
 							type="password" class="form-control" id="password"
 							placeholder="password" value="" />
 						<div id="idsp1" style="font-size: 20px"></div>
-						<div
-							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
+					
 
 					</div>
 					<div class="form-group">

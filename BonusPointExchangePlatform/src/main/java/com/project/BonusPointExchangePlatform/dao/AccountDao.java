@@ -34,7 +34,7 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	
 	@Query(value ="select a.* from Member m "
 			+ "join account a on m.id = a.member_id "
-			+ "where a.id= :id " , nativeQuery = true)
+			+ "where m.id= :id " , nativeQuery = true)
 	Account showMemberById(@Param(value="id") Integer id); 
 	
 	@Modifying 
@@ -115,7 +115,7 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	
 	@Query(value ="select a.*,e.* from Employee e "
 			+ "join account a on e.id = a.employee_id "
-			+ "where a.id= :id " , nativeQuery = true)
+			+ "where e.id= :id " , nativeQuery = true)
 	Account showEmployeeById(@Param(value="id") Integer id); 
 		
 }

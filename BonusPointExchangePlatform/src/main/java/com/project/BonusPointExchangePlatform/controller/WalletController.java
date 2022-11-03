@@ -46,16 +46,20 @@ public class WalletController {
 	Member member = (Member)session.getAttribute("member");
 		
 		if( member == null) {
-			return "/frontend/entrance/login";
+			return "/frontend/entrance/newlogin";
 		}
 		return "frontend/member/MemberBankAccount";
 	}
 	
 	
+	//*****載入頁面顯示紅利點數總額*****
 	@ResponseBody
 	@PostMapping(value="/frontend/wallet",produces = {"application/json;charset=UTF-8"})
-	public WalletDto allBonus(@RequestBody WalletDto dto) {
-		int id = dto.getAccount().getId();
+	public WalletDto allBonus(@RequestBody WalletDto dto , HttpSession session ) {
+//		int id = dto.getAccount().getId();
+		Member member = (Member)session.getAttribute("member");
+		Integer id = member.getId();
+		
 		System.out.println(123);
 		WalletDto all = new WalletDto();
 		int allBonus = wService.allBonus(id);		
@@ -98,10 +102,11 @@ public class WalletController {
 	//*****查看銀行資訊*****
 	@ResponseBody
 	@PostMapping(value="/frontend/bank",produces = {"application/json;charset=UTF-8"})
-	public Optional<Bank> bankDetail(@RequestBody WalletDto dto) {
-		int id = dto.getAccount().getId();
-		System.out.println(id);
+	public Optional<Bank> bankDetail(@RequestBody WalletDto dto,HttpSession session) {
+//		int id = dto.getAccount().getId();
 		
+		Member member = (Member)session.getAttribute("member");
+		Integer id = member.getId();
 		Optional<Bank> bankDetail = wService.bankDetail(id);
 			
 		if(bankDetail!=null) {	
@@ -117,11 +122,12 @@ public class WalletController {
 	//**********載入頁面後顯示儲值金兌換紀錄*********
 	@ResponseBody
 	@PostMapping(value="/frontend/bankList", produces = {"application/json;charset=UTF-8"})
-	public List<WalletDto> showChangeList(@RequestBody WalletDto dto ) {
-	System.out.println(dto);
-	int id = dto.getAccount().getId();
+	public List<WalletDto> showChangeList(@RequestBody WalletDto dto,HttpSession session ) {
+//	System.out.println(dto);
+//	int id = dto.getAccount().getId();
 //	int pagenumber = dto.getPagenumber();
-	System.out.println(id);
+	Member member = (Member)session.getAttribute("member");
+	Integer id = member.getId();
 	
 
 	List<WalletDto> w1 = wService.findAllBySourceType(id);
@@ -137,19 +143,21 @@ public class WalletController {
 	//**********兌換後顯示最新兌換紀錄*********
 	@ResponseBody
 	@PostMapping(value="/edit/changeAmount", produces = {"application/json;charset=UTF-8"})
-	public List<WalletDto> changeAmount(@RequestBody WalletDto dto ) {
+	public List<WalletDto> changeAmount(@RequestBody WalletDto dto,HttpSession session ) {
 		
+		Member member = (Member)session.getAttribute("member");
+		Integer id = member.getId();
 		
-		int id = dto.getAccount().getId();
+//		int id = dto.getAccount().getId();
 		int bank_amount = dto.getBank_amount();
 		System.out.println(bank_amount);
 		Optional<Bank> bank = wService.bankDetail(id);
 		Integer amount = bank.get().getAmount();
 		System.out.println(amount);
 		List<WalletDto> dto1 = new 	ArrayList<WalletDto>();
-		if(bank_amount!=0 && bank_amount<= amount && amount != 0 ) {
+		if(bank_amount!=0 && bank_amount<= amount && amount != 0 && bank_amount >0) {
 			int wallet_amount = bank_amount;
-			int bonus = (bank_amount / 100);
+			int bonus = (bank_amount);
 			dto1 = wService.changeBankAccount(id, bank_amount, wallet_amount, bonus);
 		}else {
 			dto1.add(null);
@@ -160,7 +168,7 @@ public class WalletController {
 	//**********載入頁面後顯示紅利點數兌換紀錄*********
 	@ResponseBody
 	@PostMapping(value="/frontend/bonuslist", produces = {"application/json;charset=UTF-8"})
-	public List<WalletDto> showBonusList(@RequestBody WalletDto dto ) {
+	public List<WalletDto> showBonusList(@RequestBody WalletDto dto ,HttpSession session) {
 		String date1 = dto.getDate1();
 		String date2 = dto.getDate2();
 		System.out.println(date1);
@@ -169,7 +177,8 @@ public class WalletController {
 	System.out.println(selected);
 	String orderby = dto.getOrderby();
 	System.out.println(orderby);
-	int id = dto.getAccount().getId();
+	Member member = (Member)session.getAttribute("member");
+	int id =member.getId();
 	System.out.println(id);
 	List<WalletDto> w1 = new ArrayList<WalletDto>();
 	if(date1=="" || date2=="") {

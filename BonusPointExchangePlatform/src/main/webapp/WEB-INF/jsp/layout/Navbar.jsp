@@ -47,9 +47,8 @@
 									<ul id="navigation">
 										<li><a href="#">會員專區<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="${contextRoot}/goMember">個人資料</a></li>
-												<li><a href="${contextRoot}/goBankAccount">查看帳戶</a></li>
-												<li><a href="${contextRoot}/goBonus">紅利點數</a></li>
+												<li><a href="${contextRoot}/frontend/EditMemberByMember">編輯個人資料</a></li>
+												<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
 												<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a></li>
 												<li><a href="${contextRoot}/campaign">簽到</a></li>
 											</ul></li>

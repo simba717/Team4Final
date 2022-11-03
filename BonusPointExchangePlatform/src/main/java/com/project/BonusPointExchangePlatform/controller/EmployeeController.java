@@ -30,6 +30,7 @@ import com.project.BonusPointExchangePlatform.dto.WalletDto;
 import com.project.BonusPointExchangePlatform.model.Account;
 import com.project.BonusPointExchangePlatform.model.Campaign;
 import com.project.BonusPointExchangePlatform.model.Employee;
+import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Order_Detail;
 import com.project.BonusPointExchangePlatform.model.Orders;
 import com.project.BonusPointExchangePlatform.model.Payment;
@@ -93,12 +94,13 @@ public class EmployeeController {
 	}		
 	
 	//*******前台員工編輯員工資料**********
+	
 	@GetMapping("/frontend/EditEmployeeByEmployee")
 	public String newEmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
 		if( employee == null) {
-			return "/frontend/entrance/login";
+			return "/backend/entrance/newloginemp";
 		}
 		return "frontend/member/EditEmployeeByEmployee";
 	}
@@ -204,21 +206,28 @@ public class EmployeeController {
 		return dto1;	
 	}
 	
+	
+	//***********後台員工個人編輯載入後頁面*********
 	@ResponseBody
 	@PostMapping(path = "/frontned/edit/EmployeeByEmployee", produces = {"application/json;charset=UTF-8"})
-	public EmployeeDto editEmployeeById(@RequestBody EmployeeDto dto ) {
-		int id  = dto.getAccount().getId();
-		EmployeeDto dto1 =new EmployeeDto();
-		dto1.setAccount(eService.showEmployeeById(id));
-		dto1.getAccount().getEmployee().getName();
+	public EmployeeDto editEmployeeById(@RequestBody EmployeeDto dto,HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");
+		Integer id = employee.getId();
+		System.out.println(id);
+//		int id  = dto.getAccount().getId();
+		EmployeeDto dto1=eService.showEmployeeById(id);
+		
+		
 		return dto1;	
 	}
 	
+	
+	//**********後台會員完成個人編輯*********
 	@ResponseBody
 	@PostMapping(path="/edit/employeeDetail", produces = {"application/json;charset=UTF-8"})
-	public EmployeeDto editEmployee(@RequestBody EmployeeDto dto ) {
-		Integer id = 2;
-		System.out.println(id);
+	public EmployeeDto editEmployee(@RequestBody EmployeeDto dto,HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");
+		Integer id = employee.getId();
 		String password = dto.getAccount().getPassword();
 		String name = dto.getEmployee().getName();
 		String arrived = DateFormat.format(dto.getEmployee().getArrived_at());
@@ -240,8 +249,7 @@ public class EmployeeController {
 		byte[] a = Base64.getMimeDecoder().decode(base64);
 		eService.editEmployeeDetail(name, arrived,employee_no, email, phone, password,a, id);
 		}
-		EmployeeDto dto1 =new EmployeeDto();
-		dto1.setAccount(eService.showEmployeeById(id));
+		EmployeeDto dto1 =eService.showEmployeeById(id);
 		
 		return dto1;
 		

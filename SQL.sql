@@ -297,8 +297,8 @@ VALUES
 ('兌換', 2000, 50000, 0, 1, 1, null),
 ('活動獎勵', 0, 2000, 0, 1, null, 1),
 ('回饋', 0, 3000, 10000, 2, 2, null),
-('交易', 0, 200, 0, 2, null, null),
-('交易', 0, 100, 0, 1, null, null),
+('交易', 0, -200, 0, 2, null, null),
+('交易', 0, -100, 0, 1, null, null),
 ('交易', 50, 0, 0, 1, null, null);
 
 INSERT INTO Payment(payment, orders_id, wallet_id)

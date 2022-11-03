@@ -184,12 +184,14 @@ public class EmployeeService {
 
 	}
 	
-	public Account showEmployeeById(Integer id) {
-		aDao.showEmployeeById(id);
+	public EmployeeDto showEmployeeById(Integer id) {
+		Account e1 = aDao.showEmployeeById(id);
+		EmployeeDto dto = new EmployeeDto();
 		System.out.println(123);
-
-		if (aDao.showEmployeeById(id) != null) {
-			return aDao.showEmployeeById(id);
+		dto.setEmployee(e1.getEmployee());
+		dto.setAccount(e1);
+		if (dto != null) {
+			return dto;
 		} else
 			return null;
 	}

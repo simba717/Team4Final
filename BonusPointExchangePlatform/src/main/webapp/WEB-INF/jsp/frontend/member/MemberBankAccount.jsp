@@ -1003,17 +1003,17 @@ function bonusTotal(){
 
 
 	<!-- 		**************紅利點數系統********** -->
-	<div style="height: 600px">
+	<div style="height: 600px;">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-xl-6 col-lg-6 col-md-6">
 					<div id="carouselExampleIndicators" class="carousel slide"
-						data-ride="carousel">
+						data-bs-ride="carousel">
 						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
 								class="active"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="1000">
@@ -1023,23 +1023,22 @@ function bonusTotal(){
 								<img src="img2/bonusphoto.png" class="d-block w-100" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="img2/bonusphoto.png" src="..." class="d-block w-100"
-									alt="...">
+								<img src="img2/bonusphoto.png"  class="d-block w-100" alt="...">
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
-							data-target="#carouselExampleIndicators" data-slide="prev">
+							data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 							<span class="sr-only">Previous</span>
 						</button>
 						<button class="carousel-control-next" type="button"
-							data-target="#carouselExampleIndicators" data-slide="next">
+							data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="sr-only">Next</span>
 						</button>
 					</div>
 				</div>
-				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6">
+				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6" >
 					<div class="about_info">
 						<div class="section_title mb-20px">
 							<h1>您目前擁有的紅利 :</h1>

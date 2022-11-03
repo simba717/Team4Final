@@ -26,11 +26,41 @@ public class GameController {
 	private GameService gService;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	
+	private SimpleDateFormat dateFormat2 = new SimpleDateFormat("-MM-dd");
 	
 	@GetMapping(path = "/campaign")
 	public String processMainAction() {
 		return "frontend/campaign/SignIn";
+	}
+	
+	@ResponseBody
+	@GetMapping(path = "/checkBirth" ,produces = {"application/json;charset=UTF-8"})
+	public Game checkBirth(HttpSession session) {
+		Date getDate = new Date();
+		Game g = new Game();
+		Member m = (Member)session.getAttribute("member");
+		Integer mId = m.getId();
+		String create_at = dateFormat.format(getDate);
+		String create_at2 = dateFormat2.format(getDate);
+		System.out.println(create_at2);
+		Member member = gService.checkBirth("%"+create_at2+"%",mId);
+		if(member!=null) {
+			Game game = gService.checkBirthGift(mId, "%"+create_at+"%");
+			if(game==null) {
+				gService.insertBirth(m,getDate);
+				gService.insertBirthWallet(m, getDate);
+				g.setGame_type("恭喜獲得生日禮");
+				return g;
+			}
+			else {
+				g.setGame_type("您今天已經領過生日禮囉");
+				return g;
+			}
+		}else {
+			g.setGame_type("您的生日還沒到喔");
+			return g;
+		}
+		
 	}
 	
 	@ResponseBody
@@ -43,7 +73,6 @@ public class GameController {
 		String create_at = dateFormat.format(getDate);
 		Game game = gService.checkSignIn(mId, game_type, "%"+create_at+"%");
 		
-		System.out.println("88888888"+game);
 		if(game==null) {
 			Set<Member> set = new HashSet<Member>();
 			set.add(m);
@@ -51,13 +80,14 @@ public class GameController {
 			Set<Game> setGame = m.getGame();
 			setGame.add(g);
 			gService.insertGame(m, getDate);
+			gService.insertSignWallet(m, getDate);
 			Game g2 = new Game();
-			g2.setGame_type("成功");
+			g2.setGame_type("已完成簽到");
 			return g2;
 		}
 		else {
 			Game g = new Game();
-			g.setGame_type("已簽到過");
+			g.setGame_type("您已簽到過囉");
 			return g;
 		}
 	}
@@ -75,7 +105,8 @@ public class GameController {
 			getDate.add(dateFormat.format(list.getCreate_at()));
 		}
 		
-//		m.addAttribute("list",getDate);
 		return getDate;
 	}
+	
+	
 }

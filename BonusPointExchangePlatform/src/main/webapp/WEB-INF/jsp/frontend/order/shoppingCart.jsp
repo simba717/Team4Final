@@ -159,6 +159,11 @@ window.onload = function(){
             	console.log(bonusCheck)
             	if(bonusCheck==3){
             		$("#surplusAmount").removeClass("invisible").css("color", "red").text("儲值金不足請用信用卡或是調整訂單")
+            		if($("#selectPayment :selected").val() == 1){
+            			$("#paymentAmount").val(parseInt($("#totalPrice").text().substring(1)))
+            			$("#surplusAmount").addClass("invisible")
+            			bonusCheck = 0;
+            		}
             		return;
             	}
             	if(bonusCheck==2){
@@ -330,21 +335,30 @@ window.onload = function(){
 //                     }
 //                 }
 //             })
+            //刪除按鈕
             $(document).on("click",".deleteOrderDetail",function(){
-            	if (!confirm("確定要刪除嗎")) {
-                    return
-                }
             	console.log($(this).attr("id"));
             	console.log($(this).attr("id").substring(12));
             	var queryString = $(this).attr("id").substring(12);
-            	let xhr3 = new XMLHttpRequest();
-                xhr3.open('GET', "<c:url value='/orderDetail/deleteOrderDetail/' />"+queryString , true);
-                xhr3.send();
-                xhr3.onreadystatechange = function () {
-                	if (xhr3.readyState == 4 && xhr3.status == 200) {
-                		showshow.innerHTML = displayData(xhr3.responseText);
-                	}
-                }
+            	Swal.fire({
+                    title: "確定要刪除訂單嗎",
+                    color: "#FF0000",
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    confirmButtonColor: "#4EFEB3"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire('成功刪除', '', 'success')
+                        let xhr3 = new XMLHttpRequest();
+                        xhr3.open('GET', "<c:url value='/orderDetail/deleteOrderDetail/' />"+queryString , true);
+                        xhr3.send();
+                        xhr3.onreadystatechange = function () {
+                        	if (xhr3.readyState == 4 && xhr3.status == 200) {
+                        		showshow.innerHTML = displayData(xhr3.responseText);
+                        	}
+                        }   
+                    } 
+                })            	
             })
 //             $(".deleteOrderDetail").click(function(){
 //             	if (!confirm("確定要刪除嗎")) {
@@ -363,6 +377,10 @@ window.onload = function(){
 //                 }
 //             })
             $(document).on("click",'#checkoutButton',function(){
+            	if(parseInt($("#totalPrice").text().substring(1))==0){
+            		$("#surplusAmount").removeClass("invisible").css("color", "red").text("還沒有下單任何訂單")
+            		return;
+            	}
             	if(bonusCheck==2){
             		$("#surplusDividend").css("color", "red").text("紅利點數格式錯誤或點數不足");
             		return;
@@ -370,6 +388,10 @@ window.onload = function(){
             		$("#surplusAmount").removeClass("invisible").css("color", "red").text("儲值金不足請用信用卡或是調整訂單")
             		return;
             	}else if(bonusCheck==4||bonusCheck==0){
+            		if (!$(this).prop("checked") && $("#selectPayment :selected").val()==""){
+            			$("#surplusAmount").removeClass("invisible").css("color", "red").text("請選擇使用付款方法")
+            			return
+            		}
             		var paidWallet = $("#paymentAmount").val();
             		var paidcreditCard = $("#paymentAmount").val();
             		var paidBonus;
@@ -395,7 +417,7 @@ window.onload = function(){
                 		checkout2();
             		}
             	}else{
-            		$("#surplusAmount").removeClass("invisible").css("color", "red").text("請選擇付款方式")
+            		$("#surplusAmount").removeClass("invisible").css("color", "red").text("紅利扣除完後尚有餘額請選擇付款方式")
             	}
             })
 //             $("#checkoutButton").click(function(){

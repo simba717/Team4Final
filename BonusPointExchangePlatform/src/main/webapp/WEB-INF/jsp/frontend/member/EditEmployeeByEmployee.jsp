@@ -98,7 +98,7 @@ ul {
 			var url = "<c:url value='/frontned/edit/EmployeeByEmployee'/>"
 			var obj = {
 				'account' : {
-					'id' : 3
+					'id' :1
 				}
 			}
 			var json = JSON.stringify(obj);

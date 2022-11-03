@@ -1,8 +1,10 @@
 package com.project.BonusPointExchangePlatform.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -68,6 +70,21 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * from Wallet where member_id=:member_id and source_type!='回饋' ",nativeQuery = true)
 	List<Wallet> findMemberWalletAmount(@Param(value="member_id") Member member_id);
 	
-	@Query(value = "select * from Wallet where member_id=:member_id and source_type!='回饋' ",nativeQuery = true)
+	@Query(value = "select * from Wallet where member_id=:member_id  ",nativeQuery = true)
 	List<Wallet> findMemberBonusAmount(@Param(value="member_id") Member member_id);
+	
+	@Modifying
+	@Query(value = "insert into Wallet(source_type, wallet_amount, bonus_point,credit_card_amount,member_id,bank_id,game_id) "
+			+ "values('活動獎勵', 0 , 500 , 0 , :member_id , null , (select top 1.id from game where game_type='簽到' and update_at >:update_at "
+			+ " order by update_at desc)) " , nativeQuery = true)
+	void insertSignWallet(@Param(value = "member_id") Member member_id,
+			              @Param(value = "update_at") Date update_at);
+	
+	
+	@Modifying
+	@Query(value = "insert into Wallet(source_type, wallet_amount, bonus_point,credit_card_amount,member_id,bank_id,game_id) "
+			+ "values('活動獎勵', 0 , 10000 , 0 , :member_id , null , (select top 1.id from game where game_type='生日禮' and update_at >:update_at "
+			+ " order by update_at desc)) " , nativeQuery = true)
+	void insertBirthWallet(@Param(value = "member_id") Member member_id,
+			               @Param(value = "update_at") Date update_at);
 }

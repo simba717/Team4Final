@@ -100,11 +100,10 @@
         
         
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         window.onload = function() {  
 			btn.onclick = function() {
+				$("#calendar").toggleClass("visually-hidden")
 				let xhr = new XMLHttpRequest();
 				xhr.open('GET', "<c:url value="/selectDate" />", true);
 				xhr.send();
@@ -210,16 +209,37 @@
 			
 			var gameSign = document.getElementById("gameSign")
 				gameSign.onclick = function() {
-				let xhr = new XMLHttpRequest();
-				xhr.open('GET', "<c:url value="/checkSignIn" />", true);
-				xhr.send();
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						var signAlert = JSON.parse(xhr.responseText);
-						alert(signAlert.game_type);
+				let xhr2 = new XMLHttpRequest();
+				xhr2.open('GET', "<c:url value="/checkSignIn" />", true);
+				xhr2.send();
+				xhr2.onreadystatechange = function() {
+					if (xhr2.readyState == 4 && xhr2.status == 200) {
+						let signAlert = JSON.parse(xhr2.responseText);
+						if(signAlert.game_type=="已完成簽到"){
+							Swal.fire("成功!",signAlert.game_type, "success")
+						}else{
+							Swal.fire("失敗!",signAlert.game_type, "error")
+						}
 					}
 				}	
-			}	
+			}
+			$("#gameBirthGift").click(function(){
+				let xhr3 = new XMLHttpRequest();
+				xhr3.open('GET', "<c:url value="/checkBirth" />", true);
+				xhr3.send();
+				xhr3.onreadystatechange = function() {
+					if (xhr3.readyState == 4 && xhr3.status == 200) {
+						let signAlert2 = JSON.parse(xhr3.responseText);
+						if(signAlert2.game_type=="恭喜獲得生日禮"){
+							Swal.fire("成功!",signAlert2.game_type, "success")
+						}else if(signAlert2.game_type=="您今天已經領過生日禮囉"){
+							Swal.fire("失敗!",signAlert2.game_type, "error")
+						}else{
+							Swal.fire("失敗!",signAlert2.game_type, "error")
+						}
+					}
+				}
+			})
 		}
     </script>
 </head>
@@ -227,10 +247,11 @@
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 	<h1>簽到</h1>
 	<button id="gameSign" class="btn btn-danger">簽到</button>
+	<button id="gameBirthGift" class="btn btn-danger">生日禮</button>
 	<button id="btn" class="btn btn-primary">查詢日期</button>
 	<br>
 	<div id="dataArea">&nbsp;</div>
-	<div id="calendar" hidden>
+	<div id="calendar" class="visually-hidden">
         <h4 style="font-family: Arial, Helvetica, sans-serif;">年月</h4>
         <a href="##"  class="a1">&lt;&lt;</a>
         <a href="##"  class="a2">&gt;&gt;</a>

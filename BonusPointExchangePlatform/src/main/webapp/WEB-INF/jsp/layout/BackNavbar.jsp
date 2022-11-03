@@ -120,13 +120,13 @@
 
 	<!-- JS here -->
 	<script src="${contextRoot}/js/vendor/modernizr-3.5.0.min.js"></script>
-	<script src="${contextRoot}/js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="${contextRoot}/js/jquery-3.6.1.min.js"></script>
 	<script src="${contextRoot}/js/popper.min.js"></script>
-	<script src="${contextRoot}/js/bootstrap.min.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.js"></script>
 	<script src="${contextRoot}/js/owl.carousel.min.js"></script>
 	<script src="${contextRoot}/js/isotope.pkgd.min.js"></script>
 	<script src="${contextRoot}/js/ajax-form.js"></script>
-	<script src="${contextRoot}/js/waypoints.min.js"></script>
+	<script src="${contextRoot}/js/jquery.waypoints.min.js"></script>
 	<script src="${contextRoot}/js/jquery.counterup.min.js"></script>
 	<script src="${contextRoot}/js/imagesloaded.pkgd.min.js"></script>
 	<script src="${contextRoot}/js/scrollIt.js"></script>
@@ -136,6 +136,7 @@
 	<script src="${contextRoot}/js/jquery.slicknav.min.js"></script>
 	<script src="${contextRoot}/js/jquery.magnific-popup.min.js"></script>
 	<script src="${contextRoot}/js/plugins.js"></script>
+	<script src="${contextRoot}/js/sweetalert2.all.min.js"></script>
 
 	<!--contact js-->
 	<script src="${contextRoot}/js/contact.js"></script>

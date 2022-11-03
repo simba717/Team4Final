@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.BonusPointExchangePlatform.dao.GameDao;
 import com.project.BonusPointExchangePlatform.dao.MemberDao;
+import com.project.BonusPointExchangePlatform.dao.WalletDao;
 import com.project.BonusPointExchangePlatform.model.Game;
 import com.project.BonusPointExchangePlatform.model.Member;
 
@@ -23,6 +24,9 @@ public class GameService {
 	@Autowired
 	private MemberDao memberDao;
 	
+	@Autowired
+	private WalletDao walletDao;
+	
 	
 	public Member getMemberById(Integer id) {
 		Optional<Member> query = memberDao.findById(id);
@@ -35,8 +39,6 @@ public class GameService {
 	
 	public void insertGame(Member member, Date update_at) {
 		gameDao.insertLogin(member, update_at);
-		
-//		return gameDao.save(game);
 	}
 	
 	public Game checkSignIn(Integer id,String game_type,String create_at) {
@@ -45,5 +47,25 @@ public class GameService {
 	
 	public List<Game> selectDate(Integer id,String game_type){
 		return gameDao.selectDate(id, game_type);
+	}
+	
+	public Member checkBirth(String birh,Integer merber_id) {
+		return memberDao.checkBirth(birh, merber_id);
+	}
+	
+	public Game checkBirthGift(Integer id,String create_at) {
+		return gameDao.checkBirthGift(id, create_at);
+	}
+	
+	public void insertBirth(Member member_id,Date update_at) {
+		gameDao.insertBirth(member_id, update_at);;
+	}
+	
+	public void insertSignWallet(Member member_id,Date update_at) {
+		walletDao.insertSignWallet(member_id, update_at);
+	}
+	
+	public void insertBirthWallet(Member member_id,Date update_at) {
+		walletDao.insertBirthWallet(member_id, update_at);
 	}
 }

@@ -115,7 +115,7 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	
 	@Query(value ="select a.*,e.* from Employee e "
 			+ "join account a on e.id = a.employee_id "
-			+ "where a.id= :id " , nativeQuery = true)
+			+ "where e.id= :id " , nativeQuery = true)
 	Account showEmployeeById(@Param(value="id") Integer id); 
 		
 }

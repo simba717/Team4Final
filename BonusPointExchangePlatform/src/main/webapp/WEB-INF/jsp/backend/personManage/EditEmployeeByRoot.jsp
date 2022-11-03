@@ -175,7 +175,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-danger' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -205,7 +205,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-success' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -244,7 +244,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-danger' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -274,7 +274,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-success' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -369,7 +369,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-danger' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -399,7 +399,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-success' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -438,7 +438,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-danger' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -468,7 +468,7 @@
 																				+ data[i].update_date
 																				+ "</td><td><input id='"
 																				+ data[i].employee.id
-																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td><td><input type='button' class='btn btn-success' id='"
 																				+ data[i].employee.id
 																				+ "' name='"
@@ -602,7 +602,7 @@
 															+ data[i].update_date
 															+ "</td><td><input id='"
 															+ data[i].employee.id
-															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td><td><input type='button' class='btn btn-danger' id='"
 															+ data[i].employee.id
 															+ "' name='"
@@ -632,7 +632,7 @@
 															+ data[i].update_date
 															+ "</td><td><input id='"
 															+ data[i].employee.id
-															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td><td><input type='button' class='btn btn-success' id='"
 															+ data[i].employee.id
 															+ "' name='"
@@ -670,7 +670,7 @@
 															+ data[i].update_date
 															+ "</td><td><input id='"
 															+ data[i].employee.id
-															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td><td><input type='button' class='btn btn-danger' id='"
 															+ data[i].employee.id
 															+ "' name='"
@@ -700,7 +700,7 @@
 															+ data[i].update_date
 															+ "</td><td><input id='"
 															+ data[i].employee.id
-															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td><td><input type='button' class='btn btn-success' id='"
 															+ data[i].employee.id
 															+ "' name='"
@@ -785,7 +785,7 @@
 														+ data[i].update_date
 														+ "</td><td><input id='"
 														+ data[i].employee.id
-														+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+														+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 														+ "</td><td><input type='button' class='btn btn-danger' id='"
 														+ data[i].employee.id
 														+ "' name='"
@@ -815,7 +815,7 @@
 														+ data[i].update_date
 														+ "</td><td><input id='"
 														+ data[i].employee.id
-														+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal1' data-whatever='@getbootstrap'></button>"
+														+ "' onclick='getindex1(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'></button>"
 														+ "</td><td><input type='button' class='btn btn-success' id='"
 														+ data[i].employee.id
 														+ "' name='"
@@ -1007,10 +1007,10 @@
 						checkName.innerHTML = ("輸入正確")
 						checkName.style = "color:green;font-size:14px";
 					} else {
-						v.classList.remove("is-valid");
-						v.classList.add("is-invalid");
+						v.classList.remove("is-invalid");
+						v.classList.add("is-valid");
 						checkName.innerHTML = ("建議輸入中文")
-						checkName.style = "color:red;font-size:14px";
+						checkName.style = "color:green;font-size:14px";
 						break;
 					}
 				}
@@ -1195,7 +1195,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div style="margin-left: 1000px; margin-top: -90px; width: 200px">
+				<div style="margin-left: 1400px; margin-top: -90px; width: 200px">
 					<div style="margin: 0 auto; width: 200px">
 						搜尋員工:依員工名稱<input type='text' id='search1'>
 					</div>
@@ -1245,14 +1245,14 @@
 
 
 
-	<div class="modal fade" id="exampleModal1" data-backdrop="static"
-		data-keyboard="false" tabindex="-1" role="dialog"
+	<div class="modal fade" id="exampleModal1" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel1">員工資料編輯</h5>
-					<button type="button" class="close" data-dismiss="modal"
+					<button type="button" class="close" data-bs-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -1301,7 +1301,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
+						data-bs-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
 					<button type="button" class="btn btn-primary" id="send1">完成送出</button>
 				</div>
 			</div>

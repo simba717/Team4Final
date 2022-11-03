@@ -171,8 +171,8 @@ public class WalletController {
 	public List<WalletDto> showBonusList(@RequestBody WalletDto dto ,HttpSession session) {
 		String date1 = dto.getDate1();
 		String date2 = dto.getDate2();
-		System.out.println(date1);
-		System.out.println(date2);
+		String redate1 = date1 + " 00:00:00"; 
+		String redate2 = date2 + " 23:59:59";
 	String selected = dto.getSelected();
 	System.out.println(selected);
 	String orderby = dto.getOrderby();
@@ -184,7 +184,7 @@ public class WalletController {
 	if(date1=="" || date2=="") {
 		w1 = wService.findAllBonusById(id,orderby,selected);
 	}else {
-		w1 = wService.findAllBonusByDate(id,orderby,selected,date1,date2);
+		w1 = wService.findAllBonusByDate(id,orderby,selected,redate1,redate2);
 	}
 	System.out.println(w1);
 		if(w1!=null) {	

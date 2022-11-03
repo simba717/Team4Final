@@ -1,21 +1,20 @@
 select * from Wallet 
 select * from Game
 
------------------------用id查詢會員遊戲紅利並加總SUM
-select 
-	w.member_id, g.game_type, SUM(bonus_point) as [total_bonus]
-from Wallet w
+
+-----------------------員工查詢遊戲發放紅利
+select *
+from Wallet w 
 join Game g on w.game_id = g.id
- 
 	where w.source_type = '遊戲'
-group by w.member_id, g.game_type
 
-select * from Wallet 
-	where source_type = '遊戲' and member_id = 2
 
-	select * from Wallet w 
-	join Game g on w.game_id = g.id
-	where w.source_type = '遊戲' and g.game_type = '採集魔水晶'
+-----------------------員工查詢遊戲發放紅利by會員id
+select *
+from Wallet 
+	where source_type = '遊戲' and member_id = 1
+
+	-----------------------會員查詢遊戲紀錄
 
 select * from Member_Game mg 
 join Member m on mg.member_id = m.id 

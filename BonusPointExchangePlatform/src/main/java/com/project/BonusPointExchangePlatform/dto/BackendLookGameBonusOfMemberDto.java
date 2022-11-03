@@ -8,6 +8,8 @@ public class BackendLookGameBonusOfMemberDto implements Serializable {
 	
 	private int memberId;
 	
+	private String gameType; 
+	
 	private int gameBonus;
 
 	public BackendLookGameBonusOfMemberDto() {
@@ -19,6 +21,14 @@ public class BackendLookGameBonusOfMemberDto implements Serializable {
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
+	}
+	
+	public String getGameType() {
+		return gameType;
+	}
+
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
 	}
 
 	public int getGameBonus() {

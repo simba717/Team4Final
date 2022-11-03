@@ -292,13 +292,15 @@ z-index
 
 
 <script>
-window.onload = function() {
-	
-	var alink = document.getElementById("accountCheckBtn");
-	var div = document.getElementById('resultAcc');
-	alink.onclick = function() {
+
+let accheckrepeat,emaillcheckrepeat,bankcheckrepeat=false;
+
+function checkacrepeat() {
+		var div = document.getElementById('resultAcc');
+
 	  var accValue = document.getElementById("account").value;
-	  if (!accValue) {
+	  if (accValue=="") {
+		accheckrepeat=false;
 		div.innerHTML = "<font color='blue' size='-1'>請輸入帳號...</font>";
 		return;
 	  }
@@ -313,20 +315,23 @@ window.onload = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
 		   var result = JSON.parse(xhr.responseText);
 		   if (result.account.length == 0) {
+			accheckrepeat=true;
 			  message = "<font color='green' size='-2'>帳號可用</font>";
 		   }else {
+				accheckrepeat=false;
 			  message = "<font color='red' size='-2'>帳號重複，請重新輸入帳號</font>"; 
 		   }
 		   div.innerHTML = message;
 	    }
-     }
    }
-	
-	var emaillink = document.getElementById("emailCheckBtn");
+ }
+
+function checkmailrepeat() {
 	var maildiv = document.getElementById('resultEmail');
-	emaillink.onclick = function() {
+
 	  var mailValue = document.getElementById("email").value;
 	  if (!mailValue) {
+		 emaillcheckrepeat=false;
 		maildiv.innerHTML = "<font color='blue' size='-1'>請輸入信箱...</font>";
 		return;
 	  }
@@ -341,22 +346,24 @@ window.onload = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
 		   var result = JSON.parse(xhr.responseText);
 		   if (result.email.length == 0) {
+			  emaillcheckrepeat=true;
 			  message = "<font color='green' size='-2'>信箱無重複，可以使用</font>";
 		   }else {
+			   emaillcheckrepeat=false;
 			  message = "<font color='red' size='-2'>信箱重複，請重新輸入信箱</font>"; 
 		   }
 		   maildiv.innerHTML = message;
 	    }
-     }
    }
-	
-	
-	var banklink = document.getElementById("bankCheckBtn");
+ }
+ 
+ 
+function checkbankrepeat() {
 	var bankdiv = document.getElementById('resultbank');
-	
-	banklink.onclick = function() {
+
 	  var bankValue = document.getElementById("account_no").value;
 	  if (!bankValue) {
+		  bankcheckrepeat=false
 		 bankdiv.innerHTML = "<font color='blue' size='-1'>請輸入銀行帳號...</font>";
 		return;
 	  }
@@ -371,14 +378,25 @@ window.onload = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
 		   var result = JSON.parse(xhr.responseText);
 		   if (result== true) {
+			  bankcheckrepeat=true;
 			  message = "<font color='green' size='-2'>銀行帳號可使用</font>";
 		   }else {
+			  bankcheckrepeat=false
 			  message = "<font color='red' size='-2'>銀行帳號無法使用</font>"; 
 		   }
 		   bankdiv.innerHTML = message;
 	    }
-     }
    }
+ }
+
+
+window.onload = function() {
+
+
+	document.getElementById("accountCheckBtn").addEventListener("click", checkacrepeat);
+	document.getElementById("emailCheckBtn").addEventListener("click", checkmailrepeat);
+	document.getElementById("bankCheckBtn").addEventListener("click", checkbankrepeat);
+	
 	
 	
 	
@@ -541,7 +559,15 @@ window.onload = function() {
 
 			}
 		})
-		document.getElementById("account").addEventListener("blur", finalcheck)
+		document.getElementById("account").addEventListener("blur", finalcheck);
+		document.getElementById("account").addEventListener("blur", checkacrepeat);
+		document.getElementById("account").addEventListener("blur", checkmailrepeat);
+		document.getElementById("account").addEventListener("blur", checkbankrepeat);
+
+
+		
+		
+		
 
 		document.getElementById("password").addEventListener("blur",function() {
 
@@ -613,7 +639,13 @@ window.onload = function() {
 
 							}
 						})
-		document.getElementById("password").addEventListener("blur", finalcheck)
+		document.getElementById("password").addEventListener("blur", finalcheck);
+			document.getElementById("password").addEventListener("blur", checkacrepeat);
+		document.getElementById("password").addEventListener("blur", checkmailrepeat);
+		document.getElementById("password").addEventListener("blur", checkbankrepeat);
+		
+		
+		
 
 		document.getElementById("name").addEventListener("blur",function() {
 							let name = document.getElementById("name");
@@ -647,7 +679,13 @@ window.onload = function() {
 							}
 						})
 
-		document.getElementById("name").addEventListener("blur", finalcheck)
+		document.getElementById("name").addEventListener("blur", finalcheck);
+		document.getElementById("name").addEventListener("blur", checkacrepeat);
+		document.getElementById("name").addEventListener("blur", checkmailrepeat);
+		document.getElementById("name").addEventListener("blur", checkbankrepeat);
+		
+		
+		
 
 		document.getElementById("email").addEventListener("blur",function() {
 							let mailId = document.getElementById("email");
@@ -679,7 +717,10 @@ window.onload = function() {
 							}
 
 						})
-		document.getElementById("email").addEventListener("blur", finalcheck)
+		document.getElementById("email").addEventListener("blur", finalcheck);
+		document.getElementById("email").addEventListener("blur", checkacrepeat);
+		document.getElementById("email").addEventListener("blur", checkmailrepeat);
+		document.getElementById("email").addEventListener("blur", checkbankrepeat);
 
 		
 		
@@ -710,7 +751,10 @@ window.onload = function() {
 							}
 						})
 
-		document.getElementById("phone").addEventListener("blur", finalcheck)
+		document.getElementById("phone").addEventListener("blur", finalcheck);
+		document.getElementById("phone").addEventListener("blur", checkacrepeat);
+		document.getElementById("phone").addEventListener("blur", checkmailrepeat);
+		document.getElementById("phone").addEventListener("blur", checkbankrepeat);
 		
 		
 		
@@ -733,7 +777,10 @@ window.onload = function() {
 							}
 						})
 
-		document.getElementById("birth").addEventListener("blur", finalcheck)
+		document.getElementById("birth").addEventListener("blur", finalcheck);
+		document.getElementById("birth").addEventListener("blur", checkacrepeat);
+		document.getElementById("birth").addEventListener("blur", checkmailrepeat);
+		document.getElementById("birth").addEventListener("blur", checkbankrepeat);
 		
 		
 		
@@ -758,7 +805,10 @@ window.onload = function() {
 							
 						})
 
-		document.getElementById("account_no").addEventListener("blur", finalcheck)
+		document.getElementById("account_no").addEventListener("blur", finalcheck);
+		document.getElementById("account_no").addEventListener("blur", checkacrepeat);
+		document.getElementById("account_no").addEventListener("blur", checkmailrepeat);
+		document.getElementById("account_no").addEventListener("blur", checkbankrepeat);
 		
 		
 		
@@ -773,9 +823,11 @@ window.onload = function() {
 		
 		
 		function finalcheck() {
-			if (nameflag && acflag && pwdflag && mailflag && phoneflag && birthflag && bankflag ) {
+			if (nameflag && acflag && pwdflag && mailflag && phoneflag && birthflag && bankflag && accheckrepeat && emaillcheckrepeat && bankcheckrepeat) {
+				console.log(nameflag+','+acflag+','+pwdflag+','+mailflag+','+phoneflag+','+birthflag+','+bankflag+','+accheckrepeat+','+emaillcheckrepeat+','+bankcheckrepeat)
 				document.getElementById("idsubmit").removeAttribute("disabled")
 			} else {
+				console.log(nameflag+','+acflag+','+pwdflag+','+mailflag+','+phoneflag+','+birthflag+','+bankflag+','+accheckrepeat+','+emaillcheckrepeat+','+bankcheckrepeat)
 				document.getElementById("idsubmit").setAttribute("disabled","true");
 			}
 		}

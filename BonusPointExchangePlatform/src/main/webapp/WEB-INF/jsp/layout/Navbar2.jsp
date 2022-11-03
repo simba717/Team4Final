@@ -130,21 +130,7 @@
 										<li><a href="#"> <i class="fa fa-calendar-days"></i>
 										</a></li>
 									</ul>
-									<div style="text-align: center">
-										<img id="iconphoto"
-											style="width:50px;height:50px;border-radius: 60px 60px 60px 60px; justify-content: center; margin-bottom: 5px"
-											src=''>
-										<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-											style="border-radius: 30px 30px 30px 30px">
-											<div class="container-fluid">
-												<div class="collapse navbar-collapse"
-													id="navbarNavDarkDropdown">
-													<ul class="navbar-nav">
-														<li class="nav-item dropdown"><a
-															class="nav-link dropdown-toggle" href="#"
-															id="navbarDarkDropdownMenuLink" role="button"
-															data-toggle="dropdown" aria-expanded="false"> 個人資料 </a>
-															<ul class="dropdown-menu dropdown-menu-dark"
+									<ul class="dropdown-menu dropdown-menu-dark"
 																aria-labelledby="navbarDarkDropdownMenuLink"
 																style="text-align: left;">
 																<li><a class="dropdown-item" href="#" id="1"
@@ -157,12 +143,8 @@
 																	style="justify-content: center">遊戲紀錄查詢</a></li>
 																<li><a class="dropdown-item" href="#" id="5"
 																	style="justify-content: center;">登出</a></li>
-															</ul></li>
-													</ul>
-												</div>
-											</div>
-										</nav>
-									</div>
+															</ul>
+								
 								</div>
 								<div class="book_btn d-none d-xl-block">
 									<a class="#" href="${contextRoot}/login">登入 or 註冊</a> <a

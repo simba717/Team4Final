@@ -151,7 +151,7 @@
 																+ data[i].dateUpdate
 																+ "</td><td><input id='"
 																+ data[i].member.id
-																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																+ "</td></tr>"));
 
 									} else {
@@ -177,7 +177,7 @@
 																+ "</td><td><input id='"
 																+ data[i].member.id
 
-																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																+ "</td></tr>"));
 
 									}
@@ -210,7 +210,7 @@
 																+ data[i].dateUpdate
 																+ "</td><td><input id='"
 																+ data[i].member.id
-																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																+ "</td></tr>"));
 									} else {
 										$("#table tbody")
@@ -234,7 +234,7 @@
 																+ data[i].dateUpdate
 																+ "</td><td><input id='"
 																+ data[i].member.id
-																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																+ "</td></tr>"));
 
 									}
@@ -320,7 +320,7 @@
 																				+ data[i].dateUpdate
 																				+ "</td><td><input id='"
 																				+ data[i].member.id
-																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td></tr>"));
 
 													} else {
@@ -346,7 +346,7 @@
 																				+ "</td><td><input id='"
 																				+ data[i].member.id
 
-																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td></tr>"));
 
 													}
@@ -379,7 +379,7 @@
 																				+ data[i].dateUpdate
 																				+ "</td><td><input id='"
 																				+ data[i].member.id
-																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td></tr>"));
 													} else {
 														$("#table tbody")
@@ -403,7 +403,7 @@
 																				+ data[i].dateUpdate
 																				+ "</td><td><input id='"
 																				+ data[i].member.id
-																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+																				+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 																				+ "</td></tr>"));
 
 													}
@@ -526,7 +526,7 @@
 															+ data[i].dateUpdate
 															+ "</td><td><input id='"
 															+ data[i].member.id
-															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td></tr>"));
 								} else {
 									$("#table tbody")
@@ -550,7 +550,7 @@
 															+ data[i].dateUpdate
 															+ "</td><td><input id='"
 															+ data[i].member.id
-															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td></tr>"));
 
 								}
@@ -582,7 +582,7 @@
 															+ data[i].dateUpdate
 															+ "</td><td><input id='"
 															+ data[i].member.id
-															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td></tr>"));
 								} else {
 									$("#table tbody")
@@ -606,7 +606,7 @@
 															+ data[i].dateUpdate
 															+ "</td><td><input id='"
 															+ data[i].member.id
-															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+															+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 															+ "</td></tr>"));
 
 								}
@@ -682,7 +682,7 @@
 														+ data[i].dateUpdate
 														+ "</td><td><input id='"
 														+ data[i].member.id
-														+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+														+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 														+ "</td></tr>"));
 							} else {
 								$("#table tbody")
@@ -707,7 +707,7 @@
 														+ "</td><td><input id='"
 														+ data[i].member.id
 
-														+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap'></button>"
+														+ "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'></button>"
 														+ "</td></tr>"));
 
 							}
@@ -983,7 +983,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div style="margin-left: 1000px; margin-top: -90px; width: 200px">
+				<div style="margin-left: 1400px; margin-top: -90px; width: 200px">
 					<div style="margin: 0 auto; width: 200px">
 						搜尋會員:依會員名稱<input type='text' id='search'>
 					</div>
@@ -1032,14 +1032,14 @@
 
 
 
-	<div class="modal fade" id="exampleModal" data-backdrop="static"
-		data-keyboard="false" tabindex="-1" role="dialog"
+	<div class="modal fade" id="exampleModal" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">會員資料編輯</h5>
-					<button type="button" class="close" data-dismiss="modal"
+					<button type="button" class="close" data-bs-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -1081,7 +1081,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
+						data-bs-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
 					<button type="button" class="btn btn-primary" id="send"
 						>完成送出</button>
 				</div>

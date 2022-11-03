@@ -16,7 +16,9 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="${contextRoot}/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous"></script>
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -31,6 +33,19 @@
 <link rel="stylesheet" href="${contextRoot}/css/slicknav.css">
 <link rel="stylesheet" href="${contextRoot}/css/style1.css">
 <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+<script>
+
+    $(function() {
+	
+	 if(${account.account_type} == 3) {
+		 $("#highclass").css('visibility','visible');
+	 }else{
+		 $("#highclass").css('visibility','hidden');
+	 }
+	
+ 	})
+	
+</script>
 </head>
 
 <body>
@@ -46,14 +61,15 @@
 										<li><a href="#">個人資料系統<i
 												class="ti-angle-down1"></i></a>
 											<ul class="submenu">
-												<li><a href="#">編輯員工資料</a></li>
-												<li><a href="#">編輯會員資料</a></li>
+												<li><a href="${contextRoot}/backend/EditEmployeeByEmployee">編輯個人資料</a></li>
+												<li><a href="${contextRoot}/EditByRoot">編輯會員資料</a></li>
+												<li id="highclass" style="visibility:hidden"><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
 											</ul></li>
 										<li><a href="#">活動管理系統<i
 												class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">會員活動管理</a></li>
-												<li><a href="#">遊戲活動管理</a></li>
+												<li><a href="${contextRoot}/campaign/findAll">會員活動管理</a></li>
+												<li><a href="${contextRoot}/game/findMemberGameBonus">會員遊戲紅利</a></li>
 											</ul></li>
 
 										<li><a href="#">商城管理系統<i
@@ -105,6 +121,8 @@
 									<a style="color:white">Hi ${employee.name}</a>
 								</div>
 							</div>
+							<input type="button" value="切換至前台會員頁面" onclick="location.href='${contextRoot}/toFront'" style="width:180px;height:40px;">
+							
 						</div>
 						<div class="col-12">
 							<div class="mobile_menu d-block d-lg-none"></div>
@@ -114,6 +132,8 @@
 			</div>
 		</div>
 	</header>
+	
+	
 
 
 
@@ -167,7 +187,7 @@
 		}
 	}
 	loginback();
-	
+
 	</script>
 
 </body>

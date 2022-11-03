@@ -32,6 +32,7 @@ import com.project.BonusPointExchangePlatform.dao.AccountDao;
 import com.project.BonusPointExchangePlatform.dto.EmployeeDto;
 import com.project.BonusPointExchangePlatform.dto.MemberDto;
 import com.project.BonusPointExchangePlatform.model.Account;
+import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Orders;
 import com.project.BonusPointExchangePlatform.model.goodphoto;
@@ -67,12 +68,12 @@ public class MemberController {
 	//*******前台會員編輯會員資料**********
 		@GetMapping("/frontend/EditMemberByMember")
 		public String newMemberPage(HttpSession session) {
-			
 			Member member = (Member)session.getAttribute("member");
 			
 			if( member == null) {
-				return "/frontend/entrance/login";
-			}
+			return "/frontend/entrance/newlogin";
+			
+			}else
 			return "frontend/member/EditMemberByMember";
 		}
 
@@ -97,42 +98,18 @@ public class MemberController {
 			return dto;
 		}
 		
-		@ResponseBody
-		@PostMapping(path="/edit/member", produces = {"application/json;charset=UTF-8"})
-		public MemberDto editMemberById(@RequestBody MemberDto dto ) {
-			Integer id = 2;
-			String password = dto.getAccount().getPassword();
-//		    System.out.println(dto.convertImage()); 
-			String name = dto.getName();
-			LocalDate birth = LocalDate.parse(dto.getBirth());
-			String email = dto.getEmail();
-			String phone = dto.getPhone();
-			
-			if(dto.getImage()==null) {
-			MemberDto m1 = mService.findOnebyId(id);
-			byte[] image2 = m1.getMember().getImage();
-			mService.editMemberDetail(name, birth, email, phone, password,image2, id);
-			}else {
-			byte[] image = dto.convertImage();
-			mService.editMemberDetail(name, birth, email, phone, password,image, id);
-			}
-			MemberDto dto1 =new MemberDto();
-			dto1.setAccount(mService.showMemberById(id));
-			
-			return dto1;
-			
-		}
+	
 
 		
 
-		
+		//**********後台載入頁面顯示所有會員***********
 		@ResponseBody
 		@PostMapping(value="/backned/allMember", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> showAllMember(@RequestBody MemberDto member) {
 		
 			String orderby = member.getOrderby();
 			List<MemberDto> m1 =mService.getAllMember(orderby);
-		
+		System.out.println(123);
 
 				if(m1!=null) {	
 
@@ -144,6 +121,7 @@ public class MemberController {
 		}
 		
 
+		//**********後台模糊搜尋以及排序所有會員***********
 		@ResponseBody
 		@PostMapping(value="/backned/allMemberSearch", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> showAllbysearch(@RequestBody MemberDto member ) {
@@ -166,6 +144,7 @@ public class MemberController {
 			
 		}
 		
+		//**********後台針對單筆會員做修改***********
 		@ResponseBody
 		@PostMapping(path="/backned/edit/member", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> editBacknedMemberById(@RequestBody MemberDto dto ) {
@@ -191,6 +170,7 @@ public class MemberController {
 		}
 
 		
+		//**********後台針對單筆會員按下修改後顯示舊資料***********
 		@ResponseBody
 		@PostMapping(path = "/backned/edit/memberbyid", produces = {"application/json;charset=UTF-8"})
 		public MemberDto findoneById(@RequestBody MemberDto dto ) {
@@ -200,7 +180,9 @@ public class MemberController {
 			
 			return dto1;	
 		}
-
+		
+		
+		//**********後台針對單筆會員停權復權***********
 		@ResponseBody
 		@PostMapping(path = "/backned/member/edit/restorepermission", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> restorepermission(@RequestBody  MemberDto dto ) {
@@ -220,6 +202,7 @@ public class MemberController {
 				
 		}
 		
+		
 		@ResponseBody
 		@PostMapping(path="/frontend/member/iconphoto", produces = {"application/json;charset=UTF-8"})
 		public Optional<Account> geticonphoto(@RequestBody MemberDto dto ) {
@@ -232,15 +215,52 @@ public class MemberController {
 			
 		}
 		
+		
+		//***********前台會員個人編輯載入後頁面*********
 		@ResponseBody
 		@PostMapping(path = "/frontned/edit/MemberByMember", produces = {"application/json;charset=UTF-8"})
-		public MemberDto editMemberByMember(@RequestBody MemberDto dto ) {
-			int id  = dto.getAccount().getId();
+		public MemberDto editMemberByMember(@RequestBody MemberDto dto, HttpSession session ) {
+			
+			Member member = (Member)session.getAttribute("member");
+			Integer id = member.getId();
+//			int id  = dto.getAccount().getId();
+			
 			MemberDto dto1 =new MemberDto();
 					
 			dto1.setAccount(mService.showMemberById(id));
 			
 			return dto1;	
+		}
+		
+		
+		//***********前台會員完成個人編輯*********
+		@ResponseBody
+		@PostMapping(path="/edit/member", produces = {"application/json;charset=UTF-8"})
+		public MemberDto editMemberById(@RequestBody MemberDto dto,HttpSession session ) {
+			
+			Member member = (Member)session.getAttribute("member");
+			Integer id = member.getId();
+			
+			String password = dto.getAccount().getPassword();
+//		    System.out.println(dto.convertImage()); 
+			String name = dto.getName();
+			LocalDate birth = LocalDate.parse(dto.getBirth());
+			String email = dto.getEmail();
+			String phone = dto.getPhone();
+			
+			if(dto.getImage()==null) {
+			MemberDto m1 = mService.findOnebyId(id);
+			byte[] image2 = m1.getMember().getImage();
+			mService.editMemberDetail(name, birth, email, phone, password,image2, id);
+			}else {
+			byte[] image = dto.convertImage();
+			mService.editMemberDetail(name, birth, email, phone, password,image, id);
+			}
+			MemberDto dto1 =new MemberDto();
+			dto1.setAccount(mService.showMemberById(id));
+			
+			return dto1;
+			
 		}
 	
 	

@@ -30,6 +30,7 @@ import com.project.BonusPointExchangePlatform.dto.WalletDto;
 import com.project.BonusPointExchangePlatform.model.Account;
 import com.project.BonusPointExchangePlatform.model.Campaign;
 import com.project.BonusPointExchangePlatform.model.Employee;
+import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Order_Detail;
 import com.project.BonusPointExchangePlatform.model.Orders;
 import com.project.BonusPointExchangePlatform.model.Payment;
@@ -39,7 +40,7 @@ import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.MailService;
 
 @Controller
-@SessionAttributes(names = "employee")
+@SessionAttributes(names = {"employee","account"} )
 public class EmployeeController {
 	
 	@Autowired
@@ -61,8 +62,10 @@ public class EmployeeController {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
 		
-		if( employee != null) {
-			return "/frontend/entrance/login";
+
+		if( employee == null) {
+			return "/backend/entrance/newloginemp";
+
 		}
 		return "/backend/personManage/EditMemberByRoot";
 	}	
@@ -75,8 +78,10 @@ public class EmployeeController {
 		
 	Employee employee = (Employee)session.getAttribute("employee");
 		
-		if( employee != null) {
-			return "/frontend/entrance/login";
+
+		if( employee == null) {
+			return "/backend/entrance/newloginemp";
+
 		}
 		return "/backend/personManage/EditEmployeeByRoot";
 	}	
@@ -86,24 +91,28 @@ public class EmployeeController {
 	public String EmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
-		if( employee != null) {
-			return "/frontend/entrance/login";
+
+		if( employee == null) {
+			return "/backend/entrance/newloginemp";
 		}
 		return "/backend/personManage/EditMemberByEmployee";
 	}		
 	
-	//*******前台員工編輯員工資料**********
-	@GetMapping("/frontend/EditEmployeeByEmployee")
+	//*******後台員工編輯員工資料**********
+	
+	@GetMapping("/backend/EditEmployeeByEmployee")
 	public String newEmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
-		if( employee != null) {
-			return "/frontend/entrance/login";
+
+		if( employee == null) {
+			return "/backend/entrance/newloginemp";
 		}
 		return "frontend/member/EditEmployeeByEmployee";
 	}
 	
 	
+	//**********後台載入頁面顯示所有員工***********
 	@ResponseBody
 	@PostMapping(value="/backned/allEmployee", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> showAllEmployee(@RequestBody EmployeeDto employee) {
@@ -124,6 +133,8 @@ public class EmployeeController {
 		
 	}
 	
+	
+	//**********後台模糊搜尋以及排序所有員工***********
 	@ResponseBody
 	@PostMapping(value="/backned/allEmployeeSearch", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> showAllbysearch(@RequestBody EmployeeDto Employee ) {
@@ -146,7 +157,7 @@ public class EmployeeController {
 		
 	}
 	
-	
+	//**********後台針對單筆員工停權復權***********
 	@ResponseBody
 	@PostMapping(path = "/backned/employee/edit/restorepermission", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> restorepermission(@RequestBody  EmployeeDto dto ) {
@@ -170,6 +181,8 @@ public class EmployeeController {
 			
 	}
 	
+	
+	//**********後台針對單筆員工做修改***********
 	@ResponseBody
 	@PostMapping(path="/backned/edit/employee", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> editBacknedEmployeeById(@RequestBody EmployeeDto dto ) {
@@ -194,6 +207,8 @@ public class EmployeeController {
 	
 	}
 	
+	
+	//**********後台針對單筆員工按下修改後顯示舊資料***********
 	@ResponseBody
 	@PostMapping(path = "/backned/edit/employeebyid", produces = {"application/json;charset=UTF-8"})
 	public EmployeeDto findoneEmployeeById(@RequestBody EmployeeDto dto ) {
@@ -204,21 +219,28 @@ public class EmployeeController {
 		return dto1;	
 	}
 	
+	
+	//***********後台員工個人編輯載入後頁面*********
 	@ResponseBody
 	@PostMapping(path = "/frontned/edit/EmployeeByEmployee", produces = {"application/json;charset=UTF-8"})
-	public EmployeeDto editEmployeeById(@RequestBody EmployeeDto dto ) {
-		int id  = dto.getAccount().getId();
-		EmployeeDto dto1 =new EmployeeDto();
-		dto1.setAccount(eService.showEmployeeById(id));
-		dto1.getAccount().getEmployee().getName();
+	public EmployeeDto editEmployeeById(@RequestBody EmployeeDto dto,HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");
+		Integer id = employee.getId();
+		System.out.println(id);
+//		int id  = dto.getAccount().getId();
+		EmployeeDto dto1=eService.showEmployeeById(id);
+		
+		
 		return dto1;	
 	}
 	
+	
+	//**********後台會員完成個人編輯*********
 	@ResponseBody
 	@PostMapping(path="/edit/employeeDetail", produces = {"application/json;charset=UTF-8"})
-	public EmployeeDto editEmployee(@RequestBody EmployeeDto dto ) {
-		Integer id = 2;
-		System.out.println(id);
+	public EmployeeDto editEmployee(@RequestBody EmployeeDto dto,HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");
+		Integer id = employee.getId();
 		String password = dto.getAccount().getPassword();
 		String name = dto.getEmployee().getName();
 		String arrived = DateFormat.format(dto.getEmployee().getArrived_at());
@@ -240,8 +262,7 @@ public class EmployeeController {
 		byte[] a = Base64.getMimeDecoder().decode(base64);
 		eService.editEmployeeDetail(name, arrived,employee_no, email, phone, password,a, id);
 		}
-		EmployeeDto dto1 =new EmployeeDto();
-		dto1.setAccount(eService.showEmployeeById(id));
+		EmployeeDto dto1 =eService.showEmployeeById(id);
 		
 		return dto1;
 		
@@ -322,6 +343,8 @@ public class EmployeeController {
 			Account user = loginService.getBeanByAccPwd(account, password);
 			System.out.println(user.getEmployee().getName());
 			m.addAttribute("employee", user.getEmployee());
+			m.addAttribute("account", user);
+
 
 			return "/layout/BackNavbar";
 		}

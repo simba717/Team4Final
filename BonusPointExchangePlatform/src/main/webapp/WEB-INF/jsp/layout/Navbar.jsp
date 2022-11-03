@@ -47,16 +47,16 @@
 									<ul id="navigation">
 										<li><a href="#">會員專區<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="${contextRoot}/goMember">個人資料</a></li>
-												<li><a href="${contextRoot}/goBankAccount">查看帳戶</a></li>
-												<li><a href="${contextRoot}/goBonus">紅利點數</a></li>
+												<li><a href="${contextRoot}/frontend/EditMemberByMember">編輯個人資料</a></li>
+												<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
 												<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a></li>
 												<li><a href="${contextRoot}/campaign">簽到</a></li>
+												<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
 											</ul></li>
 										<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">快速獲得紅利</a></li>
-												<li><a href="#">限時加碼活動</a></li>
+												<li><a href="${contextRoot}/campaign/game">商城小遊戲</a></li>
+												<li><a href="${contextRoot}/campaign/double11">雙十一購物紅利加倍送</a></li>
 											</ul></li>
 										<li><a href="#">紅利商城<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
@@ -111,8 +111,11 @@
 								</div>
 								<div style="display: none" id="histatus">
 									<a style="color:white">Hi ${member.name}</a>
-								</div>
+								</div>								
 							</div>
+							<input type="button" value="切換至後台管理頁面" onclick="location.href='${contextRoot}/toBack'" style="width:180px;height:40px;">
+							
+							
 						</div>
 						<div class="col-12">
 							<div class="mobile_menu d-block d-lg-none"></div>
@@ -308,6 +311,7 @@
 		login();
 		
 	</script>
+	Hi ${member.name}
 </body>
 
 </html>

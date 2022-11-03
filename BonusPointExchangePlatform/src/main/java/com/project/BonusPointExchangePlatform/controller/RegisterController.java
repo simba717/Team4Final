@@ -56,7 +56,7 @@ public class RegisterController {
 			@RequestParam("image") MultipartFile image) throws ParseException, IOException {
 		System.out.println(account + " " + password + " " + name + " " + phone + " " + email + " " + account_no + " "
 				+ birth + " " + image);
-
+ 
 		/* 抓到的birth是String,需轉型成Date */
 		Date newbirth = DateFormat.parse(birth);
 
@@ -80,7 +80,6 @@ public class RegisterController {
 
 		/* 如果註冊時無上傳照片 會預設頭貼塞入頭貼欄位 */
 		if (image != null) {
-
 			member.setImage(image.getBytes());
 		} else {
 

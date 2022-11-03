@@ -54,4 +54,23 @@ public interface GameDao extends JpaRepository<Game, Integer> {
 	void insertBirth(@Param(value = "member_id") Member member_id,
 			@Param(value = "update_at") Date update_at);
 
+	
+//////////////瑋煊的頭//////////////////
+	
+//前台會員查詢自已的遊戲紀錄:遊戲名稱 遊戲得分 遊戲時間 取得紅利
+@Query(value = "select * from Member_Game mg "
+	+ "	join Member m "
+	+ "		on mg.member_id = m.id "
+	+ "	join Game g "
+	+ "		on mg.game_id = g.id "
+	+ "	join Wallet w "
+	+ "		on w.game_id = g.id "
+	+ "where m.id = :id and g.game_type = '採集魔水晶' and g.game_score is not null", nativeQuery = true)
+List<Game> findGameRecordsByMember(@Param(value = "id") Integer member_id);
+
+
+//////////////瑋煊的腳/////////////////////
+
+
+
 }

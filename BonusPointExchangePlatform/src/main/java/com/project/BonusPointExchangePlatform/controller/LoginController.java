@@ -15,6 +15,7 @@ import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.OrdersService;
 
 @Controller
+@SessionAttributes(names = {" member","employee"})
 public class LoginController {
 
 	/* 測試登入狀態 */
@@ -32,5 +33,19 @@ public class LoginController {
 	public String empupdateTest() {
 		return "/backend/entrance/updatesuccessemp";
 	}
+	
+	@GetMapping(path = "/toBack")
+	public String toBack(SessionStatus status) {
+		status.setComplete();
+		return "/layout/BackNavbar";
+	}
+
+	
+	@GetMapping(path = "/toFront")
+	public String toFront(SessionStatus status) {
+		status.setComplete();
+		return "/layout/Navbar";
+	}
+	
 
 }

@@ -102,7 +102,7 @@ public class MemberController {
 
 		
 
-		
+		//**********後台載入頁面顯示所有會員***********
 		@ResponseBody
 		@PostMapping(value="/backned/allMember", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> showAllMember(@RequestBody MemberDto member) {
@@ -121,6 +121,7 @@ public class MemberController {
 		}
 		
 
+		//**********後台模糊搜尋以及排序所有會員***********
 		@ResponseBody
 		@PostMapping(value="/backned/allMemberSearch", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> showAllbysearch(@RequestBody MemberDto member ) {
@@ -143,6 +144,7 @@ public class MemberController {
 			
 		}
 		
+		//**********後台針對單筆會員做修改***********
 		@ResponseBody
 		@PostMapping(path="/backned/edit/member", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> editBacknedMemberById(@RequestBody MemberDto dto ) {
@@ -168,6 +170,7 @@ public class MemberController {
 		}
 
 		
+		//**********後台針對單筆會員按下修改後顯示舊資料***********
 		@ResponseBody
 		@PostMapping(path = "/backned/edit/memberbyid", produces = {"application/json;charset=UTF-8"})
 		public MemberDto findoneById(@RequestBody MemberDto dto ) {
@@ -177,7 +180,9 @@ public class MemberController {
 			
 			return dto1;	
 		}
-
+		
+		
+		//**********後台針對單筆會員停權復權***********
 		@ResponseBody
 		@PostMapping(path = "/backned/member/edit/restorepermission", produces = {"application/json;charset=UTF-8"})
 		public List<MemberDto> restorepermission(@RequestBody  MemberDto dto ) {
@@ -196,6 +201,7 @@ public class MemberController {
 			return dto1;
 				
 		}
+		
 		
 		@ResponseBody
 		@PostMapping(path="/frontend/member/iconphoto", produces = {"application/json;charset=UTF-8"})

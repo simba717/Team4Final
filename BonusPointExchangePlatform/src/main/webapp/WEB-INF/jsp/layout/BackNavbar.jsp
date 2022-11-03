@@ -46,9 +46,9 @@
 										<li><a href="#">個人資料系統<i
 												class="ti-angle-down1"></i></a>
 											<ul class="submenu">
-												<li><a href="${contextRoot}/frontend/EditEmployeeByEmployee">編輯個人資料</a></li>
-												<li><a href="#">編輯員工資料</a></li>
-												<li><a href="#">編輯會員資料</a></li>
+												<li><a href="${contextRoot}/backend/EditEmployeeByEmployee">編輯個人資料</a></li>
+												<li><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
+												<li><a href="${contextRoot}/EditByRoot">編輯會員資料</a></li>
 											</ul></li>
 										<li><a href="#">活動管理系統<i
 												class="ti-angle-down"></i></a>

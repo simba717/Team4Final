@@ -63,7 +63,7 @@ public class EmployeeController {
 		Employee employee = (Employee)session.getAttribute("employee");
 		
 		if( employee == null) {
-			return "/frontend/entrance/login";
+			return "/backend/entrance/newloginemp";
 		}
 		return "/backend/personManage/EditMemberByRoot";
 	}	
@@ -76,8 +76,8 @@ public class EmployeeController {
 		
 	Employee employee = (Employee)session.getAttribute("employee");
 		
-		if( employee == null) {
-			return "/frontend/entrance/login";
+		if( employee != null) {
+			return "/backend/entrance/newloginemp";
 		}
 		return "/backend/personManage/EditEmployeeByRoot";
 	}	
@@ -88,14 +88,14 @@ public class EmployeeController {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
 		if( employee == null) {
-			return "/frontend/entrance/login";
+			return "/backend/entrance/newloginemp";
 		}
 		return "/backend/personManage/EditMemberByEmployee";
 	}		
 	
-	//*******前台員工編輯員工資料**********
+	//*******後台員工編輯員工資料**********
 	
-	@GetMapping("/frontend/EditEmployeeByEmployee")
+	@GetMapping("/backend/EditEmployeeByEmployee")
 	public String newEmployeePage(HttpSession session) {
 		
 		Employee employee = (Employee)session.getAttribute("employee");
@@ -106,6 +106,7 @@ public class EmployeeController {
 	}
 	
 	
+	//**********後台載入頁面顯示所有員工***********
 	@ResponseBody
 	@PostMapping(value="/backned/allEmployee", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> showAllEmployee(@RequestBody EmployeeDto employee) {
@@ -126,6 +127,8 @@ public class EmployeeController {
 		
 	}
 	
+	
+	//**********後台模糊搜尋以及排序所有員工***********
 	@ResponseBody
 	@PostMapping(value="/backned/allEmployeeSearch", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> showAllbysearch(@RequestBody EmployeeDto Employee ) {
@@ -148,7 +151,7 @@ public class EmployeeController {
 		
 	}
 	
-	
+	//**********後台針對單筆員工停權復權***********
 	@ResponseBody
 	@PostMapping(path = "/backned/employee/edit/restorepermission", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> restorepermission(@RequestBody  EmployeeDto dto ) {
@@ -172,6 +175,8 @@ public class EmployeeController {
 			
 	}
 	
+	
+	//**********後台針對單筆員工做修改***********
 	@ResponseBody
 	@PostMapping(path="/backned/edit/employee", produces = {"application/json;charset=UTF-8"})
 	public List<EmployeeDto> editBacknedEmployeeById(@RequestBody EmployeeDto dto ) {
@@ -196,6 +201,8 @@ public class EmployeeController {
 	
 	}
 	
+	
+	//**********後台針對單筆員工按下修改後顯示舊資料***********
 	@ResponseBody
 	@PostMapping(path = "/backned/edit/employeebyid", produces = {"application/json;charset=UTF-8"})
 	public EmployeeDto findoneEmployeeById(@RequestBody EmployeeDto dto ) {

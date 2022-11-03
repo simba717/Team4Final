@@ -13,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.BonusPointExchangePlatform.dto.BackendLookGameBonusOfMemberDto;
-import com.project.BonusPointExchangePlatform.dto.FrontendGameRecoedDto;
+import com.project.BonusPointExchangePlatform.dto.GameDto;
 import com.project.BonusPointExchangePlatform.model.Game;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.service.GameService;
@@ -84,24 +85,32 @@ public class GameController {
 	
 //////////////瑋煊的頭//////////////////////////////////
 
-/////////////// 員工查詢會員遊戲紅利/////////////////////////////////////////////
+/////////////// 員工查詢遊戲發放的紅利/////////////////////////////////////////////
 // navbar連結JSP
-@GetMapping("/game/findMemberGameBonus")
-public String findAllGames() {
+@GetMapping("/game/GameBonus")
+public String getGameBonus() {
 
 return "/backend/campaign/memberGameBonus";
 }
 
-// 將會員遊戲紅利加總的JSON傳到後台
+// 將所有遊戲發放的紅利資料JSON傳到後台
 @GetMapping(value = "/backend/campaign/getGameBonusOfAllMember", produces = { "application/json; charset=UTF-8" })
 @ResponseBody
-public List<BackendLookGameBonusOfMemberDto> getGameBonusOfAllMember() {
-List<BackendLookGameBonusOfMemberDto> GameBonusOfAllMember = gService.findGameBonusOfAllMember();
+public List<GameDto> getGameBonusOfAllMember() {
+List<GameDto> allMemberGameBonus = gService.findGameBonusOfAllMember();
 
-return GameBonusOfAllMember;
+return allMemberGameBonus;
 }
 
-/////////////////員工查詢會員遊戲紅利/////////////////////////////////////////
+//將遊戲發放給某會員的紅利資料JSON傳到後台
+@GetMapping(value = "/backend/campaign/getGameBonusOfOneMember", produces = { "application/json; charset=UTF-8" })
+@ResponseBody
+public List<GameDto> getGameBonusOfOneMember(
+	@RequestParam int member_id) {
+List<GameDto> oneMemberGameBonus = gService.findGameBonusOfOneMember(member_id);
+
+return oneMemberGameBonus;
+}
 
 /////////////////////// 會員查詢遊戲紀錄OK//////////////////////////
 // navbar連結JSP
@@ -114,10 +123,10 @@ return "frontend/campaign/gameRecord";
 // 將會員遊戲紀錄的JSON傳到前台
 @GetMapping(value = "/frontend/campaign/memberGameRecords", produces = { "application/json; charset=UTF-8" })
 @ResponseBody
-public List<FrontendGameRecoedDto> getGameRecordsByMember(HttpSession session) {
+public List<GameDto> getGameRecordsByMember(HttpSession session) {
 Member member = (Member) session.getAttribute("member");
 System.out.println(member.getName());
-List<FrontendGameRecoedDto> memberGameRecords = gService.findGameRecordsByMember(member.getId());
+List<GameDto> memberGameRecords = gService.findGameRecordsByMember(member.getId());
 
 return memberGameRecords;
 }

@@ -54,7 +54,7 @@
 												class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a href="${contextRoot}/campaign/findAll">會員活動管理</a></li>
-												<li><a href="${contextRoot}/game/findMemberGameBonus">會員遊戲紅利</a></li>
+												<li><a href="${contextRoot}/game/GameBonus">會員遊戲紅利</a></li>
 											</ul></li>
 
 										<li><a href="#">商城管理系統<i
@@ -172,7 +172,6 @@
 	
 	</script>
  Hi ${employee.name}
- ${employee.account.account_type}
 </body>
 
 </html>

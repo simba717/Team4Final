@@ -31,6 +31,19 @@
 <link rel="stylesheet" href="${contextRoot}/css/slicknav.css">
 <link rel="stylesheet" href="${contextRoot}/css/style1.css">
 <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+<script>
+// 	window.onload = function(){
+
+// 	 if(${employee.account.account_type} == 2) {
+// 		 $("#highclass").visibility ='hidden';
+// 	 }else{
+// 		 $("#highclass").visibility ='visible';
+// 	 }
+	
+	
+// 	}
+	
+</script>
 </head>
 
 <body>
@@ -47,8 +60,9 @@
 												class="ti-angle-down1"></i></a>
 											<ul class="submenu">
 												<li><a href="${contextRoot}/backend/EditEmployeeByEmployee">編輯個人資料</a></li>
-												<li><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
+<%-- 												<li><a href="${contextRoot}/EditByEmployee">編輯會員資料</a></li> --%>
 												<li><a href="${contextRoot}/EditByRoot">編輯會員資料</a></li>
+												<li id="highclass" style="visibility:visible"><a href="${contextRoot}/EditByRoot1">編輯員工資料</a></li>
 											</ul></li>
 										<li><a href="#">活動管理系統<i
 												class="ti-angle-down"></i></a>
@@ -167,7 +181,7 @@
 		}
 	}
 	loginback();
-	
+	${employee.account.account_type}
 	</script>
 
 </body>

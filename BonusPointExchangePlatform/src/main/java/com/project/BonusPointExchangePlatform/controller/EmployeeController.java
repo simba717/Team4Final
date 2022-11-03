@@ -76,7 +76,7 @@ public class EmployeeController {
 		
 	Employee employee = (Employee)session.getAttribute("employee");
 		
-		if( employee != null) {
+		if( employee == null) {
 			return "/backend/entrance/newloginemp";
 		}
 		return "/backend/personManage/EditEmployeeByRoot";

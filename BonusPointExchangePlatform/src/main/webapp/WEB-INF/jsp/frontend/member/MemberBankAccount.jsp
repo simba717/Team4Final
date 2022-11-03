@@ -77,15 +77,6 @@ window.onload = function() {
 	showbydate.addEventListener('click', page1);
 	
 	
-	
-	
-	
-		
-	
-
-	
-	
-
  	//**************載入頁面執行儲值金全部紀錄**********
 	page();
 	

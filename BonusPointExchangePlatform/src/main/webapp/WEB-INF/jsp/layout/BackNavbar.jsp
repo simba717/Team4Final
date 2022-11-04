@@ -33,13 +33,48 @@
 
 				$(function () {
 
-					if (${ account.account_type } == 3) {
+					if (${account.account_type } == 3) {
 					$("#highclass").css('visibility', 'visible');
 				}else {
 					$("#highclass").css('visibility', 'hidden');
 				}
-	
- 	})
+					
+
+					loadpage();
+				})
+				
+				
+		function loadpage() {
+		var imageurl = "data:image/jpeg;base64,"
+		var url = "<c:url value='/frontend/employee/iconphoto'/>"
+		var object = {
+			'account' : {
+				'id' : ${employee.id}
+			}
+		};
+		var json = JSON.stringify(object);
+
+		$.ajax({
+
+			url : url,
+			method : 'post',
+			data : json,
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			error : function() {
+				alert("ajax error")
+			},
+
+			success : function(data) {
+				console.log(data)
+				if( data.image != ""){
+				$("#personphoto").attr("src", imageurl + data.image)
+				}
+			}
+
+		})
+
+	}
 
 			</script>
 		</head>
@@ -103,17 +138,26 @@
 
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
-										<div class="socail_links">
-											<ul>
-
-												<li><a href="#"> <i class="fa fa-user"></i>
-													</a></li>
-												<li><a href="#"> <i class="fa-regular fa-envelope"></i>
-													</a></li>
-												<li><a href="#"> <i class="fa-regular fa-bell"></i>
-													</a></li>
+										<div class="dropdown" style="margin-right:5px; display:block;" id="memberdiv" >
+										<a class="dropdown-toggle" href="#" style="background-color:transparent"
+											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
+											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
+												<li><a class="dropdown-item" href="${contextRoot}/backend/EditEmployeeByEmployee" id="1">編輯個人資料</a></li>
+												<li><a class="dropdown-item" href="#" id="2">登出</a></li>
 											</ul>
 										</div>
+										<div class="socail_links">
+											<ul>
+													
+												<li style="margin-right:5px;"><a href="#"> <i class="fa-regular fa-envelope" style="font-size:40px"></i>
+													</a></li>
+												<li style="margin-right:5px;"><a href="${contextRoot}/toBack"><i class="fa fa-right-from-bracket" style="font-size:40px"></i>
+
+													</a></li>	
+											</ul>
+										</div>
+										
 										<div class="book_btn d-none d-xl-block">
 											<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
 											<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"
@@ -122,10 +166,11 @@
 										<div style="display: none" id="histatus">
 											<a style="color:white">Hi ${employee.name}</a>
 										</div>
+										
 									</div>
-									<input type="button" value="切換至前台會員頁面"
-										onclick="location.href='${contextRoot}/toFront'"
-										style="width:180px;height:40px;">
+<!-- 									<input type="button" value="切換至前台會員頁面" -->
+<%-- 										onclick="location.href='${contextRoot}/toFront'" --%>
+<!-- 										style="width:180px;height:40px;"> -->
 
 								</div>
 

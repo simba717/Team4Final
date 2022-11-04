@@ -205,14 +205,15 @@ public class MemberController {
 		
 		@ResponseBody
 		@PostMapping(path="/frontend/member/iconphoto", produces = {"application/json;charset=UTF-8"})
-		public Optional<Account> geticonphoto(@RequestBody MemberDto dto ) {
+		public Member geticonphoto(@RequestBody MemberDto dto ) {
 			
-			Integer id = dto.getAccount().getId();
-			
-			Optional<Account> account = mService.geticonphoto(id);
-		
-			return account;
-			
+			Integer id1 = dto.getAccount().getId();
+			System.out.println(id1);
+			if(id1!=null) {
+			Member member = mService.geticonphoto(id1);
+			return member;
+			}else
+			return null;
 		}
 		
 		

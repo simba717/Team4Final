@@ -14,7 +14,8 @@
 			<!-- <link rel="manifest" href="site.webmanifest"> -->
 			<link rel="shortcut icon" type="image/x-icon" href="${contextRoot}/img/favicon.png">
 			<!-- Place favicon.ico in the root directory -->
-
+				<script src="https://code.jquery.com/jquery-3.6.1.js"
+				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 			<!-- CSS here -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 			<%-- <link rel="stylesheet" href="${contextRoot}/css/all.min.css"> --%>
@@ -31,6 +32,51 @@
 				<link rel="stylesheet" href="${contextRoot}/css/style.css">
 				<link rel="stylesheet" href="${contextRoot}/css/burgerstyle.css">
 				<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+				
+					<script>
+
+				$(function () {
+
+					loadpage();
+				
+	
+ 				})
+ 	
+ 				
+		function loadpage() {
+		var imageurl = "data:image/jpeg;base64,"
+		var url = "<c:url value='/frontend/member/iconphoto'/>"
+		var object = {
+			'account' : {
+				'id' : ${member.id}
+			}
+		};
+		var json = JSON.stringify(object);
+
+		$.ajax({
+
+			url : url,
+			method : 'post',
+			data : json,
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			error : function() {
+				alert("ajax error")
+			},
+
+			success : function(data) {
+				console.log(data)
+				if( data.image != ""){
+				$("#personphoto").attr("src", imageurl + data.image)
+				}
+			}
+
+		})
+
+	}
+
+
+			</script>
 		</head>
 
 		<body>
@@ -85,24 +131,20 @@
 								</div>
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
-										<div class="dropdown" style="margin-right:5px; display:none;" id="memberdiv" >
+										<div class="dropdown" style="margin-right:5px; display:block;" id="memberdiv" >
 										<a class="dropdown-toggle" href="#" style="background-color:transparent"
 											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
 											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
 											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
-												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
-												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
-												<li><a class="dropdown-item" href="#" id="3">簽到活動管理</a></li>
-												<li><a class="dropdown-item" href="#" id="4">遊戲紀錄查詢</a></li>
-												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/frontend/EditMemberByMember" id="1">編輯個人資料</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/MembergoBankAccount" id="2">查看帳戶資訊</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/campaign/gameRecord" id="3">遊戲紀錄查詢</a></li>
+												<li><a class="dropdown-item" href="#" id="4">登出</a></li>
 											</ul>
 										</div>
 										
 										<div class="socail_links">
 											<ul>
-									
-<!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
-<!-- 													</a></li> -->
 													<li><a href="${contextRoot}/shoppingCart"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
 													</a></li>	
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"

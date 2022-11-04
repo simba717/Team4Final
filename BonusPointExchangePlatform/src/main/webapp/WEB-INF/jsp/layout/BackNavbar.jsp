@@ -43,47 +43,39 @@
 							<div class="main-menu  d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
-										<li><a href="#">個人資料系統<i
-												class="ti-angle-down1"></i></a>
+										<li><a href="#">個人資料系統<i class="ti-angle-down1"></i></a>
 											<ul class="submenu">
 												<li><a href="#">編輯員工資料</a></li>
 												<li><a href="#">編輯會員資料</a></li>
 											</ul></li>
-										<li><a href="#">活動管理系統<i
-												class="ti-angle-down"></i></a>
+										<li><a href="#">活動管理系統<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a href="#">會員活動管理</a></li>
 												<li><a href="#">遊戲活動管理</a></li>
 											</ul></li>
 
-										<li><a href="#">商城管理系統<i
-												class="ti-angle-down"></i></a>
+										<li><a href="#">商城管理系統<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a href="${contextRoot}/product/findAll">商品管理</a></li>
 												<li><a href="${contextRoot}/orders/findAll">訂單管理</a></li>
 											</ul></li>
-										<li><a href="#">客服管理系統<i class="ti-angle-down"></i></a>
+											<li><a href="#">數據圖表系統<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">Q&A管理</a></li>
-												<li><a href="#">智慧客服管理</a></li>
+												<li><a href="${contextRoot}/mainsearch">報表管理</a></li>
 											</ul></li>
-												<li><a href="#">數據圖表系統<i class="ti-angle-down"></i></a>
-											<ul class="submenu">
-												<li><a href="#">統計資料管理</a></li>
-												<li><a href="#">報表管理</a></li>
-											</ul></li>
+										
 									</ul>
 								</nav>
 							</div>
 						</div>
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo-img">
-								<a href="${contextRoot}/mainsearch"> <img src="${contextRoot}/img/logo.png"
-									alt="">
+								<a href="${contextRoot}/mainsearch"> <img
+									src="${contextRoot}/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
-					
+
 						<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 							<div class="book_room">
 								<div class="socail_links">
@@ -99,10 +91,11 @@
 								</div>
 								<div class="book_btn d-none d-xl-block">
 									<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
-									<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn" style="display: none">登出</a>
+									<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"
+										style="display: none">登出</a>
 								</div>
 								<div style="display: none" id="histatus">
-									<a style="color:white">Hi ${employee.name}</a>
+									<a style="color: white">Hi ${employee.name}</a>
 								</div>
 							</div>
 						</div>
@@ -144,29 +137,37 @@
 	<script src="${contextRoot}/js/jquery.validate.min.js"></script>
 	<script src="${contextRoot}/js/mail-script.js"></script>
 	<script src="${contextRoot}/js/main1.js"></script>
-	
-	<br><br><br><br><br><br>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<script>
-	function loginback(){
-		var loginstatus = ${employee.id};
+		function loginback() {
+			var loginstatus = $
+			{
+				employee.id
+			}
+			;
 
-		console.log(loginstatus);
+			console.log(loginstatus);
 
-		if (loginstatus == "") {
-			logoutbtn.style.display = 'none';
-			loginbtn.style.display = 'block';
-			histatus.style.display = 'none';
+			if (loginstatus == "") {
+				logoutbtn.style.display = 'none';
+				loginbtn.style.display = 'block';
+				histatus.style.display = 'none';
 
-		} else {
+			} else {
 
-			logoutbtn.style.display = 'block';
-			loginbtn.style.display = 'none';
-			histatus.style.display = 'block';
+				logoutbtn.style.display = 'block';
+				loginbtn.style.display = 'none';
+				histatus.style.display = 'block';
 
+			}
 		}
-	}
-	loginback();
-	
+		loginback();
 	</script>
 
 </body>

@@ -364,7 +364,7 @@ ul {
 
 	<div
 		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
-		style="height: 700px; width: 600px; margin-left: 120px; float: left;">
+		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
 		<div class="card" style="border-radius: 30px 30px 30px 30px;">
 			<div class="card-body" style="height: 600px; margin-top: 40px">
 				<h3 class="card-title">會員個人資料編輯</h3>
@@ -379,14 +379,14 @@ ul {
 					</div>
 					<div class="form-group">
 
-						<label for="exampleInputEmail3">Password</label><input
+						<label for="exampleInputEmail3">Password</label><div
+							style="text-align: right; margin-right: 12px; margin-bottom: -30px";>
+							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
+						</div><input
 							type="password" class="form-control" id="password"
 							placeholder="password" value="" />
 						<div id="idsp1" style="font-size: 20px"></div>
-						<div
-							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
+						
 
 					</div>
 					<div class="form-group">

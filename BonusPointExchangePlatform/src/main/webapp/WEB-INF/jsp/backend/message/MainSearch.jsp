@@ -18,7 +18,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	background: linear-gradient(#141e30, #243b55);
+	background: white;
 }
 
 .login-box {
@@ -230,7 +230,7 @@ body {
 			<span></span> 
 			<span></span> 
 			<span></span>
-			<span></span> 三十天銷售情況</button> 
+			<span></span> 本月銷售情況</button> 
 			</form>
 	
 

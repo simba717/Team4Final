@@ -21,10 +21,11 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
 
     if(username) {
+		
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
-        var socket = new SockJS('/my-app/AAAchat');
+        var socket = new SockJS('/my-app/chatroom.jsp');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
@@ -32,6 +33,7 @@ function connect(event) {
     event.preventDefault();
 }
 
+	
 
 function onConnected() {
     // Subscribe to the Public Topic

@@ -76,10 +76,11 @@
             </div>
         </div>
     </div>
-    
+    <div id="membercheck" class="visually-hidden">${member}</div>
     
 <script>
 
+ 
 window.onload = function(){	
 	let xhr = new XMLHttpRequest();
     xhr.open('GET', "<c:url value='/product/findAllFrontend' />", true);
@@ -246,6 +247,11 @@ function displayData2(data) {
 
 //取得下單值，並且按下下單鍵做購物車Ajax
 $("#orderList").click(function(){
+	if($("#membercheck").text()==""){
+		window.location.href="${contextRoot}/login";
+		return ;
+	}
+	
 	console.log($(":selected").eq(0).val());
 	console.log($("#dataArea2 li>span").eq(0).text())
 	var orderId = $("#dataArea2 li>span").eq(0).text();
@@ -267,7 +273,6 @@ $("#orderList").click(function(){
 			}		
 		};
 	let json = JSON.stringify(obj);
-
 	let xhr3 = new XMLHttpRequest();
     xhr3.open('POST', "<c:url value='/product/FrontendOrdersListDto' />", true);
     xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

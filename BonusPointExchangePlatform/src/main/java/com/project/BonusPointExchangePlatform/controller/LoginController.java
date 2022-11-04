@@ -1,5 +1,7 @@
 package com.project.BonusPointExchangePlatform.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,14 +37,18 @@ public class LoginController {
 	}
 	
 	@GetMapping(path = "/toBack")
-	public String toBack(SessionStatus status) {
+	public String toBack(SessionStatus status,HttpSession session) {
+		session.removeAttribute("pill");
+		session.removeAttribute("ordersListContent");
 		status.setComplete();
 		return "/layout/BackNavbar";
 	}
 
 	
 	@GetMapping(path = "/toFront")
-	public String toFront(SessionStatus status) {
+	public String toFront(SessionStatus status,HttpSession session) {
+		session.removeAttribute("pill");
+		session.removeAttribute("ordersListContent");
 		status.setComplete();
 		return "/layout/Navbar";
 	}

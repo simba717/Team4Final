@@ -51,14 +51,13 @@
 														<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
 														<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a>
 														</li>
-														<li><a href="${contextRoot}/campaign">簽到</a></li>
 														<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
 													</ul>
 												</li>
 												<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
 													<ul class="submenu">
 														<li><a href="${contextRoot}/campaign/game">商城小遊戲</a></li>
-														<li><a href="${contextRoot}/campaign/double11">雙十一購物紅利加倍送</a>
+														<li><a href="${contextRoot}/campaign/bonusCampaign">紅利活動</a>
 														</li>
 													</ul>
 												</li>
@@ -92,7 +91,7 @@
 										<div class="dropdown" style="margin-right:5px; display:none;" id="memberdiv" >
 										<a class="dropdown-toggle" href="#" style="background-color:transparent"
 											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
+											aria-expended="false"><img id="personphoto" src="${contextRoot}/img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
 											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
 												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
 												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
@@ -107,7 +106,7 @@
 									
 <!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
 <!-- 													</a></li> -->
-													<li><a href="#"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
+													<li><a href="${contextRoot}/shoppingCart"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
 													</a></li>	
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"
 														data-bs-auto-close="false" aria-expanded="false">
@@ -169,7 +168,7 @@
 											<span>Mall</span>
 										</div>
 										<h3>
-											Burger <br> Bachelor
+											Shop <br> Easy
 										</h3>
 										<h4>Maxican</h4>
 									</div>
@@ -186,7 +185,7 @@
 											<span>Mall</span>
 										</div>
 										<h3>
-											Burger <br> Bachelor
+											Shop <br> Easy
 										</h3>
 										<h4>Maxican</h4>
 									</div>
@@ -204,7 +203,7 @@
 											<span>Big Deal</span>
 										</div>
 										<h3>
-											Burger <br> Bachelor
+											Shop <br> Easy
 										</h3>
 										<h4>Maxican</h4>
 									</div>
@@ -252,7 +251,7 @@
 					var signIn = document.getElementById("signIn")
 					signIn.onclick = function () {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', "<c:url value=" / checkSignIn" />", true);
+						xhr.open('GET', "<c:url value="/checkSignIn" />", true);
 						xhr.send();
 						xhr.onreadystatechange = function () {
 							if (xhr.readyState == 4 && xhr.status == 200) {
@@ -268,7 +267,7 @@
 					// 		pill
 					function pill() {
 						let xhr2 = new XMLHttpRequest();
-						xhr2.open('GET', "<c:url value=" / product / pill" />", true);
+						xhr2.open('GET', "<c:url value="/product/pill" />", true);
 						xhr2.send();
 						xhr2.onreadystatechange = function () {
 							if (xhr2.readyState == 4 && xhr2.status == 200) {
@@ -286,7 +285,7 @@
 					// 		show出訂單
 					$("#dropdownorderLink").hover(function () {
 						let xhr3 = new XMLHttpRequest();
-						xhr3.open('GET', "<c:url value=" / product / navbarOrderList" />", true);
+						xhr3.open('GET', "<c:url value="/product/navbarOrderList" />", true);
 						xhr3.send();
 						xhr3.onreadystatechange = function () {
 							if (xhr3.readyState == 4 && xhr3.status == 200) {

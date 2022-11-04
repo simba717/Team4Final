@@ -334,12 +334,14 @@ public class MemberController {
 				ordersService.insertOrder(user.getMember());
 			}
 			m.addAttribute("member", user.getMember());
-			return "/layout/Navbar";
+			return "redirect:/";
 		}
 	}
 
 	@GetMapping(path = "/logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
+		session.removeAttribute("pill");
+		session.removeAttribute("ordersListContent");
 		status.setComplete();
 		return "redirect:/";
 	}

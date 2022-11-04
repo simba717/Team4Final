@@ -190,8 +190,15 @@ public class OrdersController {
 	
 	
 	@GetMapping(path = "/shoppingCart")
-	public String processMainAction() {
-		return "frontend/order/shoppingCart";
+	public String processMainAction(HttpSession session) {
+		
+		Member member = (Member)session.getAttribute("member");
+		
+		if( member == null) {
+		return "/frontend/entrance/newlogin";
+		}else {
+			return "frontend/order/shoppingCart";
+		}
 	}
 	
 	

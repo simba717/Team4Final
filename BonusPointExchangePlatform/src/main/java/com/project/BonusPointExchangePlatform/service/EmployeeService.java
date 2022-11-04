@@ -209,6 +209,14 @@ public class EmployeeService {
 
 		return map;
 	}
+	
+	
+	public Employee geticonphoto(Integer id) {
+		Account account = aDao.showEmployeeById(id);
+		Employee employee = account.getEmployee();
+		
+		return employee;
+	}
 
 	
 	

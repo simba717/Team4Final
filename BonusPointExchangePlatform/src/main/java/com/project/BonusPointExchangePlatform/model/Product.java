@@ -65,7 +65,7 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "update_at")
-	private Date update_at;
+	private Date updateDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
@@ -130,12 +130,12 @@ public class Product implements Serializable {
 		this.create_at = create_at;
 	}
 
-	public Date getUpdate_at() {
-		return update_at;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setUpdate_at(Date update_at) {
-		this.update_at = update_at;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public Employee getEmployee() {

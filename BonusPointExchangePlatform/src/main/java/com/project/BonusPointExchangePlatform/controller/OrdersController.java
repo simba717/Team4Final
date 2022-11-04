@@ -23,9 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.BonusPointExchangePlatform.dto.CheckoutDto;
 import com.project.BonusPointExchangePlatform.dto.FrontendOrdersListDto;
 import com.project.BonusPointExchangePlatform.dto.OrdersDto;
+import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Order_Detail;
 import com.project.BonusPointExchangePlatform.model.Orders;
+import com.project.BonusPointExchangePlatform.model.Payment;
 import com.project.BonusPointExchangePlatform.model.Product;
 import com.project.BonusPointExchangePlatform.model.Wallet;
 import com.project.BonusPointExchangePlatform.service.MemberService;
@@ -199,6 +201,7 @@ public class OrdersController {
 		}else {
 			return "frontend/order/shoppingCart";
 		}
+
 	}
 	
 	
@@ -234,8 +237,31 @@ public class OrdersController {
 		checkoutWallet.setBonus(sendBonus2);
 		checkoutWallet.setWallet(sendWallet2);
 		checkoutWallet.setCreditCard(sendCreditCard2);
+		
+		/*紅利&儲值金*/
+		if(sendBonus2 != 0 && sendWallet2 != 0 && sendCreditCard2 == 0) {
+			walletService.insertWalletByBonus(member, order, sendBonus2);
+			paymentService.insertPayment(member, order, "紅利點數");
+			walletService.insertByCreditCardAndWallet(member, order, null, sendCreditCard2, sendWallet2);
+			paymentService.insertPayment(member, order, "儲值金");
+			walletService.insertWalletByFeedback(member, null, sendCreditCard2, sendWallet2);
+			ordersService.updateOrderStatus(member);
+		/*儲值金*/	
+		} else if(sendBonus2 == 0 && sendWallet2 != 0 && sendCreditCard2 == 0) {
+			walletService.insertByCreditCardAndWallet(member, order, null, sendCreditCard2, sendWallet2);
+			paymentService.insertPayment(member, order, "儲值金");
+			walletService.insertWalletByFeedback(member, null, sendCreditCard2, sendWallet2);
+			ordersService.updateOrderStatus(member);
+		/*紅利*/
+		} else if(sendBonus2 != 0 && sendWallet2 == 0 && sendCreditCard2 == 0) {
+			walletService.insertWalletByBonus(member, order, sendBonus2);
+			paymentService.insertPayment(member, order, "紅利點數");
+			ordersService.updateOrderStatus(member);
+		} else {
+			System.out.println("ERROR");
+		}
 		m.addAttribute("checkout",checkoutWallet);
-		System.out.println(sendBonus2+"77777"+sendWallet2+"888888888888"+sendCreditCard2);
+		
 		return "redirect:/";
 	}
 	
@@ -249,6 +275,26 @@ public class OrdersController {
 		checkoutCreditCard.setBonus(sendBonus);
 		checkoutCreditCard.setWallet(sendWallet);
 		checkoutCreditCard.setCreditCard(sendCreditCard);
+		Set<Order_Detail> order_detail = order.getOrder_detail();
+		checkoutCreditCard.setOrder_detail(order_detail);
+		
+		/*紅利&信用卡*/
+		if(sendBonus != 0 && sendWallet == 0 && sendCreditCard != 0) {
+			walletService.insertWalletByBonus(member, order, sendBonus);
+			paymentService.insertPayment(member, order, "紅利點數");
+			walletService.insertByCreditCardAndWallet(member, order, member.getBank(), sendCreditCard, sendWallet);
+			paymentService.insertPayment(member, order, "信用卡");
+			walletService.insertWalletByFeedback(member, member.getBank(), sendCreditCard, sendWallet);
+			ordersService.updateOrderStatus(member);
+		/*信用卡*/	
+		} else if(sendBonus == 0 && sendWallet == 0 && sendCreditCard != 0) {
+			walletService.insertByCreditCardAndWallet(member, order, member.getBank(), sendCreditCard, sendWallet);
+			paymentService.insertPayment(member, order, "信用卡");
+			walletService.insertWalletByFeedback(member, member.getBank(), sendCreditCard, sendWallet);
+			ordersService.updateOrderStatus(member);
+		} else {
+			System.out.println("ERROR");
+		}
 		redirectAttrs.addFlashAttribute("checkout",checkoutCreditCard);//Controller傳Controller值
 		return "redirect:/public/ecpay";
 	}

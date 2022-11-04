@@ -1,7 +1,10 @@
 package com.project.BonusPointExchangePlatform.dto;
 
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import com.project.BonusPointExchangePlatform.model.Order_Detail;
 import com.project.BonusPointExchangePlatform.model.Orders;
 
 public class CheckoutDto implements Serializable{
@@ -15,7 +18,7 @@ public class CheckoutDto implements Serializable{
 	private Integer wallet;
 	
 	private Integer creditCard;
-
+	private Set<Order_Detail> order_detail;
 	public CheckoutDto() {
 	}
 
@@ -50,6 +53,18 @@ public class CheckoutDto implements Serializable{
 	public void setCreditCard(Integer creditCard) {
 		this.creditCard = creditCard;
 	}
+	
+	public Set<Order_Detail> getOrder_detail() {
+		return order_detail;
+	}
 
+	public void setOrder_detail(Set<Order_Detail> order_detail) {
+		this.order_detail = new LinkedHashSet<>();
+		for(Order_Detail o : order_detail) {
+			this.order_detail.add(o);
+		}
+		
+		
+	}
 	
 }

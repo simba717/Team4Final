@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.project.BonusPointExchangePlatform.dao.EmployeeDao;
 import com.project.BonusPointExchangePlatform.dao.ProductDao;
 import com.project.BonusPointExchangePlatform.dto.ProductDto;
 import com.project.BonusPointExchangePlatform.model.Employee;
@@ -22,8 +22,6 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
-	@Autowired
-	private EmployeeDao employeeDao;
 
 	/* 查詢商品 */
 	public Product findById(Integer id) {
@@ -53,7 +51,7 @@ public class ProductService {
 
 	/* 查詢所有商品頁數 */
 	public Page<Product> findByPage(Integer pageNum) {
-		Pageable pgb = PageRequest.of(pageNum - 1, 5);
+		Pageable pgb = PageRequest.of(pageNum - 1, 5, Sort.Direction.DESC, "updateDate");
 		Page<Product> page = productDao.findAll(pgb);
 		return page;
 	}
@@ -71,24 +69,21 @@ public class ProductService {
 	}
 
 	/* 新增單筆商品 */
-	public void insert(Product product) {
+	public void insert(Product product, Employee employee) {
 		Date getDate = new Date();
-		Optional<Employee> optional = employeeDao.findById(1);
-		product.setEmployee(optional.get());
+		product.setEmployee(employee);
 		product.setBest_seller(0);
 		product.setButton_switch(true);
 		product.setCreate_at(getDate);
-		product.setUpdate_at(getDate);
+		product.setUpdateDate(getDate);
 		productDao.save(product);
 	}
 
 	/* 更新商品 */
 	public void update(String product_name, String product_content, String product_type, Integer price,
-			Integer quantity, boolean button_switch, byte[] image, Integer id) {
-		Optional<Employee> optional = employeeDao.findById(2);
-		Employee employee_id = optional.get();
+			Integer quantity, boolean button_switch, byte[] image, Integer id, Employee employee) {		
 		productDao.updateProductById(product_name, product_content, product_type, price, quantity, button_switch, image,
-				employee_id, id);
+				employee, id);
 	}
 
 	/* 刪除商品 */

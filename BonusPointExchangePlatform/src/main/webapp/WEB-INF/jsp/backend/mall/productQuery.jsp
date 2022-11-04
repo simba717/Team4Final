@@ -12,17 +12,16 @@
 var inputFileToLoad = null;
 var fileDataURL = null;
 var result = null;
+var imageURL = "<c:url value='/getProductImage' />";
+var controlURL = "<c:url value='/product/control' />";
+var editURL = "<c:url value='/product/edit/' />";
+var deleteURL = "<c:url value='/product/delete' />";
 	window.onload = function() {
-		var imageURL = "<c:url value='/getProductImage' />";
-		var controlURL = "<c:url value='/product/control' />";
-		var editURL = "<c:url value='/product/edit/' />";
-		var deleteURL = "<c:url value='/product/delete' />";
-		
 		var insertContent = function(xhrResponseText,page) {
 			var products = JSON.parse(xhrResponseText).content;
-			console.log(products)
+ 			console.log(products)
 			var content = "<table id='idtable' class='table table-bordered'>";
-			content += "<thead><tr style='background-color: lightblue'><th>項目</th><th>照片</th><th>品名</th><th>內容</th>" 
+			content += "<thead><tr style='background-color: lightblue'><th>#</th><th>照片</th><th>品名</th><th>內容物</th>" 
 					+ "<th>類別</th><th>單價</th><th>庫存總數</th><th>熱銷數</th><th>商品狀態</th><th>編輯人</th>"
 					+ "<th>建立時間</th><th>最後編輯時間</th><th>商品控制</th><th>編輯</th><th>刪除</th></tr></thead>";
 					
@@ -50,7 +49,7 @@ var result = null;
 						content += "<td style='font-weight: bold'>已完售</td>"
 								+  "<td>" + products[i].employee.name + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
-								+  "<td>" + products[i].product.update_at + "</td>"
+								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
 								+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a>"
 								+  "<a class='btn btn-secondary' role='button' aria-disabled='true'>關閉</a></td>"
@@ -60,17 +59,17 @@ var result = null;
 						content += "<td style='color: red; font-weight: bold'>已下架</td>"
 								+  "<td>" + products[i].employee.name + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
-								+  "<td>" + products[i].product.update_at + "</td>"
+								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=true' class='btn btn-primary' role='button'>上架</a>"
 								+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a></td>"									
 								+  "<td><input id='" + products[i].product.id + "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#edit' data-bs-whatever='@getbootstrap'></button></td>"
-								+  "<td><a onclick='return confirm(`確定刪除嗎?`)' href='" + deleteURL + "?id=" + products[i].product.id + "' class='btn btn-danger' role='button'>刪除</a></td></tr></tbody>";
-					}														
+								+  "<td><a onclick='confirm("+products[i].product.id+")' class='btn btn-danger' role='button'>刪除</a></td></tr></tbody>";
+					}				
 				} else {
 					content += "<td style='color: green; font-weight: bold'>販售中</td>"
 							+  "<td>" + products[i].employee.name + "</td>"
 							+  "<td>" + products[i].product.create_at + "</td>"
-							+  "<td>" + products[i].product.update_at + "</td>"
+							+  "<td>" + products[i].product.updateDate + "</td>"
 							+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
 							+  "<a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=false' class='btn btn-warning' role='button'>下架</a></td>"
 							+  "<td></td>"
@@ -195,7 +194,24 @@ var result = null;
 */		
 	}
 	
-	
+	function confirm(id){
+		Swal.fire({
+			icon: 'question',
+			title:'請問是否要刪除？',
+			color: "#7373b9",
+			showCancelButton: true,
+			cancelButtonText:"取消",
+			cancelButtonColor: "#FF0000",
+			confirmButtonText: '確定',
+			confirmButtonColor: "#0000e3"
+		}).then((result) => {
+			if (result.isConfirmed) {				
+				Swal.fire('刪除成功', '', 'success').then((result) => {
+					window.location.href = deleteURL+"?id="+id;
+				})
+			}			
+		})		
+	}
 	
 	
 	/*商品資料編輯*/
@@ -343,6 +359,16 @@ var result = null;
 		    		
 		    		
 		    		if (flag1 && flag2 && flag3 && flag4 && flag5) {
+		    			Swal.fire({
+		    				icon: 'success',
+		    				title:'更新成功',
+		    				color: "#7373b9",		    				
+		    				confirmButtonText: '確定',
+		    				confirmButtonColor: "#0000e3"
+		    			}).then((result) => {
+		    				window.location.href = "../product/findAll";
+		    			})
+		    			
 		    			var xhr1 = new XMLHttpRequest();
 		    			xhr1.open("PUT", "<c:url value='/products/' />" + data.id, true);
 		    			var jsonProduct = {		
@@ -561,7 +587,7 @@ var result = null;
 <body>
 <jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
 <div align='center'>
-	商品搜尋：<input type="text" name="query" id='query'>
+	商品搜尋：<input type="text" name="query" id='query' placeholder='品名、內容物、類別'>
 	<input type='submit' id='queryData' value="查詢">	<br><br> 
 	<div class='col-lg-12 grid-margin stretch-card'>
 		<div class='card'>
@@ -628,8 +654,8 @@ var result = null;
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a id="a" href="#"><input type="submit" id="submitdata" onclick="checkValue()" class="btn btn-primary me-2" style="margin-left:130px" value="新增" ></a>
-				<a href=""><button class="btn btn-secondary" style="margin-left:20px">返回</button></a>
+				<button id="auto" class="btn btn-secondary" onclick="inputValue()" style="margin-left:20px">自動輸入</button>
+				<input type="submit" id="submitdata" onclick="checkValue()" class="btn btn-primary me-2" style="margin-left:130px" value="新增" >
 			</div>
 		</div>
 	</div>
@@ -686,7 +712,6 @@ var result = null;
 			<div class="modal-footer">
 				<div id="resultMsg"></div>
 				<a href="#"><input type="submit" id="updateData" class="btn btn-primary me-2" style="margin-left:130px" value="更新" ></a>
-				<a href=""><button class="btn btn-secondary" style="margin-left:20px">返回</button></a>
 			</div>
 		</div>
 	</div>
@@ -697,7 +722,7 @@ document.getElementById("queryData").addEventListener('click', query);
 
 function clear(products) {
 	$("#pagebtn").empty();
-/*	var pageNum = document.getElementById("pagebtn");
+	var pageNum = document.getElementById("pagebtn");
 	var page = Math.ceil(products.length / 5);
 	content = "<a data-id='1' class='btn btn-outline-dark'><<</a>";
 	for(var i = 0; i < page; i++) {
@@ -705,7 +730,7 @@ function clear(products) {
 	}
 	content += "<a data-id='"+page+"' class='btn btn-outline-dark'>>></a>";
 	pageNum.innerHTML = content;
-*/
+
 }
 
 function goPage(x) {
@@ -731,14 +756,16 @@ function query() {
 		
 		if (xhr1.readyState == 4 && xhr1.status == 200) {
 			var content = "<table id='idtable' class='table table-bordered'>";
-				content += "<thead><tr style='background-color: lightblue'><th>項目</th><th>照片</th><th>品名</th><th>內容</th>" 
+				content += "<thead><tr style='background-color: lightblue'><th>#</th><th>照片</th><th>品名</th><th>內容物</th>" 
 						+ "<th>類別</th><th>單價</th><th>庫存總數</th><th>熱銷數</th><th>商品狀態</th><th>編輯人</th>"
 						+ "<th>建立時間</th><th>最後編輯時間</th><th>商品控制</th><th>編輯</th><th>刪除</th></tr></thead>";
 			var products = JSON.parse(xhr1.responseText);	
 			
-			clear(products);
-			
-			for (var i = 0; i < products.length; i++) {	
+			clear(products);			
+			if(products.length == 0) {
+				content += "<tbody><tr><td id='tbody' align='center'style='color:red' colspan='15'></td></tr></tbody>";				
+			}
+			for (var i = 0; i < products.length; i++) {				
 				id = i + 1;
 				if(products[i].product.best_seller == products[i].product.quantity) {
 					content += "<tbody><tr style='background-color:lightgray'><td align='center'>" + id + "</td>";
@@ -759,7 +786,7 @@ function query() {
 						content += "<td style='font-weight: bold'>已完售</td>"
 								+  "<td>" + products[i].employee_name + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
-								+  "<td>" + products[i].product.update_at + "</td>"
+								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
 								+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a>"
 								+  "<a class='btn btn-secondary' role='button' aria-disabled='true'>關閉</a></td>"
@@ -769,27 +796,31 @@ function query() {
 						content += "<td style='color: red; font-weight: bold'>已下架</td>"
 								+  "<td>" + products[i].employee_name + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
-								+  "<td>" + products[i].product.update_at + "</td>"
+								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=true' class='btn btn-primary' role='button'>上架</a>"
 								+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a></td>"
 								+  "<td><input id='" + products[i].product.id + "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#edit' data-bs-whatever='@getbootstrap'></button></td>"
-								+  "<td><a onclick='return confirm(`確定刪除嗎?`)' href='" + deleteURL + "?id=" + products[i].product.id + "' class='btn btn-danger' role='button'>刪除</a></td></tr></tbody>";						
-					}													
+								+  "<td><a onclick='confirm("+products[i].product.id+")' class='btn btn-danger' role='button'>刪除</a></td></tr></tbody>";						
+					}
 				} else {					
 					content += "<td style='color: green; font-weight: bold'>販售中</td>"
 						+  "<td>" + products[i].employee_name + "</td>"
 						+  "<td>" + products[i].product.create_at + "</td>"
-						+  "<td>" + products[i].product.update_at + "</td>"
+						+  "<td>" + products[i].product.updateDate + "</td>"
 						+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
 						+  "<a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=false' class='btn btn-warning' role='button'>下架</a></td>"
 						+  "<td></td>"
 						+  "<td></td></tr></tbody>";				
 				}	
 			}
+			
 			content += "</table>";
 			
 			var divs = document.getElementById("somedivS");
 			divs.innerHTML = content;
+			if(products.length == 0) {
+				document.getElementById("tbody").innerHTML="查無資料";
+			}
 		}
 	}
 	
@@ -819,6 +850,12 @@ document.getElementById("price1").addEventListener("blur", checkPrice);
 document.getElementById("quantity1").addEventListener("blur", checkQuantity);
 document.getElementById("inputFileToLoad1").addEventListener("change", loadImageFileAsURL);
 
+function inputValue() {
+	document.getElementById("product_name1").value = "沙發";
+	document.getElementById("product_content1").value = "牛皮製";
+	document.getElementById("price1").value = 10000;
+	document.getElementById("quantity1").value = 20;	
+}
 function checkProduct_Name() {
 	let button = document.querySelector('#submitdata');
 	let v = document.querySelector('#product_name1');
@@ -1114,7 +1151,7 @@ function checkValue() {
 	}
 	
 	if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6) {		
-		let checkAndSendData = () => {
+		let checkAndSendData = () => {			
 			product_name1 = document.getElementById("product_name1").value;			
 			product_content1 = document.getElementById("product_content1").value;
 			product_type1 = document.getElementById("product_type1").value;
@@ -1133,15 +1170,24 @@ function checkValue() {
 			let json = JSON.stringify(obj);
 			let xhr = new XMLHttpRequest();	
 			xhr.open('POST', "<c:url value='/product/insert' />" , true);
-			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");	
 			xhr.send(json);
 			
 			console.log("product_name=" + product_name1 + ", product_content=" + product_content1  + ", product_type=" + product_type1  + ", price=" + price1  + ", quantity=" + quantity1);
 			console.log("image=" + fileDataURL1);
 			console.log("json=" + json);
 		}
+		
 		checkAndSendData();
-		document.getElementById("a").href = "../product/findAll";
+		Swal.fire({
+			icon: 'success',
+			title:'新增成功',
+			color: "#7373b9",		    				
+			confirmButtonText: '確定',
+			confirmButtonColor: "#0000e3"
+		}).then((result) => {
+			window.location.href = "../product/findAll";
+		})
 	}	
 }
 

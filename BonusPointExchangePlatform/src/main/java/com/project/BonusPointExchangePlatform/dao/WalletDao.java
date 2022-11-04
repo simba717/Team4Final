@@ -15,13 +15,6 @@ import com.project.BonusPointExchangePlatform.model.Wallet;
 @Repository
 public interface WalletDao extends JpaRepository<Wallet, Integer> {
 
-	// 才蔚
-	@Query(value = "select top 1* from Wallet " + "where member_id = :member_id and source_type = :source_type "
-			+ "order by create_at desc ", nativeQuery = true)
-	Wallet findBySourceTypeAndMember(@Param(value = "member_id") Member member,
-			@Param(value = "source_type") String source_type);
-
-
 	// 庭偉
 	@Query(value = "select sum(bonus_point) from Wallet where member_id =:id", nativeQuery = true)
 	Integer allBonus(@Param(value = "id") Integer id);

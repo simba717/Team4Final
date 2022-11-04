@@ -1133,6 +1133,7 @@ function bonusTotal(){
 									<th>#</th>
 									<th>使用者</th>
 									<th>獲得方式</th>
+									<th>儲值金兌換</th>
 									<th>紅利點數</th>
 									<th>刷卡金額</th>
 									<th>參加活動</th>

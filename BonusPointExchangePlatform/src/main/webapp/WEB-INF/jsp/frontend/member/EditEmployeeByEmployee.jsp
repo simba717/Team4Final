@@ -133,7 +133,7 @@
 									data.employee.email);
 							$("#Phone").attr("value",
 									data.employee.phone);
-							if(data.employee.image != "" || data.employee.image != null){
+							if(data.employee.image != "" || !data.employee.image.equals('NULL')){
 							$("#preview_img").attr("src",
 									imageurl + data.employee.image);
 							}

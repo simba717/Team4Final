@@ -365,6 +365,8 @@ var deleteURL = "<c:url value='/product/delete' />";
 		    				color: "#7373b9",		    				
 		    				confirmButtonText: '確定',
 		    				confirmButtonColor: "#0000e3"
+		    			}).then((result) => {
+		    				window.location.href = "../product/findAll";
 		    			})
 		    			
 		    			var xhr1 = new XMLHttpRequest();

@@ -217,9 +217,10 @@ public class MemberService {
 
 	}
 	
-	public Optional<Account> geticonphoto(Integer id) {
-		Optional<Account> account = aDao.findById(id);
-		return account;
+	public Member geticonphoto(Integer id) {
+		Account account = aDao.showMemberById(id);
+		Member member = account.getMember();
+		return member;
 	}
 	
 	

@@ -45,7 +45,9 @@
 		var imageurl = "data:image/jpeg;base64,"
 		var url = "<c:url value='/frontend/member/iconphoto'/>"
 		var object = {
-			'account' : {'id' : 5}
+			'account' : {
+				'id' : 5
+			}
 		};
 		var json = JSON.stringify(object);
 
@@ -59,10 +61,10 @@
 			error : function() {
 				alert("ajax error")
 			},
-			
+
 			success : function(data) {
 				console.log(data)
- 				$("#iconphoto").attr("src", imageurl + data.member.image)
+				$("#iconphoto").attr("src", imageurl + data.member.image)
 			}
 
 		})
@@ -130,21 +132,20 @@
 										<li><a href="#"> <i class="fa fa-calendar-days"></i>
 										</a></li>
 									</ul>
-									<ul class="dropdown-menu dropdown-menu-dark"
-																aria-labelledby="navbarDarkDropdownMenuLink"
-																style="text-align: left;">
-																<li><a class="dropdown-item" href="#" id="1"
-																	style="justify-content: center">編輯個人資料</a></li>
-																<li><a class="dropdown-item" href="#" id="2"
-																	style="justify-content: center">個人帳戶查詢</a></li>
-																<li><a class="dropdown-item" href="#" id="3"
-																	style="justify-content: center">簽到活動管理</a></li>
-																<li><a class="dropdown-item" href="#" id="4"
-																	style="justify-content: center">遊戲紀錄查詢</a></li>
-																<li><a class="dropdown-item" href="#" id="5"
-																	style="justify-content: center;">登出</a></li>
-															</ul>
-								
+									<div class="dropdown">
+										<a class="btn btn-secondary dropdown-toggle" href="#"
+											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+											aria-expended="false">
+											<ul class="dropdown-menu" aria-lableledby="dropdownMenuLink">
+
+												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
+												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
+												<li><a class="dropdown-item" href="#" id="3">簽到活動管理</a></li>
+												<li><a class="dropdown-item" href="#" id="4">遊戲紀錄查詢</a></li>
+												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
+											</ul>
+									</div>
+
 								</div>
 								<div class="book_btn d-none d-xl-block">
 									<a class="#" href="${contextRoot}/login">登入 or 註冊</a> <a

@@ -502,7 +502,7 @@
 				</div>
 			</div>
 			<div style="text-align: center">
-				<img id="preview_img" src="../img2/nophoto.png"
+				<img id="preview_img" src="../img2/nopicture.jpeg"
 					style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
 				<br> <br> <br>

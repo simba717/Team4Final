@@ -89,15 +89,28 @@
 								</div>
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
+										<div class="dropdown" style="margin-right:5px">
+										<a class="dropdown-toggle" href="#" style="background-color:transparent"
+											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
+											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
+												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
+												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
+												<li><a class="dropdown-item" href="#" id="3">簽到活動管理</a></li>
+												<li><a class="dropdown-item" href="#" id="4">遊戲紀錄查詢</a></li>
+												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
+											</ul>
+										</div>
+										
 										<div class="socail_links">
 											<ul>
-												<li><a href="#"> <i class="fa fa-user"></i>
-													</a></li>
-												<li><a href="#"><i class="fa fa-cart-shopping"></i>
-													</a></li>
+									
+<!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
+<!-- 													</a></li> -->
+												
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"
 														data-bs-auto-close="false" aria-expanded="false">
-														<i class="fa-solid fa-bell position-relative">
+														<i class="fa-solid fa-bell position-relative" style="font-size:40px">
 															<span style="font-size: 0.3em;"
 																class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"></span></i>
 													</a>
@@ -114,10 +127,13 @@
 													</div>
 													<!-- 	購物車內容		     -->
 												</li>
-												<li><a id="signIn"> <i class="fa fa-calendar-days"></i>
+												<li><a id="signIn"> <i class="fa fa-calendar-days" style="font-size:40px"></i>
 													</a></li>
+												<li><a href="#"><i class="fa fa-right-to-bracket" style="font-size:40px"></i>
+													</a></li>	
 											</ul>
 										</div>
+									
 										<div class="book_btn d-none d-xl-block">
 											<a class="#" href="${contextRoot}/login" id="loginbtn"
 												style="background-color: white;color: orange">登入/註冊</a> <a class="#"

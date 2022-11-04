@@ -687,7 +687,7 @@ function newChange(){
 			pageTotal=Math.ceil(rowTotal/pageSize);
 			console.log(pageTotal)
 			currentPage=1;
-			 Swal.fire('兌換成功', '可至兌換紀錄做查詢', 'success')
+			Swal.fire('兌換成功', '可至兌換紀錄做查詢', 'success')
 // 			alert("兌換成功")
 			$("#table tbody").empty();
 		if(pageTotal==1){

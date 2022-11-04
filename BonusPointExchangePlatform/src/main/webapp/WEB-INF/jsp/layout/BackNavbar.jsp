@@ -130,9 +130,7 @@
 								</div>
 
 								
-								<div style="display: none" id="histatus">
-									<a style="color:white">Hi ${employee.name}</a>
-
+								
 								<div class="col-12">
 									<div class="mobile_menu d-block d-lg-none"></div>
 

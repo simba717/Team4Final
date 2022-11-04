@@ -66,7 +66,7 @@
 
 			success : function(data) {
 				console.log(data)
-				if( data.image != ""){
+					if( data.image){
 				$("#personphoto").attr("src", imageurl + data.image)
 				}
 			}

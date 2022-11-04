@@ -306,7 +306,7 @@ z-index
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 	<div class="loginbody">
-		<h2 class="logingh2">註冊會員</h2>
+		<h2 class="logingh2">回報問題</h2>
 		<div class="logincontainer" id="logincontainer">
 
 			<div class="form-logincontainer sign-in-container">

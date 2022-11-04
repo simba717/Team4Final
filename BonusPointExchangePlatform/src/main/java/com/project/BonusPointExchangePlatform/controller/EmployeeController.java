@@ -41,6 +41,7 @@ import com.project.BonusPointExchangePlatform.service.MailService;
 
 @Controller
 @SessionAttributes(names = {"employee","account"} )
+
 public class EmployeeController {
 	
 	@Autowired

@@ -133,7 +133,7 @@
 									data.employee.email);
 							$("#Phone").attr("value",
 									data.employee.phone);
-							if(data.employee.image != ""){
+							if(data.employee.image != "" || data.employee.image != null){
 							$("#preview_img").attr("src",
 									imageurl + data.employee.image);
 							}
@@ -502,7 +502,7 @@
 				</div>
 			</div>
 			<div style="text-align: center">
-				<img id="preview_img" src="../img2/nopicture.jpeg"
+				<img id="preview_img" src="${contextRoot}/img2/nopicture.jpeg"
 					style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
 				<br> <br> <br>

@@ -389,73 +389,59 @@
 
 
 
+
 			<div class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
 				style="height: 700px; width: 600px; margin-left: 250px; float: left;">
 				<div class="card" style="border-radius: 30px 30px 30px 30px;">
 					<div class="card-body" style="height: 600px; margin-top: 40px">
 						<h3 class="card-title">會員個人資料編輯</h3>
+						<div class="form-group">
 
-						<form class="forms-sample" id="form">
-							<div class="form-group">
-								<label for="exampleInputName1">Account</label> <input type="text" class="form-control"
-									style="color: #7b7b7b; background-color: #f0f0f0" id="exampleInputName1"
-									placeholder="Name" value="" readonly style="backround-color:grey">
-							</div>
-							<div class="form-group">
-
-								<div style="text-align: right; margin-right: 440px; margin-bottom: -22px">
-									<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-								</div>
-								<label for="exampleInputEmail3">Password</label>
-								<input type="password" class="form-control" id="password" placeholder="password"
-									value="" />
-								<div id="idsp1" style="font-size: 20px"></div>
-
-
-
-								<label for="exampleInputEmail3">Password</label>
-								<div style="text-align: right; margin-right: 12px; margin-bottom: -30px" ;>
-									<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-								</div><input type="password" class="form-control" id="password" placeholder="password"
-									value="" />
-								<div id="idsp1" style="font-size: 20px"></div>
-
-
-
-							</div>
-							<div class="form-group">
-								<label for="exampleInputPassword4">Name</label> <input type="text" class="form-control"
-									id="username" name="username" placeholder="username" value="">
-								<div id="idsp2" style="font-size: 20px"></div>
+							<label for="exampleInputEmail3">Password</label><input type="password" class="form-control"
+								id="password" placeholder="password" value="" />
+							<div id="idsp1" style="font-size: 20px"></div>
+							<div style="text-align: right; margin-right: 12px; margin-bottom: -20px">
+								<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
 							</div>
 
-							<div class="form-group">
-								<label for="exampleInputCity1">Birth</label> <input type="date" class="form-control"
-									id="birth" placeholder="birth" value="">
-								<div id="idsp3" style="font-size: 20px"></div>
-							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword4">Name</label> <input type="text" class="form-control"
+								id="username" name="username" placeholder="username" value="">
+							<div id="idsp2" style="font-size: 20px"></div>
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputCity1">Birth</label> <input type="date" class="form-control"
+								id="birth" placeholder="birth" value="">
+							<div id="idsp3" style="font-size: 20px"></div>
+						</div>
 
 
-							<div class="form-group">
-								<label for="exampleInputCity1">Email</label> <input type="email" class="form-control"
-									id="email" placeholder="email" value="">
-								<div id="idsp4" style="font-size: 20px"></div>
-							</div>
+						<div class="form-group">
+							<label for="exampleInputCity1">Email</label> <input type="email" class="form-control"
+								id="email" placeholder="email" value="">
+							<div id="idsp4" style="font-size: 20px"></div>
+						</div>
 
-							<div class="form-group">
-								<label for="exampleInputCity1">Phone</label> <input type="text" class="form-control"
-									id="phone" placeholder="phone" value="">
-								<div id="idsp5" style="font-size: 20px"></div>
-							</div>
+						<div class="form-group">
+							<label for="exampleInputCity1">Phone</label> <input type="text" class="form-control"
+								id="phone" placeholder="phone" value="">
+							<div id="idsp5" style="font-size: 20px"></div>
+						</div>
 
-							<div class="form-group" style="margin-top: 20px">
-								<label>Please select a photo</label><br> <input id="inputFileToLoad" type="file"
-									name="photo" onchange="loadImageFileAsURL()" class="file-upload-default">
+						<div class="form-group" style="margin-top: 20px">
+							<label>Please select a photo</label><br> <input id="inputFileToLoad" type="file"
+								name="photo" onchange="loadImageFileAsURL()" class="file-upload-default">
 
 
-							</div>
+						</div>
 
 						</form>
+
+
+
+
 					</div>
 				</div>
 			</div>

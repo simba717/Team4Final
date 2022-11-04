@@ -21,7 +21,6 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
 
     if(username) {
-		
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
@@ -33,7 +32,6 @@ function connect(event) {
     event.preventDefault();
 }
 
-	
 
 function onConnected() {
     // Subscribe to the Public Topic

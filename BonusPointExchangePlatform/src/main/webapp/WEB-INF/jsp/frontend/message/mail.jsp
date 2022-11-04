@@ -105,7 +105,7 @@ button.ghost {
 input {
 	background-color: #eee;
 	border: none;
-	padding: 48px 90px;
+	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
 }
@@ -284,9 +284,9 @@ z-index
 			<div class="form-logincontainer sign-in-container">
 				<form class="loginform" action="problemsemail" method="post">
 
-					<h1 class="logingh1">您所遇到的問題?</h1><br>
+					<h1 class="logingh1">Problem Report</h1>
 
-					<input  type="text" name="message" placeholder="訊息" /> <br> <br>
+					<input type="text" name="message" placeholder="訊息" /> <br> <br>
 
 
 					<button class="loginbutton">寄信</button>

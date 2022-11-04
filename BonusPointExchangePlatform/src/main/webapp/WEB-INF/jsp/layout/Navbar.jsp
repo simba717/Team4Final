@@ -14,7 +14,9 @@
 			<!-- <link rel="manifest" href="site.webmanifest"> -->
 			<link rel="shortcut icon" type="image/x-icon" href="${contextRoot}/img/favicon.png">
 			<!-- Place favicon.ico in the root directory -->
-
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous"></script>
 			<!-- CSS here -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 			<%-- <link rel="stylesheet" href="${contextRoot}/css/all.min.css"> --%>
@@ -31,6 +33,52 @@
 				<link rel="stylesheet" href="${contextRoot}/css/style.css">
 				<link rel="stylesheet" href="${contextRoot}/css/burgerstyle.css">
 				<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+<script>
+
+					$(function () {
+
+
+						loadpage();
+
+
+					})
+
+
+
+					function loadpage() {
+						var imageurl = "data:image/jpeg;base64,"
+						var url = "<c:url value='/frontend/member/iconphoto'/>"
+						var object = {
+							'account': {
+								'id': ${ member.id }
+					}
+					};
+					var json = JSON.stringify(object);
+
+					$.ajax({
+
+						url: url,
+						method: 'post',
+						data: json,
+						contentType: 'application/json;charset=UTF-8',
+						dataType: 'json',
+						error: function () {
+							alert("ajax error")
+						},
+
+						success: function (data) {
+							console.log(data)
+							if (data.image) {
+								$("#personphoto").attr("src", imageurl + data.image)
+							}
+						}
+
+					})
+
+	}
+
+
+</script>
 		</head>
 
 		<body>

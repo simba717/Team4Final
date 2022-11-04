@@ -89,7 +89,7 @@
 								</div>
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
-										<div class="dropdown" style="margin-right:5px">
+										<div class="dropdown" style="margin-right:5px; display:none;" id="memberdiv" >
 										<a class="dropdown-toggle" href="#" style="background-color:transparent"
 											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
 											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
@@ -129,7 +129,7 @@
 												</li>
 												<li><a id="signIn"> <i class="fa fa-calendar-days" style="font-size:40px"></i>
 													</a></li>
-												<li><a href="#"><i class="fa fa-right-to-bracket" style="font-size:40px"></i>
+												<li><a href="${contextRoot}/toBack"><i class="fa fa-right-to-bracket" style="font-size:40px"></i>
 													</a></li>	
 											</ul>
 										</div>
@@ -140,13 +140,9 @@
 												href="${contextRoot}/logout" id="logoutbtn"
 												style="background-color: white;color: orange;display: none">登出</a>
 										</div>
-										<div style="display: none" id="histatus">
-											<a style="color:white">Hi ${member.name}</a>
-										</div>
+										
 									</div>
-									<input type="button" value="切換至後台管理頁面"
-										onclick="location.href='${contextRoot}/toBack'"
-										style="width:180px;height:40px;">
+								
 
 
 								</div>
@@ -328,13 +324,13 @@
 						if (loginstatus == "") {
 							logoutbtn.style.display = 'none';
 							loginbtn.style.display = 'block';
-							histatus.style.display = 'none';
+							memberdiv.style.display='none';
 
 						} else {
 
 							logoutbtn.style.display = 'block';
 							loginbtn.style.display = 'none';
-							histatus.style.display = 'block';
+							memberdiv.style.display='block';
 
 						}
 					}

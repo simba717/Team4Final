@@ -264,7 +264,6 @@ z-index
 <body>
 <jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
 <div class="loginbody">
-	<h2 class="logingh2">員工登入</h2>
 	<div class="logincontainer" id="logincontainer">
 	
 		<div class="form-logincontainer sign-in-container">

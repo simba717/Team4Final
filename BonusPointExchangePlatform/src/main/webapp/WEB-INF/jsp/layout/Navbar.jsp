@@ -62,11 +62,7 @@
 														</li>
 													</ul>
 												</li>
-												<li><a href="#">紅利商城<i class="ti-angle-down"></i></a>
-													<ul class="submenu">
-														<li><a href="${contextRoot}/shoppingCart">購物車</a></li>
-													</ul>
-												</li>
+												
 												<li><a href="#">與我聯繫<i class="ti-angle-down"></i></a>
 													<ul class="submenu">
 														<li><a href="${contextRoot}/message">常見問題</a></li>
@@ -107,7 +103,7 @@
 									
 <!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
 <!-- 													</a></li> -->
-													<li><a href="#"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
+													<li><a href="${contextRoot}/shoppingCart"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
 													</a></li>	
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"
 														data-bs-auto-close="false" aria-expanded="false">

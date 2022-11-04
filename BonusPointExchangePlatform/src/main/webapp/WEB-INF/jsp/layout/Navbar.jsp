@@ -37,6 +37,7 @@
 
 				$(function () {
 
+<<<<<<< HEAD
 					loadpage();
 				
 	
@@ -52,6 +53,95 @@
 			}
 		};
 		var json = JSON.stringify(object);
+=======
+<body>
+	<header>
+		<div class="header-area ">
+			<div id="sticky-header" class="main-header-area">
+				<div class="container-fluid p-0">
+					<div class="row align-items-center no-gutters">
+						<div class="col-xl-5 col-lg-5">
+							<div class="main-menu  d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+										<li><a href="#">會員專區<i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a href="${contextRoot}/goMember">個人資料</a></li>
+												<li><a href="${contextRoot}/goBankAccount">查看帳戶</a></li>
+												<li><a href="${contextRoot}/goBonus">紅利點數</a></li>
+												<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a></li>
+												<li><a href="${contextRoot}/campaign">簽到</a></li>
+											</ul></li>
+										<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a href="#">快速獲得紅利</a></li>
+												<li><a href="#">限時加碼活動</a></li>
+											</ul></li>
+										<li><a href="#">紅利商城<i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a href="${contextRoot}/shoppingCart">購物車</a></li>
+											</ul></li>
+										<li><a href="#">與我聯繫<i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a href="${contextRoot}/message">常見問題</a></li>
+												<li><a href="#"onclick="window.open('http://localhost:8080/my-app/chatroom.jsp', 'WebSocket', config='height=1000,width=500');">線上客服</a></li>
+												<li><a href="${contextRoot}/mail">客服信箱</a></li>
+											</ul></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<div class="col-xl-2 col-lg-2">
+							<div class="logo-img">
+								<a href="${contextRoot}/showProduct"> <img
+									src="${contextRoot}/img/logo2.jpg" alt="">
+								</a>
+							</div>
+						</div>
+						<div class="col-xl-5 col-lg-5 d-none d-lg-block">
+							<div class="book_room">
+								<div class="socail_links">
+									<ul>
+										<li><a href="#"> <i class="fa fa-user"></i>
+										</a></li>
+										<li><a href="#"><i class="fa fa-cart-shopping"></i>
+										</a></li>
+										<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"> 
+										    <i class="fa-solid fa-bell position-relative"> 
+										    <span style="font-size: 0.3em;" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"></span></i>
+										    </a>
+                                            <!-- 	購物車內容		     -->
+											<div id="orderListContent" class="dropdown-menu p-0 overflow-auto" style="max-height:800px;">
+											<div>
+											<img src="${contextRoot}/img2/54.png" style="width:200px;height:200px;" class="rounded mx-auto d-block">
+											</div>
+											<div class="dropdown-divider"></div>
+											<p class="fst-italic text-center align-middle fs-4">無商品訂購</p>
+											</div>
+											<!-- 	購物車內容		     -->
+											</li>
+										<li><a id="signIn"> <i class="fa fa-calendar-days"></i>
+										</a></li>
+									</ul>
+								</div>
+								<div class="book_btn d-none d-xl-block">
+									<a class="#" href="${contextRoot}/login" id="loginbtn">登入 or 註冊</a> <a
+										class="#" href="${contextRoot}/logout" id="logoutbtn" style="display: none">登出</a>
+								</div>
+								<div style="display: none" id="histatus">
+									<a style="color:white">Hi ${member.name}</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+>>>>>>> ray
 
 		$.ajax({
 

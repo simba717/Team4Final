@@ -33,43 +33,93 @@
 
 				$(function () {
 
-					if (${account.account_type } == 3) {
+
+					if (${ account.account_type } == 3) {
 					$("#highclass").css('visibility', 'visible');
 				}else {
 					$("#highclass").css('visibility', 'hidden');
 				}
-					
 
-					loadpage();
+
+				<body>
+					<header>
+						<div class="header-area">
+							<div id="sticky-header" class="main-header-area">
+								<div class="container-fluid p-0">
+									<div class="row align-items-center no-gutters">
+										<div class="col-xl-5 col-lg-5">
+											<div class="main-menu  d-none d-lg-block">
+												<nav>
+													<ul id="navigation">
+														<li><a href="#">個人資料系統<i class="ti-angle-down1"></i></a>
+															<ul class="submenu">
+																<li><a href="#">編輯員工資料</a></li>
+																<li><a href="#">編輯會員資料</a></li>
+															</ul></li>
+														<li><a href="#">活動管理系統<i class="ti-angle-down"></i></a>
+															<ul class="submenu">
+																<li><a href="#">會員活動管理</a></li>
+																<li><a href="#">遊戲活動管理</a></li>
+															</ul></li>
+
+														<li><a href="#">商城管理系統<i class="ti-angle-down"></i></a>
+															<ul class="submenu">
+																<li><a href="${contextRoot}/product/findAll">商品管理</a></li>
+																<li><a href="${contextRoot}/orders/findAll">訂單管理</a></li>
+															</ul></li>
+														<li><a href="#">數據圖表系統<i class="ti-angle-down"></i></a>
+															<ul class="submenu">
+																<li><a href="${contextRoot}/mainsearch">報表管理</a></li>
+															</ul></li>
+
+													</ul>
+												</nav>
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-2">
+											<div class="logo-img">
+												<a href="${contextRoot}/mainsearch"> <img
+													src="${contextRoot}/img/logo.png" alt="">
+												</a>
+											</div>
+										</div>
+
+										<div class="col-xl-5 col-lg-5 d-none d-lg-block">
+											<div class="book_room">
+												<div class="socail_links">
+													<ul>
+
+
+														loadpage();
 				})
-				
-				
-		function loadpage() {
+
+
+														function loadpage() {
 		var imageurl = "data:image/jpeg;base64,"
-		var url = "<c:url value='/frontend/employee/iconphoto'/>"
-		var object = {
-			'account' : {
-				'id' : ${employee.id}
+														var url = "<c:url value='/frontend/employee/iconphoto' />"
+														var object = {
+															'account' : {
+															'id' : ${employee.id}
 			}
 		};
-		var json = JSON.stringify(object);
+														var json = JSON.stringify(object);
 
-		$.ajax({
+														$.ajax({
 
-			url : url,
-			method : 'post',
-			data : json,
-			contentType : 'application/json;charset=UTF-8',
-			dataType : 'json',
-			error : function() {
-				alert("ajax error")
-			},
+															url : url,
+														method : 'post',
+														data : json,
+														contentType : 'application/json;charset=UTF-8',
+														dataType : 'json',
+														error : function() {
+															alert("ajax error")
+														},
 
-			success : function(data) {
-				console.log(data)
+														success : function(data) {
+															console.log(data)
 				if( data.image != ""){
-				$("#personphoto").attr("src", imageurl + data.image)
-				}
+															$("#personphoto").attr("src", imageurl + data.image)
+														}
 			}
 
 		})
@@ -128,6 +178,7 @@
 										</nav>
 									</div>
 								</div>
+
 								<div class="col-xl-2 col-lg-2">
 									<div class="logo-img">
 										<a href="${contextRoot}/mainsearch"> <img src="${contextRoot}/img/logo.png"
@@ -138,26 +189,33 @@
 
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
-										<div class="dropdown" style="margin-right:5px; display:block;" id="memberdiv" >
-										<a class="dropdown-toggle" href="#" style="background-color:transparent"
-											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-											aria-expended="false"><img id="personphoto" src="${contextRoot}/img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
-											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
-												<li><a class="dropdown-item" href="${contextRoot}/backend/EditEmployeeByEmployee" id="1">編輯個人資料</a></li>
+										<div class="dropdown" style="margin-right:5px; display:block;" id="memberdiv">
+											<a class="dropdown-toggle" href="#" style="background-color:transparent"
+												role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+												aria-expended="false"><img id="personphoto"
+													src="${contextRoot}/img2/nopicture.jpg"
+													style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;"></a>
+											<ul class="dropdown-menu dropdown-menu-dark"
+												aria-lableledby="dropdownMenuLink">
+												<li><a class="dropdown-item"
+														href="${contextRoot}/backend/EditEmployeeByEmployee"
+														id="1">編輯個人資料</a></li>
 												<li><a class="dropdown-item" href="#" id="2">登出</a></li>
 											</ul>
 										</div>
 										<div class="socail_links">
 											<ul>
-													
-												<li style="margin-right:5px;"><a href="#"> <i class="fa-regular fa-envelope" style="font-size:40px"></i>
-													</a></li>
-												<li style="margin-right:5px;"><a href="${contextRoot}/toBack"><i class="fa fa-right-from-bracket" style="font-size:40px"></i>
 
-													</a></li>	
+												<li style="margin-right:5px;"><a href="#"> <i
+															class="fa-regular fa-envelope" style="font-size:40px"></i>
+													</a></li>
+												<li style="margin-right:5px;"><a href="${contextRoot}/toBack"><i
+															class="fa fa-right-from-bracket" style="font-size:40px"></i>
+
+													</a></li>
 											</ul>
 										</div>
-										
+
 										<div class="book_btn d-none d-xl-block">
 											<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
 											<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"
@@ -166,25 +224,35 @@
 										<div style="display: none" id="histatus">
 											<a style="color:white">Hi ${employee.name}</a>
 										</div>
-										
+
 									</div>
-<!-- 									<input type="button" value="切換至前台會員頁面" -->
-<%-- 										onclick="location.href='${contextRoot}/toFront'" --%>
-<!-- 										style="width:180px;height:40px;"> -->
+									<!-- 									<input type="button" value="切換至前台會員頁面" -->
+									<%-- onclick="location.href='${contextRoot}/toFront'" --%>
+										<!-- 										style="width:180px;height:40px;"> -->
 
 								</div>
 
-								
-								
+
+
 								<div class="col-12">
 									<div class="mobile_menu d-block d-lg-none"></div>
 
+
+									<div class="book_btn d-none d-xl-block">
+										<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
+										<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"
+											style="display: none">登出</a>
+									</div>
+									<div style="display: none" id="histatus">
+										<a style="color: white">Hi ${employee.name}</a>
+
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 			</header>
+
 
 
 
@@ -221,25 +289,66 @@
 
 			<br><br><br><br><br><br>
 			<script>
-				function loginback() {
-					var loginstatus = ${ employee.id };
+										function loginback() {
+					var loginstatus = ${employee.id};
 
-					console.log(loginstatus);
+										console.log(loginstatus);
 
-					if (loginstatus == "") {
-						logoutbtn.style.display = 'none';
-						loginbtn.style.display = 'block';
-						histatus.style.display = 'none';
+										if (loginstatus == "") {
+											logoutbtn.style.display = 'none';
+										loginbtn.style.display = 'block';
+										histatus.style.display = 'none';
 
-					} else {
+										<!--contact js-->
+										<script src="${contextRoot}/js/contact.js"></script>
+			<script src="${contextRoot}/js/jquery.ajaxchimp.min.js"></script>
+			<script src="${contextRoot}/js/jquery.form.js"></script>
+			<script src="${contextRoot}/js/jquery.validate.min.js"></script>
+			<script src="${contextRoot}/js/mail-script.js"></script>
+			<script src="${contextRoot}/js/main1.js"></script>
 
-						logoutbtn.style.display = 'block';
-						loginbtn.style.display = 'none';
-						histatus.style.display = 'block';
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<script>
+											function loginback() {
+			var loginstatus = $
+											{
+												employee.id
+											}
+											;
 
-					}
-				}
-				loginback();
+											console.log(loginstatus);
+
+											if (loginstatus == "") {
+												logoutbtn.style.display = 'none';
+											loginbtn.style.display = 'block';
+											histatus.style.display = 'none';
+
+			} else {
+
+												logoutbtn.style.display = 'block';
+											loginbtn.style.display = 'none';
+											histatus.style.display = 'block';
+
+			}
+		}
+											loginback();
+			</script>
+
+
+			} else {
+
+			logoutbtn.style.display = 'block';
+			loginbtn.style.display = 'none';
+			histatus.style.display = 'block';
+
+			}
+			}
+			loginback();
 
 			</script>
 

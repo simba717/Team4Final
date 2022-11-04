@@ -1,27 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+		<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://code.jquery.com/jquery-3.6.1.js"
-	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-	crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<title>Check and Edit Member</title>
-<style>
-#news {
-	list-style: none;
-	height: 25px;
-	overflow: hidden;
-}
-</style>
-</head>
-<body>
-	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
-	<script type="text/javaScript">
+		<!DOCTYPE html>
+		<html>
+
+		<head>
+			<script src="https://code.jquery.com/jquery-3.6.1.js"
+				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+			<meta charset="UTF-8">
+			<title>Check and Edit Member</title>
+			<style>
+				#news {
+					list-style: none;
+					height: 25px;
+					overflow: hidden;
+				}
+			</style>
+		</head>
+
+		<body>
+			<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
+			<script type="text/javaScript">
 		var fileDataURL = null;
 		var inputFileToLoad = null;
 		var submit = null
@@ -382,177 +382,180 @@
 		}
 	</script>
 
-	<br>
-	<br>
-	<br>
-	<br>
+			<br>
+			<br>
+			<br>
+			<br>
 
 
 
-	<div
-		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
-		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
-		<div class="card" style="border-radius: 30px 30px 30px 30px;">
-			<div class="card-body" style="height: 600px; margin-top: 40px">
-				<h3 class="card-title">會員個人資料編輯</h3>
+			<div class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
+				style="height: 700px; width: 600px; margin-left: 250px; float: left;">
+				<div class="card" style="border-radius: 30px 30px 30px 30px;">
+					<div class="card-body" style="height: 600px; margin-top: 40px">
+						<h3 class="card-title">會員個人資料編輯</h3>
 
-				<form class="forms-sample" id="form">
-					<div class="form-group">
-						<label for="exampleInputName1">Account</label> <input type="text"
-							class="form-control"
-							style="color: #7b7b7b; background-color: #f0f0f0"
-							id="exampleInputName1" placeholder="Name" value="" readonly
-							style="backround-color:grey">
+						<form class="forms-sample" id="form">
+							<div class="form-group">
+								<label for="exampleInputName1">Account</label> <input type="text" class="form-control"
+									style="color: #7b7b7b; background-color: #f0f0f0" id="exampleInputName1"
+									placeholder="Name" value="" readonly style="backround-color:grey">
+							</div>
+							<div class="form-group">
+
+								<div style="text-align: right; margin-right: 440px; margin-bottom: -22px">
+									<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
+								</div>
+								<label for="exampleInputEmail3">Password</label>
+								<input type="password" class="form-control" id="password" placeholder="password"
+									value="" />
+								<div id="idsp1" style="font-size: 20px"></div>
+
+
+
+								<label for="exampleInputEmail3">Password</label>
+								<div style="text-align: right; margin-right: 12px; margin-bottom: -30px" ;>
+									<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
+								</div><input type="password" class="form-control" id="password" placeholder="password"
+									value="" />
+								<div id="idsp1" style="font-size: 20px"></div>
+
+
+
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword4">Name</label> <input type="text" class="form-control"
+									id="username" name="username" placeholder="username" value="">
+								<div id="idsp2" style="font-size: 20px"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputCity1">Birth</label> <input type="date" class="form-control"
+									id="birth" placeholder="birth" value="">
+								<div id="idsp3" style="font-size: 20px"></div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="exampleInputCity1">Email</label> <input type="email" class="form-control"
+									id="email" placeholder="email" value="">
+								<div id="idsp4" style="font-size: 20px"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputCity1">Phone</label> <input type="text" class="form-control"
+									id="phone" placeholder="phone" value="">
+								<div id="idsp5" style="font-size: 20px"></div>
+							</div>
+
+							<div class="form-group" style="margin-top: 20px">
+								<label>Please select a photo</label><br> <input id="inputFileToLoad" type="file"
+									name="photo" onchange="loadImageFileAsURL()" class="file-upload-default">
+
+
+							</div>
+
+						</form>
 					</div>
-					<div class="form-group">
-							<div
-							style="text-align: right; margin-right: 440px; margin-bottom: -22px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
-						<label for="exampleInputEmail3">Password</label>
-							<input
-							type="password" class="form-control" id="password"
-							placeholder="password" value="" />
-						<div id="idsp1" style="font-size: 20px"></div>
-					
-
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword4">Name</label> <input type="text"
-							class="form-control" id="username" name="username"
-							placeholder="username" value="">
-						<div id="idsp2" style="font-size: 20px"></div>
-					</div>
-
-					<div class="form-group">
-						<label for="exampleInputCity1">Birth</label> <input type="date"
-							class="form-control" id="birth" placeholder="birth" value="">
-						<div id="idsp3" style="font-size: 20px"></div>
-					</div>
-
-
-					<div class="form-group">
-						<label for="exampleInputCity1">Email</label> <input type="email"
-							class="form-control" id="email" placeholder="email" value="">
-						<div id="idsp4" style="font-size: 20px"></div>
-					</div>
-
-					<div class="form-group">
-						<label for="exampleInputCity1">Phone</label> <input type="text"
-							class="form-control" id="phone" placeholder="phone" value="">
-						<div id="idsp5" style="font-size: 20px"></div>
-					</div>
-
-					<div class="form-group" style="margin-top: 20px">
-						<label>Please select a photo</label><br> <input
-							id="inputFileToLoad" type="file" name="photo"
-							onchange="loadImageFileAsURL()" class="file-upload-default">
-
-
-					</div>
-
-				</form>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div style="text-align: center">
-		<img id="preview_img" src="${contextRoot}/img2/nophoto.png"
-			style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
+			<div style="text-align: center">
+				<img id="preview_img" src="${contextRoot}/img2/nophoto.png"
+					style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
-		<br> <br> <br>
-		<h2>
-			歡迎您登入編輯頁面 : <span id="welcome"></span>
-		</h2>
-		<br>
-		<ul id="news">
-			<li style="color: red">小編貼心提醒您~~~</li>
-			<li style="color: red">現在參加簽到活動免費贈送紅利點數</li>
-			<li style="color: red">還不趕快透過上方連結簽到 ?</li>
-		</ul>
+				<br> <br> <br>
+				<h2>
+					歡迎您登入編輯頁面 : <span id="welcome"></span>
+				</h2>
+				<br>
+				<ul id="news">
+					<li style="color: red">小編貼心提醒您~~~</li>
+					<li style="color: red">現在參加簽到活動免費贈送紅利點數</li>
+					<li style="color: red">還不趕快透過上方連結簽到 ?</li>
+				</ul>
 
-		<br> <br>
-		<div style="justify-content: center;">
-			<input type="button" id="edit" class="btn btn-primary me-2"
-				value="確認送出" display="none">
-			<button class="btn btn-danger" style="margin-left: 20px"
-				onclick="window.location.reload()">取消編輯</button>
-		</div>
+				<br> <br>
+				<div style="justify-content: center;">
+					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none">
+					<button class="btn btn-danger" style="margin-left: 20px"
+						onclick="window.location.reload()">取消編輯</button>
+				</div>
 
 
 
-		<!-- 							<button id="edit" type="button">Submit</button>  -->
-		<!-- <div> -->
-		<!-- 		<table> -->
+				<!-- 							<button id="edit" type="button">Submit</button>  -->
+				<!-- <div> -->
+				<!-- 		<table> -->
 
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>會員密碼：</td> -->
-		<!-- 				<td><input id='password' type="text" name="password" size="10"></td> -->
-		<!-- 			</tr> -->
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>會員姓名：</td> -->
-		<!-- 				<td><input id='username' type="text" name="username" size="20"></td> -->
-		<!-- 			</tr> -->
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>會員生日：</td> -->
-		<!-- 				<td><input id='birth' type="text" name="birth" size="20"></td> -->
-		<!-- 			</tr> -->
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>會員郵件：</td> -->
-		<!-- 				<td><input id='email' type="text" name="email" size="20"></td> -->
-		<!-- 			</tr> -->
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>會員電話：</td> -->
-		<!-- 				<td><input id='phone' type="text" name="phone" size="20"></td> -->
-		<!-- 			</tr> -->
-		<!-- 			<tr height='36'> -->
-		<!-- 				<td width='120' align='right'>圖片名稱：</td> -->
-		<!-- 				<td><input id='photoName' type="text" name="photoName" -->
-		<!-- 					size="20"></td> -->
-		<!-- 				<td><input id="inputFileToLoad" type="file" name="file" -->
-		<!-- 					onchange="loadImageFileAsURL()" /> <img id="preview_img2" -->
-		<!-- 					src="#" style="height: 100px; width: 100px"></td> -->
-		<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>會員密碼：</td> -->
+				<!-- 				<td><input id='password' type="text" name="password" size="10"></td> -->
+				<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>會員姓名：</td> -->
+				<!-- 				<td><input id='username' type="text" name="username" size="20"></td> -->
+				<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>會員生日：</td> -->
+				<!-- 				<td><input id='birth' type="text" name="birth" size="20"></td> -->
+				<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>會員郵件：</td> -->
+				<!-- 				<td><input id='email' type="text" name="email" size="20"></td> -->
+				<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>會員電話：</td> -->
+				<!-- 				<td><input id='phone' type="text" name="phone" size="20"></td> -->
+				<!-- 			</tr> -->
+				<!-- 			<tr height='36'> -->
+				<!-- 				<td width='120' align='right'>圖片名稱：</td> -->
+				<!-- 				<td><input id='photoName' type="text" name="photoName" -->
+				<!-- 					size="20"></td> -->
+				<!-- 				<td><input id="inputFileToLoad" type="file" name="file" -->
+				<!-- 					onchange="loadImageFileAsURL()" /> <img id="preview_img2" -->
+				<!-- 					src="#" style="height: 100px; width: 100px"></td> -->
+				<!-- 			</tr> -->
 
-		<!-- 		</table> -->
-		<!-- 		<input type="button" id="edit" value="編輯會員"> -->
-		<!-- 	</div> -->
+				<!-- 		</table> -->
+				<!-- 		<input type="button" id="edit" value="編輯會員"> -->
+				<!-- 	</div> -->
 
 
 
-		<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
-		<script>
-			$("#icon").click(
-					function() {
-						let pass_type = $("#password").attr("type");
-						console.log(pass_type)
+				<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
+				<script>
+					$("#icon").click(
+						function () {
+							let pass_type = $("#password").attr("type");
+							console.log(pass_type)
 
-						if (pass_type === "password") {
-							$("#password").attr("type", "type");
-							$("#icon").removeClass("fa-solid fa-eye-slash")
+							if (pass_type === "password") {
+								$("#password").attr("type", "type");
+								$("#icon").removeClass("fa-solid fa-eye-slash")
 									.addClass("fa-solid fa-eye")
-						} else {
-							$("#password").attr("type", "password");
-							$("#icon").removeClass("fa-solid fa-eye").addClass(
+							} else {
+								$("#password").attr("type", "password");
+								$("#icon").removeClass("fa-solid fa-eye").addClass(
 									"fa-solid fa-eye-slash")
-						}
+							}
+						})
+
+					$("#inputFileToLoad").change(function () {
+						readURL(this);
 					})
 
-			$("#inputFileToLoad").change(function() {
-				readURL(this);
-			})
+					function readURL(input) {
+						if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							reader.onload = function (e) {
+								$("#preview_img").attr("src", e.target.result);
 
-			function readURL(input) {
-				if (input.files && input.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#preview_img").attr("src", e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
 
+						}
 					}
-					reader.readAsDataURL(input.files[0]);
+				</script>
+		</body>
 
-				}
-			}
-		</script>
-</body>
-
-</html>
+		</html>

@@ -16,6 +16,7 @@ import com.project.BonusPointExchangePlatform.dao.AccountDao;
 import com.project.BonusPointExchangePlatform.dao.MemberDao;
 import com.project.BonusPointExchangePlatform.dto.MemberDto;
 import com.project.BonusPointExchangePlatform.model.Account;
+import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.goodphoto;
 
@@ -220,7 +221,9 @@ public class MemberService {
 	public Member geticonphoto(Integer id) {
 		Account account = aDao.showMemberById(id);
 		Member member = account.getMember();
+
 		return member;
+
 	}
 	
 	

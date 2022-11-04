@@ -141,7 +141,7 @@
 										<div class="dropdown" style="margin-right:5px; display:block;" id="memberdiv" >
 										<a class="dropdown-toggle" href="#" style="background-color:transparent"
 											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-											aria-expended="false"><img id="personphoto" src="img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
+											aria-expended="false"><img id="personphoto" src="${contextRoot}/img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
 											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
 												<li><a class="dropdown-item" href="${contextRoot}/backend/EditEmployeeByEmployee" id="1">編輯個人資料</a></li>
 												<li><a class="dropdown-item" href="#" id="2">登出</a></li>

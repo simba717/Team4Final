@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.BonusPointExchangePlatform.dto.FrontendOrdersListDto;
 import com.project.BonusPointExchangePlatform.dto.ProductDto;
+import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Product;
 import com.project.BonusPointExchangePlatform.service.ProductService;
 
@@ -34,10 +35,12 @@ public class ProductController {
 
 	/* INSERT */
 	@PostMapping(path = "/product/insert", produces = "application/json; charset=UTF-8 ")
-	public void insert(@RequestBody ProductDto productDto) {
+	public void insert(@RequestBody ProductDto productDto, HttpSession httpSession) {
+		Employee employee = (Employee) httpSession.getAttribute("employee");
+		System.out.println(employee.getName());
 		productDto.convertImage();
 		Product product = productDto.getProduct();
-		productService.insert(product);
+		productService.insert(product, employee);
 	}
 
 	/*
@@ -88,7 +91,8 @@ public class ProductController {
 	@PutMapping(value = "/products/{id}", consumes = { "application/json" }, produces = {
 			"application/json; charset=UTF-8" })
 	public @ResponseBody Map<String, String> updateProduct(@RequestBody ProductDto productDto,
-			@PathVariable Integer id) {
+			@PathVariable Integer id, HttpSession httpSession) {
+		Employee employee = (Employee) httpSession.getAttribute("employee");
 		Map<String, String> map = new HashMap<>();
 		try {
 			if (productDto.getFileDataUrl() == null) {
@@ -96,13 +100,13 @@ public class ProductController {
 				productService.update(productDto.getProduct().getProduct_name(),
 						productDto.getProduct().getProduct_content(), productDto.getProduct().getProduct_type(),
 						productDto.getProduct().getPrice(), productDto.getProduct().getQuantity(),
-						productDto.getProduct().isButton_switch(), product.getImage(), id);
+						productDto.getProduct().isButton_switch(), product.getImage(), id, employee);
 			} else {
 				productDto.convertImage();
 				productService.update(productDto.getProduct().getProduct_name(),
 						productDto.getProduct().getProduct_content(), productDto.getProduct().getProduct_type(),
 						productDto.getProduct().getPrice(), productDto.getProduct().getQuantity(),
-						productDto.getProduct().isButton_switch(), productDto.getProduct().getImage(), id);
+						productDto.getProduct().isButton_switch(), productDto.getProduct().getImage(), id, employee);
 			}
 			map.put("success", "更新成功");
 		} catch (Exception e) {
@@ -113,10 +117,11 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/product/control")
-	public String switchControl(@RequestParam Integer id, @RequestParam boolean button_switch) {
+	public String switchControl(@RequestParam Integer id, @RequestParam boolean button_switch, HttpSession httpSession) {
+		Employee employee = (Employee) httpSession.getAttribute("employee");
 		Product product = productService.findById(id);
 		productService.update(product.getProduct_name(), product.getProduct_content(), product.getProduct_type(),
-				product.getPrice(), product.getQuantity(), button_switch, product.getImage(), id);
+				product.getPrice(), product.getQuantity(), button_switch, product.getImage(), id, employee);
 		return "redirect:/product/findAll";
 	}
 
@@ -160,11 +165,11 @@ public class ProductController {
 	}
 
 	// pill ordersListContent session清掉
+	@ResponseBody
 	@GetMapping("/product/pillSessionClear")
-	public String processMainAction3(HttpSession httpSession) {
+	public void processMainAction3(HttpSession httpSession) {
 		httpSession.removeAttribute("pill");
 		httpSession.removeAttribute("ordersListContent");
-		return "redirect:/shoppingCart";
 	}
 
 	@GetMapping("/product/downloadImage/{id}")

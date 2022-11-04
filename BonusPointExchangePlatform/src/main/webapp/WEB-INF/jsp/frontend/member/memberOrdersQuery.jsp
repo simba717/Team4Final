@@ -85,7 +85,7 @@
 <body>
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 <div align='center'>
-	搜尋：<input type="text" name="query" id='query' >
+	訂單搜尋：<input type="text" name="query" id='query' placeholder='訂單號碼'>
 	<input type='submit' id='queryData' value="查詢">	<br><br> 
 	<div class='col-lg-12 grid-margin stretch-card'>
 		<div class='card'>
@@ -124,6 +124,9 @@ function query() {
 			var orders = JSON.parse(xhr1.responseText);
 			console.log(orders)
 			
+			if(orders.orders.length == 0) {
+				content += "<tbody><tr><td id='tbody' align='center'style='color:red' colspan='6'></td></tr></tbody>";				
+			}
 			for(var i = 0; i < orders.orders.length; ++i) {
 				content += "<tbody><tr><td>" + orders.orders[i].orders.order_token + "</td>"
 				+ "<td align='right'>" + orders.orders[i].orders.sub_total + "</td>"
@@ -136,6 +139,9 @@ function query() {
 			content += "</table>";
 			var divs = document.getElementById("somedivS");
 			divs.innerHTML = content;
+			if(orders.orders.length == 0) {
+				document.getElementById("tbody").innerHTML="查無資料";
+			}
 			
 			/*分隔線*/
 			var divdetail = $("#detail");

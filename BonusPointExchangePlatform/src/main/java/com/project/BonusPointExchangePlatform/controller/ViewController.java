@@ -1,9 +1,14 @@
 package com.project.BonusPointExchangePlatform.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import com.project.BonusPointExchangePlatform.model.Employee;
+import com.project.BonusPointExchangePlatform.model.Member;
 
 @Controller
 public class ViewController {
@@ -11,7 +16,8 @@ public class ViewController {
 	/*HomePage*/
 	@GetMapping("/")
 	public String goMemberHome() {
-		return "layout/Navbar";
+		return "redirect:/showProduct";
+//		return "layout/Navbar";
 	}
 	
 	@GetMapping("/backend")
@@ -27,32 +33,31 @@ public class ViewController {
 	
 	/*SELECT*/
 	@GetMapping(path = "/product/findAll")
-	public String showAllBooksAjax() {
+	public String showAllBooksAjax(HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");
+		if(employee == null) {
+			return "redirect:/loginEmp";
+		}
 		return "/backend/mall/productQuery";
 	}
 	
 	@GetMapping(path = "/orders/findAll")
-	public String findAllOrdersByEmployee() {
+	public String findAllOrdersByEmployee(HttpSession session) {
+		Employee employee = (Employee)session.getAttribute("employee");  
+		if(employee == null) {
+			return "redirect:/loginEmp";
+		}
 		return "/backend/order/employeeOrdersQuery";
 	}
 	
-/*	@GetMapping(value = "/orders/employeeFindById/{id}", produces = { "application/json; charset=UTF-8 " })
-	public String employeeFindById(@PathVariable Integer id, Model model) {
-		model.addAttribute("id", id);
-		return "/backend/order/employeeOrdersQuery";
-	}
-*/	
 	@GetMapping(path = "/orders/findAllByMember")
-	public String findAllOrdersByMember() {
+	public String findAllOrdersByMember(HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		if(member == null) {
+			return "redirect:/login";
+		}
 		return "/frontend/member/memberOrdersQuery";
 	}
-/*	
-	@GetMapping(value = "/orders/memberFindById/{id}", produces = { "application/json; charset=UTF-8 " })
-	public String memberFindById(@PathVariable Integer id, Model model) {
-		model.addAttribute("id", id);
-		return "/frontend/order/memberOrdersQuery";
-	}
-*/	
 	
 	/*UPDATE*/
 	@GetMapping(value = "/product/edit/{id}", produces = { "application/json; charset=UTF-8 " })

@@ -107,7 +107,8 @@
 									
 <!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
 <!-- 													</a></li> -->
-												
+													<li><a href="#"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
+													</a></li>	
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"
 														data-bs-auto-close="false" aria-expanded="false">
 														<i class="fa-solid fa-bell position-relative" style="font-size:40px">
@@ -130,7 +131,9 @@
 												<li><a id="signIn"> <i class="fa fa-calendar-days" style="font-size:40px"></i>
 													</a></li>
 												<li><a href="${contextRoot}/toBack"><i class="fa fa-right-to-bracket" style="font-size:40px"></i>
+
 													</a></li>	
+												
 											</ul>
 										</div>
 									

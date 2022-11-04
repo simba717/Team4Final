@@ -221,9 +221,9 @@ public class MemberService {
 	public Member geticonphoto(Integer id) {
 		Account account = aDao.showMemberById(id);
 		Member member = account.getMember();
-		
+
 		return member;
-				
+
 	}
 	
 	

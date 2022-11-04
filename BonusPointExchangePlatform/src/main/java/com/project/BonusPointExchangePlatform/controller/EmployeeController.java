@@ -41,6 +41,7 @@ import com.project.BonusPointExchangePlatform.service.MailService;
 
 @Controller
 @SessionAttributes(names = {"employee","account"} )
+
 public class EmployeeController {
 	
 	@Autowired
@@ -265,6 +266,21 @@ public class EmployeeController {
 		EmployeeDto dto1 =eService.showEmployeeById(id);
 		
 		return dto1;
+		
+	}
+	
+	@ResponseBody
+	@PostMapping(path="/frontend/employee/iconphoto", produces = {"application/json;charset=UTF-8"})
+	public Employee geticonphoto(@RequestBody EmployeeDto dto,HttpSession session ) {
+//		Employee employee = (Employee)session.getAttribute("employee");
+//		Integer id = employee.getId();
+		Integer id1 = dto.getAccount().getId();
+		System.out.println(id1);
+		if(id1!=null) {
+		Employee employee1 = eService.geticonphoto(id1);
+		return employee1;
+		}else
+		return null;
 		
 	}
 

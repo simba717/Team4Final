@@ -14,9 +14,8 @@
 			<!-- <link rel="manifest" href="site.webmanifest"> -->
 			<link rel="shortcut icon" type="image/x-icon" href="${contextRoot}/img/favicon.png">
 			<!-- Place favicon.ico in the root directory -->
-<script src="https://code.jquery.com/jquery-3.6.1.js"
-	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-	crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-3.6.1.js"
+				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 			<!-- CSS here -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 			<%-- <link rel="stylesheet" href="${contextRoot}/css/all.min.css"> --%>
@@ -33,7 +32,7 @@
 				<link rel="stylesheet" href="${contextRoot}/css/style.css">
 				<link rel="stylesheet" href="${contextRoot}/css/burgerstyle.css">
 				<!-- <link rel="stylesheet" href="css/responsive.css"> -->
-<script>
+				<script>
 
 					$(function () {
 
@@ -78,7 +77,7 @@
 	}
 
 
-</script>
+				</script>
 		</head>
 
 		<body>
@@ -136,11 +135,14 @@
 								</div>
 								<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 									<div class="book_room">
-										<div class="dropdown" style="margin-right:5px; display:none;" id="memberdiv" >
-										<a class="dropdown-toggle" href="#" style="background-color:transparent"
-											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-											aria-expended="false"><img id="personphoto" src="${contextRoot}/img2/nopicture.jpg" style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
-											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
+										<div class="dropdown" style="margin-right:5px; display:none;" id="memberdiv">
+											<a class="dropdown-toggle" href="#" style="background-color:transparent"
+												role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+												aria-expended="false"><img id="personphoto"
+													src="${contextRoot}/img2/nopicture.jpg"
+													style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;"></a>
+											<ul class="dropdown-menu dropdown-menu-dark"
+												aria-lableledby="dropdownMenuLink">
 												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
 												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
 												<li><a class="dropdown-item" href="#" id="3">簽到活動管理</a></li>
@@ -148,17 +150,19 @@
 												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
 											</ul>
 										</div>
-										
+
 										<div class="socail_links">
 											<ul>
-									
-<!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
-<!-- 													</a></li> -->
-													<li><a href="${contextRoot}/shoppingCart"><i class="fa fa-cart-shopping" style="font-size:45px"></i>
-													</a></li>	
+
+												<!-- 												<li><a href="#"> <i class="fa fa-user"></i> -->
+												<!-- 													</a></li> -->
+												<li><a href="${contextRoot}/shoppingCart"><i class="fa fa-cart-shopping"
+															style="font-size:45px"></i>
+													</a></li>
 												<li><a href="#" id="dropdownorderLink" data-bs-toggle="dropdown"
 														data-bs-auto-close="false" aria-expanded="false">
-														<i class="fa-solid fa-bell position-relative" style="font-size:40px">
+														<i class="fa-solid fa-bell position-relative"
+															style="font-size:40px">
 															<span style="font-size: 0.3em;"
 																class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger"></span></i>
 													</a>
@@ -175,24 +179,26 @@
 													</div>
 													<!-- 	購物車內容		     -->
 												</li>
-												<li><a id="signIn"> <i class="fa fa-calendar-days" style="font-size:40px"></i>
+												<li><a id="signIn"> <i class="fa fa-calendar-days"
+															style="font-size:40px"></i>
 													</a></li>
-												<li><a href="${contextRoot}/toBack"><i class="fa fa-right-to-bracket" style="font-size:40px"></i>
+												<li><a href="${contextRoot}/toBack"><i class="fa fa-right-to-bracket"
+															style="font-size:40px"></i>
 
-													</a></li>	
-												
+													</a></li>
+
 											</ul>
 										</div>
-									
+
 										<div class="book_btn d-none d-xl-block">
 											<a class="#" href="${contextRoot}/login" id="loginbtn"
 												style="background-color: white;color: orange">登入/註冊</a> <a class="#"
 												href="${contextRoot}/logout" id="logoutbtn"
 												style="background-color: white;color: orange;display: none">登出</a>
 										</div>
-										
+
 									</div>
-								
+
 
 
 								</div>
@@ -299,7 +305,7 @@
 					var signIn = document.getElementById("signIn")
 					signIn.onclick = function () {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', "<c:url value="/checkSignIn" />", true);
+						xhr.open('GET', "<c:url value=" / checkSignIn" />", true);
 						xhr.send();
 						xhr.onreadystatechange = function () {
 							if (xhr.readyState == 4 && xhr.status == 200) {
@@ -315,7 +321,7 @@
 					// 		pill
 					function pill() {
 						let xhr2 = new XMLHttpRequest();
-						xhr2.open('GET', "<c:url value="/product/pill" />", true);
+						xhr2.open('GET', "<c:url value=" / product / pill" />", true);
 						xhr2.send();
 						xhr2.onreadystatechange = function () {
 							if (xhr2.readyState == 4 && xhr2.status == 200) {
@@ -333,7 +339,7 @@
 					// 		show出訂單
 					$("#dropdownorderLink").hover(function () {
 						let xhr3 = new XMLHttpRequest();
-						xhr3.open('GET', "<c:url value="/product/navbarOrderList" />", true);
+						xhr3.open('GET', "<c:url value=" / product / navbarOrderList" />", true);
 						xhr3.send();
 						xhr3.onreadystatechange = function () {
 							if (xhr3.readyState == 4 && xhr3.status == 200) {
@@ -374,13 +380,13 @@
 						if (loginstatus == "") {
 							logoutbtn.style.display = 'none';
 							loginbtn.style.display = 'block';
-							memberdiv.style.display='none';
+							memberdiv.style.display = 'none';
 
 						} else {
 
 							logoutbtn.style.display = 'block';
 							loginbtn.style.display = 'none';
-							memberdiv.style.display='block';
+							memberdiv.style.display = 'block';
 
 						}
 					}

@@ -1,6 +1,9 @@
 package com.project.BonusPointExchangePlatform.controller;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -323,13 +329,13 @@ public class MemberController {
 	/* 確認帳密 */
 	@PostMapping(path = "/home")
 	public String checkAccount(@RequestParam("account") String account, @RequestParam("password") String password,
-			Model m) {
+			Model m) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		boolean result = loginService.checkAccount(account, password);
 
 		if (!result) {
-			return "/frontend/entrance/newlogin";
+			return "/frontend/entrance/newloginfail";
 		} else {
-			Account user = loginService.getBeanByAccPwd(account, password);
+			Account user = loginService.getBeanByAcc(account);
 			Orders orders = ordersService.findUnPaidOrdersByMember(user.getMember());
 			if(orders == null) {
 				ordersService.insertOrder(user.getMember());

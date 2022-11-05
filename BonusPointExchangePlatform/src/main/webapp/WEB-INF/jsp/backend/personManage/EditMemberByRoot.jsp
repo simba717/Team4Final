@@ -56,7 +56,7 @@
 		merberimage = document.getElementById("merberimage");
 		merberimage.addEventListener('change', loadImageFileAsURL);
 		send = document.getElementById("send");
-		send.addEventListener('click', click);
+// 		send.addEventListener('click', click);
 		search = document.getElementById("search");
 
 		document.getElementById("merbername").addEventListener("blur",
@@ -92,11 +92,7 @@
 				alert("您尚未填寫會員電話");
 				var merberphone = document.getElementById("merberphone");
 				merberphone.focus();
-			} else {
-				click();
-				window.location.reload();
-				page();
-			}
+			} 
 
 		})
 
@@ -135,6 +131,13 @@
 												$("#page_ul").empty();
 												$("#table tbody").empty();
 												for (var i = 0; i < pageSize; i++) {
+													if(data[i].member.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].member.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 1) {
 														$("#table tbody")
 																.append(
@@ -150,8 +153,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -179,8 +181,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-	         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -202,6 +203,13 @@
 												$("#page_ul").empty();
 												$("#table tbody").empty();
 												for (var i = 0; i < pageSize; i++) {
+													if(data[i].member.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].member.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 1) {
 														$("#table tbody")
 																.append(
@@ -217,8 +225,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -245,8 +252,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-	         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -320,6 +326,13 @@
 												$("#page_ul").empty();
 												$("#table tbody").empty();
 												for (var i = 0; i < pageSize; i++) {
+													if(data[i].member.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].member.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 1) {
 														$("#table tbody")
 																.append(
@@ -335,8 +348,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-				         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -364,8 +376,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-					         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -387,6 +398,13 @@
 												$("#page_ul").empty();
 												$("#table tbody").empty();
 												for (var i = 0; i < pageSize; i++) {
+													if(data[i].member.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].member.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 1) {
 														$("#table tbody")
 																.append(
@@ -402,8 +420,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-				         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -430,8 +447,7 @@
 																				+ data[i].member.phone
 																				+ "</td><td>"
 																				+ data[i].member.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-					         + data[i].member.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 																				+ data[i].dateCreate
 																				+ "</td><td>"
 																				+ data[i].dateUpdate
@@ -545,6 +561,13 @@
 						if (pageTotal == 1) {
 							$("#table tbody").empty();
 							for (var i = 0; i < pageSize; i++) {
+								if(data[i].member.image ){
+									console.log("aaa")
+									image =  imageurl+data[i].member.image;
+								}else{
+									console.log("bbb")
+									image = "${contextRoot}/img2/nopicture.jpg"
+								}
 								if (data[i].account_type == 1) {
 									$("#table tbody")
 											.append(
@@ -560,8 +583,7 @@
 															+ data[i].member.phone
 															+ "</td><td>"
 															+ data[i].member.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].member.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 															+ data[i].dateCreate
 															+ "</td><td>"
 															+ data[i].dateUpdate
@@ -588,8 +610,7 @@
 															+ data[i].member.phone
 															+ "</td><td>"
 															+ data[i].member.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].member.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 															+ data[i].dateCreate
 															+ "</td><td>"
 															+ data[i].dateUpdate
@@ -609,6 +630,13 @@
 						} else {
 							$("#table tbody").empty();
 							for (var i = 0; i < pageSize; i++) {
+								if(data[i].member.image ){
+									console.log("aaa")
+									image =  imageurl+data[i].member.image;
+								}else{
+									console.log("bbb")
+									image = "${contextRoot}/img2/nopicture.jpg"
+								}
 								if (data[i].account_type == 1) {
 									$("#table tbody")
 											.append(
@@ -624,8 +652,7 @@
 															+ data[i].member.phone
 															+ "</td><td>"
 															+ data[i].member.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].member.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 															+ data[i].dateCreate
 															+ "</td><td>"
 															+ data[i].dateUpdate
@@ -652,8 +679,7 @@
 															+ data[i].member.phone
 															+ "</td><td>"
 															+ data[i].member.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].member.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 															+ data[i].dateCreate
 															+ "</td><td>"
 															+ data[i].dateUpdate
@@ -717,6 +743,13 @@
 						endRow = (rowTotal > endRow) ? endRow : rowTotal;
 						$("#table tbody").empty();
 						for (var i = startRow; i < endRow; i++) {
+							if(data[i].member.image ){
+								console.log("aaa")
+								image =  imageurl+data[i].member.image;
+							}else{
+								console.log("bbb")
+								image = "${contextRoot}/img2/nopicture.jpg"
+							}
 							if (data[i].account_type == 1) {
 								$("#table tbody")
 										.append(
@@ -732,8 +765,7 @@
 														+ data[i].member.phone
 														+ "</td><td>"
 														+ data[i].member.email
-														+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-							         + data[i].member.image + "'></td><td>"
+														+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 														+ data[i].dateCreate
 														+ "</td><td>"
 														+ data[i].dateUpdate
@@ -760,8 +792,7 @@
 														+ data[i].member.phone
 														+ "</td><td>"
 														+ data[i].member.email
-														+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].member.image + "'></td><td>"
+														+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 														+ data[i].dateCreate
 														+ "</td><td>"
 														+ data[i].dateUpdate
@@ -815,8 +846,7 @@
 			},
 
 			success : function(data) {
-				gotoPage(currentPage);
-
+ 				gotoPage(currentPage);
 			}
 		})
 	}
@@ -870,34 +900,85 @@
 				$("#merberbirth").attr("value", birth);
 				$("#merberphone").attr("value", data.member.phone);
 				$("#merberemail").attr("value", data.member.email);
-				$("#showphoto").attr("src", imageurl + data.member.image)
+// 				$("#showphoto").attr("src", imageurl + data.member.image)
+				if (data.member.image) {
+								$("#showphoto").attr("src", imageurl + data.member.image)
+							}else{
+								$("#showphoto").attr("src", "${contextRoot}/img2/nopicture.jpg")
+							}
 
 			}
 
 		})
 	}
 	
+	//**********完成編輯前做確認***********
+	function checkedit(){
+		Swal.fire({
+			icon: 'question',
+			title:'確定完成送出?',
+		    color: "#7373b9",
+		    showCancelButton: true,
+		    cancelButtonText:"取消",
+		    cancelButtonColor: "#FF0000",
+		    confirmButtonText: '確定',
+		    confirmButtonColor: "#0000e3"
+		}).then((result) => {
+		    if (result.isConfirmed) {
+		    	Swal.fire('編輯成功', '', 'success').then((result) => {
+ 		    	click();
+ 		    	window.location.reload()
+		    	})
+		    } 
+		})  
+		
+	
+}
+	
 	//**********停權前做確認***********
-	function check(node) {
+	function check(node){
 		var value = $(node).attr('value');
 		if (value=="停權") {
-			var check = confirm("確定要停權此員工的權限嗎?");
-			if (check == true) {
-				restore(node)
-			} else {
-				return false;
-			}
+		Swal.fire({
+			icon: 'warning',
+			title:'確定要停權此會員的權限嗎?',
+		    color: "#7373b9",
+		    showCancelButton: true,
+		    cancelButtonText:"取消",
+		    cancelButtonColor: "#FF0000",
+		    confirmButtonText: '確定',
+		    confirmButtonColor: "#0000e3"
+		}).then((result) => {
+		    if (result.isConfirmed) {
+		    	Swal.fire('停權成功', '', 'success').then((result) => {
+		    		restore(node)
+			    	})
+		    } else{
+		    	Swal.fire('取消成功', '', 'success')
+		    }
+		})  
 		}else{
-			var check1 = confirm("確定要復權此員工的權限嗎?");
-
-			if (check1 == true) {
-				restore(node)
-			} else {
-				return false;
-			}
+			Swal.fire({
+				icon: 'warning',
+				title:'確定要復權此會員的權限嗎?',
+			    color: "#7373b9",
+			    showCancelButton: true,
+			    cancelButtonText:"取消",
+			    cancelButtonColor: "#FF0000",
+			    confirmButtonText: '確定',
+			    confirmButtonColor: "#0000e3"
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			    	Swal.fire('復權成功', '', 'success').then((result) => {
+			    		restore(node)
+				    	})
+			    } else{
+			    	Swal.fire('取消成功', '', 'success')
+			    }
+			})  
 		}
-
-	}
+	
+}
 
 	// 	*************取得會員按下單筆停權的頁面***************
 
@@ -1198,9 +1279,10 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" 
+					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
-					<button type="button" class="btn btn-primary" id="send">完成送出</button>
+					<button type="button" class="btn btn-primary" id="send"
+						onclick="checkedit()">完成送出</button>
 				</div>
 			</div>
 		</div>

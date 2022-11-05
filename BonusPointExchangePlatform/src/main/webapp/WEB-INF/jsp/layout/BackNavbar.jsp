@@ -74,9 +74,12 @@
 
 					success: function (data) {
 						console.log(data)
-						if (data.image) {
-							$("#personphoto").attr("src", imageurl + data.image)
-						}
+							if (data.image) {
+								$("#personphoto").attr("src", imageurl + data.image)
+							}
+							else{
+								$("#personphoto").attr("src", "${contextRoot}/img2/nopicture.jpg")
+							}
 					}
 
 				})

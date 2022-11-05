@@ -56,7 +56,7 @@
 		employeeimage1 = document.getElementById("employeeimage1");
 		employeeimage1.addEventListener('change', loadImageFileAsURL1);
 		send1 = document.getElementById("send1");
-		send1.addEventListener('click', click1);
+// 		send1.addEventListener('click', click1);
 		search1 = document.getElementById("search1");
 
 		document.getElementById("employeename1").addEventListener("blur",
@@ -105,11 +105,7 @@
 						var employeeemail1 = document
 								.getElementById("employeeemail1");
 						employeeemail1.focus();
-					} else {
-						click1();
-						window.location.reload();
-						page1();
-					}
+					} 
 
 				})
 
@@ -151,6 +147,13 @@
 												$("#page_ul1").empty();
 												$("#table1 tbody").empty();
 												for (var i = 0; i < pageSize1; i++) {
+													if(data[i].employee.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].employee.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 2) {
 														$("#table1 tbody")
 																.append(
@@ -168,8 +171,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -198,8 +200,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-										         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -220,6 +221,13 @@
 												$("#page_ul1").empty();
 												$("#table1 tbody").empty();
 												for (var i = 0; i < pageSize1; i++) {
+													if(data[i].employee.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].employee.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 2) {
 														$("#table1 tbody")
 																.append(
@@ -237,8 +245,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -267,8 +274,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-										         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -345,6 +351,13 @@
 												$("#page_ul1").empty();
 												$("#table1 tbody").empty();
 												for (var i = 0; i < pageSize1; i++) {
+													if(data[i].employee.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].employee.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 2) {
 														$("#table1 tbody")
 																.append(
@@ -362,8 +375,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-											         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -392,8 +404,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-												         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -414,6 +425,13 @@
 												$("#page_ul1").empty();
 												$("#table1 tbody").empty();
 												for (var i = 0; i < pageSize1; i++) {
+													if(data[i].employee.image ){
+														console.log("aaa")
+														image =  imageurl+data[i].employee.image;
+													}else{
+														console.log("bbb")
+														image = "${contextRoot}/img2/nopicture.jpg"
+													}
 													if (data[i].account_type == 2) {
 														$("#table1 tbody")
 																.append(
@@ -431,8 +449,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-											         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -461,8 +478,7 @@
 																				+ data[i].employee.phone
 																				+ "</td><td>"
 																				+ data[i].employee.email
-																				+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-												         + data[i].employee.image + "'></td><td>"
+																				+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 																				+ data[i].create_date
 																				+ "</td><td>"
 																				+ data[i].update_date
@@ -571,6 +587,7 @@
 					},
 
 					success : function(data) {
+						var image;
 						console.log(data)
 						rowTotal1 = data.length;
 						pageTotal1 = Math.ceil(rowTotal1 / pageSize1);
@@ -578,6 +595,15 @@
 						if (pageTotal1 == 1) {
 							$("#table1 tbody").empty();
 							for (var i = 0; i < pageSize1; i++) {
+
+								if(data[i].employee.image ){
+									console.log("aaa")
+									image =  imageurl+data[i].employee.image;
+								}else{
+									console.log("bbb")
+									image = "${contextRoot}/img2/nopicture.jpg"
+								}
+								
 								if (data[i].account_type == 2) {
 									$("#table1 tbody")
 											.append(
@@ -595,8 +621,7 @@
 															+ data[i].employee.phone
 															+ "</td><td>"
 															+ data[i].employee.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].employee.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 															+ data[i].create_date
 															+ "</td><td>"
 															+ data[i].update_date
@@ -625,8 +650,7 @@
 															+ data[i].employee.phone
 															+ "</td><td>"
 															+ data[i].employee.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].employee.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 															+ data[i].create_date
 															+ "</td><td>"
 															+ data[i].update_date
@@ -646,6 +670,14 @@
 						} else {
 							$("#table1 tbody").empty();
 							for (var i = 0; i < pageSize1; i++) {
+
+								if(data[i].employee.image ){
+									console.log("aaa")
+									image =  imageurl+data[i].employee.image;
+								}else{
+									console.log("bbb")
+									image = "${contextRoot}/img2/nopicture.jpg"
+								}
 								if (data[i].account_type == 2) {
 									$("#table1 tbody")
 											.append(
@@ -663,8 +695,7 @@
 															+ data[i].employee.phone
 															+ "</td><td>"
 															+ data[i].employee.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].employee.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 															+ data[i].create_date
 															+ "</td><td>"
 															+ data[i].update_date
@@ -693,8 +724,7 @@
 															+ data[i].employee.phone
 															+ "</td><td>"
 															+ data[i].employee.email
-															+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-									         + data[i].employee.image + "'></td><td>"
+															+ "</td><td align='center'><img width='40' height='48' src='" + image + "'></td><td>"
 															+ data[i].create_date
 															+ "</td><td>"
 															+ data[i].update_date
@@ -761,6 +791,13 @@
 						endRow1 = (rowTotal1 > endRow1) ? endRow1 : rowTotal1;
 						$("#table1 tbody").empty();
 						for (var i = startRow1; i < endRow1; i++) {
+							if(data[i].employee.image ){
+								console.log("aaa")
+								image =  imageurl+data[i].employee.image;
+							}else{
+								console.log("bbb")
+								image = "${contextRoot}/img2/nopicture.jpg"
+							}
 							if (data[i].account_type == 2) {
 								$("#table1 tbody")
 										.append(
@@ -778,8 +815,7 @@
 														+ data[i].employee.phone
 														+ "</td><td>"
 														+ data[i].employee.email
-														+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-							         + data[i].employee.image + "'></td><td>"
+														+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 														+ data[i].create_date
 														+ "</td><td>"
 														+ data[i].update_date
@@ -808,8 +844,7 @@
 														+ data[i].employee.phone
 														+ "</td><td>"
 														+ data[i].employee.email
-														+ "</td><td align='center'><img width='40' height='48' src='"+imageurl
-								         + data[i].employee.image + "'></td><td>"
+														+ "</td><td align='center'><img width='40' height='48'  src='" + image + "'></td><td>"
 														+ data[i].create_date
 														+ "</td><td>"
 														+ data[i].update_date
@@ -891,7 +926,7 @@
 		}
 	}
 
-	// 	*************取得員工按下單筆編輯的頁面***************
+	// 	*************取得員工按下單筆編輯顯示舊資料***************
 
 	function getindex1(node) {
 		console.log(orderby1)
@@ -926,34 +961,88 @@
 				$("#employeearrived1").attr("value", Arrived_date);
 				$("#employeephone1").attr("value", data.employee.phone);
 				$("#employeeemail1").attr("value", data.employee.email);
-				$("#showphoto1").attr("src", imageurl + data.employee.image)
+// 				$("#showphoto1").attr("src", imageurl + data.employee.image)
+					if (data.employee.image) {
+								$("#showphoto1").attr("src", imageurl + data.employee.image)
+							}else{
+								$("#showphoto1").attr("src", "${contextRoot}/img2/nopicture.jpg")
+							}
 
 			}
 
 		})
 	}
+	
+	
+	//**********完成編輯前做確認***********
+	function checkedit(){
+		Swal.fire({
+			icon: 'question',
+			title:'確定完成送出?',
+		    color: "#7373b9",
+		    showCancelButton: true,
+		    cancelButtonText:"取消",
+		    cancelButtonColor: "#FF0000",
+		    confirmButtonText: '確定',
+		    confirmButtonColor: "#0000e3"
+		}).then((result) => {
+		    if (result.isConfirmed) {
+		    	Swal.fire('編輯成功', '', 'success').then((result) => {
+ 		    	click1();
+ 		    	window.location.reload()
+		    	})
+		    } 
+		})  
+		
+	
+}
 
+	
+	
 	//**********停權前做確認***********
-	function check(node) {
+	function check(node){
 		var value = $(node).attr('value');
 		if (value=="停權") {
-			var check = confirm("確定要停權此員工的權限嗎?");
-			if (check == true) {
-				restore1(node)
-			} else {
-				return false;
-			}
+		Swal.fire({
+			icon: 'warning',
+			title:'確定要停權此員工的權限嗎?',
+		    color: "#7373b9",
+		    showCancelButton: true,
+		    cancelButtonText:"取消",
+		    cancelButtonColor: "#FF0000",
+		    confirmButtonText: '確定',
+		    confirmButtonColor: "#0000e3"
+		}).then((result) => {
+		    if (result.isConfirmed) {
+		    	Swal.fire('停權成功', '', 'success').then((result) => {
+		    	restore1(node)
+		    	})
+		    } else{
+		    	Swal.fire('取消成功', '', 'success')
+		    }
+		})  
 		}else{
-			var check1 = confirm("確定要復權此員工的權限嗎?");
-
-			if (check1 == true) {
-				restore1(node)
-			} else {
-				return false;
-			}
+			Swal.fire({
+				icon: 'warning',
+				title:'確定要復權此員工的權限嗎?',
+			    color: "#7373b9",
+			    showCancelButton: true,
+			    cancelButtonText:"取消",
+			    cancelButtonColor: "#FF0000",
+			    confirmButtonText: '確定',
+			    confirmButtonColor: "#0000e3"
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			    	Swal.fire('復權成功', '', 'success').then((result) => {
+				    	restore1(node)
+				    	})
+			    } else{
+			    	Swal.fire('取消成功', '', 'success')
+			    }
+			})  
 		}
-
-	}
+	
+}
 
 	// 	*************取得員工按下單筆停權的頁面***************
 
@@ -1302,7 +1391,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal" onclick="window.location.reload()">取消編輯</button>
-					<button type="button" class="btn btn-primary" id="send1">完成送出</button>
+					<button type="button" class="btn btn-primary" id="send1" onclick="checkedit()">完成送出</button>
 				</div>
 			</div>
 		</div>

@@ -371,7 +371,7 @@ public class MemberController {
 			return "/frontend/entrance/updatenewpassword";
 
 		} else {
-			return "/frontend/entrance/updatepassword";
+			return "/frontend/entrance/updatepasswordfail";
 		}
 	}
 

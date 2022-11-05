@@ -391,7 +391,7 @@ public class EmployeeController {
 			return "/backend/entrance/updatenewpasswordemp";
 
 		} else {
-			return "/backend/entrance/updatepasswordemp";
+			return "/backend/entrance/updatepasswordempfail";
 		}
 	}
 

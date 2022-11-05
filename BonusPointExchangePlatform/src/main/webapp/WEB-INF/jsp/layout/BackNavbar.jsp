@@ -135,7 +135,7 @@
 
 						<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 							<div class="book_room">
-								<div class="dropdown" style="margin-right: 5px; display: block;"
+								<div class="dropdown" style="margin-right: 5px; display:none;"
 									id="memberdiv">
 									<a class="dropdown-toggle" href="#"
 										style="background-color: transparent" role="button"
@@ -157,7 +157,7 @@
 												class="fa-regular fa-envelope" style="font-size: 40px"></i>
 										</a></li>
 										<li style="margin-right: 5px;"><a
-											href="${contextRoot}/toBack"><i
+											href="${contextRoot}/toFront"><i
 												class="fa fa-right-from-bracket" style="font-size: 40px"></i>
 
 										</a></li>
@@ -168,9 +168,6 @@
 									<a class="#" href="${contextRoot}/loginEmp" id="loginbtn">登入</a>
 									<a class="#" href="${contextRoot}/logoutEmp" id="logoutbtn"
 										style="display: none">登出</a>
-								</div>
-								<div style="display: none" id="histatus">
-									<a style="color: white">Hi ${employee.name}</a>
 								</div>
 
 							</div>
@@ -240,13 +237,14 @@
 					if (loginstatus == "") {
 						logoutbtn.style.display = 'none';
 						loginbtn.style.display = 'block';
-						histatus.style.display = 'none';
+						memberdiv.style.display='none';
 
 					} else {
 
 						logoutbtn.style.display = 'block';
 						loginbtn.style.display = 'none';
-						histatus.style.display = 'block';
+						memberdiv.style.display='block';
+
 
 					}
 				}

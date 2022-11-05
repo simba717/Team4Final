@@ -1,5 +1,8 @@
 package com.project.BonusPointExchangePlatform.controller;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
@@ -8,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -353,7 +359,7 @@ public class EmployeeController {
 		boolean result = loginService.checkAccountEmp(account, password);
 
 		if (!result) {
-			return "/backend/entrance/newloginemp";
+			return "/backend/entrance/newloginempfail";
 		} else {
 
 			Account user = loginService.getBeanByAccPwd(account, password);
@@ -391,15 +397,15 @@ public class EmployeeController {
 			return "/backend/entrance/updatenewpasswordemp";
 
 		} else {
-			return "/backend/entrance/updatepasswordemp";
+			return "/backend/entrance/updatepasswordempfail";
 		}
 	}
 
 	/* 員工輸入驗證碼並更改密碼 */
 	@PostMapping("/updatenewpasswordemp")
 	public String updatePasswordByCheckcodeEmp(@RequestParam("checkcode") String checkcode,
-			@RequestParam("password") String password) {
-		loginService.updatePwdByCheckcode(checkcode, password);
+			@RequestParam("password") String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+		loginService.updatePwdByCheckcodeEmp(checkcode, password);
 		return "/backend/entrance/updatesuccessemp";
 	}
 }

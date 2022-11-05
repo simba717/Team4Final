@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.BonusPointExchangePlatform.model.Account;
+import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.service.MailService;
 
@@ -37,7 +38,12 @@ public class MessageController {
     }
     
     @GetMapping("/mainsearch")
-    public String mainsearch() {
+    public String mainsearch(HttpSession session) {
+    	Employee employee = (Employee)session.getAttribute("employee");
+
+		if( employee == null) {
+			return "/backend/entrance/newloginemp";
+		}
         return "backend/message/MainSearch";
     }
 

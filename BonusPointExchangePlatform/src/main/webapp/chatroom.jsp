@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%-- <c:set var="contextRoot" value="${pageContext.request.contextPath}" /> --%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -25,7 +25,7 @@
 			<h1 class="title">Hi 先生/小姐 您好</h1>
 			<form id="usernameForm" name="usernameForm">
 				<div class="form-group">
-					<input type="text" id="name" value=${member.name}
+					<input type="text" id="name" value="${member.name}"
 						autocomplete="off" class="form-control" />
 				</div>
 				<div class="form-group">
@@ -62,23 +62,23 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script defer src="js/Ws.js"></script>
-<%-- 	<script src="${contextRoot}/js/jquery-3.6.1.min.js"></script> --%>
-<!-- 	<script> 
- 		$(document).ready(function() {
- 			console.log($("#name").val())
-		if ($("#name").val() == "") {
+	<script src="${contextRoot}/js/jquery-3.6.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log($("#name").val())
+			if ($("#name").val() == "") {
 				window.location.href = "${contextRoot}/login";
- 				return;
- 			}
- 		})
+				return;
+			}
+		})
 
- 			window.onload = function() {
- 				console.log($("#name").val())
-				if($("#name").val()==""){
- 					window.location.href="${contextRoot}/login";
- 					return ;
- 			}
- 		}
- 	</script> -->
+		//  			window.onload = function() {
+		//  				console.log($("#name").val())
+		// 				if($("#name").val()==""){
+		//  					window.location.href="${contextRoot}/login";
+		//  					return ;
+		//  			}
+		//  		}
+	</script>
 </body>
 </html>

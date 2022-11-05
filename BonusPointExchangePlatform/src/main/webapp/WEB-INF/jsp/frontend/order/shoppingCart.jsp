@@ -27,6 +27,7 @@
 <input type="text" name="sendCreditCard2" id="sendCreditCard2" />
 <input type="submit" value="提交" >
 </form>
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 <script >
 var remainingBonus = 0;
 var remainingWallet = 0;

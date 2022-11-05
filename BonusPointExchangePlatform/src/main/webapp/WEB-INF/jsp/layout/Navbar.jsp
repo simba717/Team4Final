@@ -74,7 +74,7 @@
 													<ul class="submenu">
 														<li><a href="${contextRoot}/message">常見問題</a></li>
 														<li><a href="#"
-																onclick="window.open('http://localhost:8080/my-app/chatroom.html', 'WebSocket', config='height=1000,width=500');">線上客服</a>
+																onclick="window.open('http://localhost:8080/my-app/chatroom.jsp', 'WebSocket', config='height=1000,width=500');">線上客服</a>
 														</li>
 														<li><a href="${contextRoot}/mail">客服信箱</a></li>
 													</ul>

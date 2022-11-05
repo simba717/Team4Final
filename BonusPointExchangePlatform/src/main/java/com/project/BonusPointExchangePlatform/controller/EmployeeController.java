@@ -353,7 +353,7 @@ public class EmployeeController {
 		boolean result = loginService.checkAccountEmp(account, password);
 
 		if (!result) {
-			return "/backend/entrance/newloginemp";
+			return "/backend/entrance/newloginempfail";
 		} else {
 
 			Account user = loginService.getBeanByAccPwd(account, password);
@@ -391,7 +391,7 @@ public class EmployeeController {
 			return "/backend/entrance/updatenewpasswordemp";
 
 		} else {
-			return "/backend/entrance/updatepasswordemp";
+			return "/backend/entrance/updatepasswordempfail";
 		}
 	}
 

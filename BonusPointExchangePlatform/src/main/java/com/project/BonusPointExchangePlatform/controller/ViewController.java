@@ -17,7 +17,7 @@ public class ViewController {
 	@GetMapping("/")
 	public String goMemberHome() {
 		return "redirect:/showProduct";
-//		return "layout/Navbar";
+
 	}
 	
 	@GetMapping("/backend")

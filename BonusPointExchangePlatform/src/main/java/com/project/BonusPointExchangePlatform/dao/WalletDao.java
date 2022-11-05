@@ -78,6 +78,14 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 			+ " order by update_at desc)) " , nativeQuery = true)
 	void insertBirthWallet(@Param(value = "member_id") Member member_id,
 			               @Param(value = "update_at") Date update_at);
+	
+	
+	@Modifying
+	@Query(value = "insert into Wallet(source_type, wallet_amount, bonus_point,credit_card_amount,member_id,bank_id,game_id) "
+			+ "values('活動獎勵', 0 , 500 , 0 , :member_id , null , (select top 1.id from game where game_type='採集魔水晶' and update_at >:update_at "
+			+ " order by update_at desc)) " , nativeQuery = true)
+	void insertCrystalWallet(@Param(value = "member_id") Member member_id,
+			               @Param(value = "update_at") Date update_at);
 
 //////////////瑋煊的頭//////////////////////////////////
 

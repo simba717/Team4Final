@@ -67,9 +67,9 @@ public class CampaignController {
 	////////////////////////後台的腳//////////////////////////////////
 
 	//雙十一紅利加倍活動
-	@GetMapping("/campaign/double11")
+	@GetMapping("/campaign/bonusCampaign")
 	public String double11() {
-		return "/frontend/campaign/double11";
+		return "/frontend/campaign/bonusCampaign";
 	}
 	
 	

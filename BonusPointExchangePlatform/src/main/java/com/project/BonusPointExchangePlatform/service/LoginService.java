@@ -1,5 +1,13 @@
 package com.project.BonusPointExchangePlatform.service;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +20,26 @@ public class LoginService {
 
 	@Autowired
 	private AccountDao accountDao;
-
+	
+	@Autowired
+	private CipherUtilsService cipherUtilsService;
+	
+	
 	/* 確認帳密 */
-	public boolean checkAccount(String account, String password) {
+	public boolean checkAccount(String account, String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 
-		Account checkAccount = accountDao.checkAccountMember(account, password);
+		Account checkAccount = accountDao.checkPwdByAcc(account);
 
 		if (checkAccount != null) {
-			return true;
+			String key = "kittymickysnoopy";
+			String oldPassword = cipherUtilsService.decryptString(key, checkAccount.getPassword(), checkAccount.getIv());
+
+			if (oldPassword.equals(password)) {
+				return true;
+			}else {
+				return false;
+			}
+			
 		}
 		return false;
 
@@ -40,6 +60,9 @@ public class LoginService {
 		Account checkAccount = accountDao.checkAccount(account, password);
 		return checkAccount;
 	}
+	
+
+	
 	
 	/* 根據帳號得到Account Bean 確認註冊帳號是否重複 */
 	public Account getBeanByAcc(String account) {

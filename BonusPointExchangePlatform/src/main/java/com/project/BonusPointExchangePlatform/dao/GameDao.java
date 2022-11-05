@@ -53,6 +53,23 @@ public interface GameDao extends JpaRepository<Game, Integer> {
 			+ "order by update_at desc))" , nativeQuery = true)
 	void insertBirth(@Param(value = "member_id") Member member_id,
 			@Param(value = "update_at") Date update_at);
+	
+	
+	@Query(value = "select * from Member_Game mg "
+			+ "join Member m on mg.member_id = m.id "
+			+ "join Game g on mg.game_id = g.id "
+			+ "where m.id = :id and g.game_type = '採集魔水晶' "
+			+"and convert(nvarchar,g.create_at,23) like :create_at ", nativeQuery = true)
+	Game checkCrystalGift(@Param(value = "id") Integer id,@Param(value = "create_at") String create_at);
+	
+	@Modifying
+	@Query(value = "insert into Game(game_type, check_status, game_score) "
+			+ "values('採集魔水晶', 1, null) "
+			+ "insert into Member_Game(member_id, game_id) "
+			+ "values( :member_id, (select top 1.id from game where game_type='採集魔水晶' and update_at >:update_at "
+			+ "order by update_at desc))" , nativeQuery = true)
+	void insertCrystal(@Param(value = "member_id") Member member_id,
+			@Param(value = "update_at") Date update_at);
 
 	
 //////////////瑋煊的頭//////////////////

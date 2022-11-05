@@ -193,11 +193,15 @@ public class OrdersController {
 	
 	@GetMapping(path = "/shoppingCart")
 	public String processMainAction(HttpSession session) {
+		
 		Member member = (Member)session.getAttribute("member");
-		if(member == null) {
-			return "redirect:/login";
+		
+		if( member == null) {
+		return "/frontend/entrance/newlogin";
+		}else {
+			return "frontend/order/shoppingCart";
 		}
-		return "frontend/order/shoppingCart";
+
 	}
 	
 	

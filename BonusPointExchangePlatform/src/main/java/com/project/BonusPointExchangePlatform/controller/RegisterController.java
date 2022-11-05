@@ -1,6 +1,9 @@
 package com.project.BonusPointExchangePlatform.controller;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,6 +11,10 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +28,7 @@ import com.project.BonusPointExchangePlatform.model.Account;
 import com.project.BonusPointExchangePlatform.model.Bank;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.service.BankService;
+import com.project.BonusPointExchangePlatform.service.CipherUtilsService;
 import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.MemberService;
 
@@ -54,7 +62,7 @@ public class RegisterController {
 	public String registerAccount(@RequestParam("account") String account, @RequestParam("password") String password,
 			@RequestParam("name") String name, @RequestParam("birth") String birth, @RequestParam("phone") String phone,
 			@RequestParam("email") String email, @RequestParam("account_no") String account_no,
-			@RequestParam("image") MultipartFile image) throws ParseException, IOException {
+			@RequestParam("image") MultipartFile image) throws ParseException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		System.out.println(account + " " + password + " " + name + " " + phone + " " + email + " " + account_no + " "
 				+ birth + " " + image);
  
@@ -94,9 +102,19 @@ public class RegisterController {
 		/* 根據member裡的email找到剛剛新增member自動產生的memberId塞進account裡的memberId */
 		Member newmemberId = memberService.findIdByEmail(email);
 
+		/*加密*/
+		String key = "kittymickysnoopy"; // 對稱式金鑰
+		byte[] iv = new byte[128 / 8]; // 初始向量
+		SecureRandom srnd = new SecureRandom();
+		srnd.nextBytes(iv);
+		
+		String newpassword = CipherUtilsService.encryptString(key, password, iv);
+
+		
+		account2.setIv(iv);
 		account2.setMember(newmemberId);
 		account2.setAccount(account);
-		account2.setPassword(password);
+		account2.setPassword(newpassword);
 		account2.setAccount_type(1);
 		account2.setCheck_code(null);
 		account2.setEmployee(null);
@@ -169,6 +187,6 @@ public class RegisterController {
 //		  System.out.println("加密字串: " + cipherText);
 //		  System.out.println("解密字串: " + decryptedString);
 //		 }
-//		
+		
 	
 }

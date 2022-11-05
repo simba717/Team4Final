@@ -116,8 +116,12 @@ public class LoginService {
 		return checkcode;
 	}
 
-	public void updatePwdByCheckcode(String checkcode, String password) {
-		accountDao.updatePwdByCheckcode(checkcode, password);
+	public void updatePwdByCheckcode(String checkcode, String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+		Account checkAccount = accountDao.checkCheckCode(checkcode);
+		String key = "kittymickysnoopy";
+		String newpassword = cipherUtilsService.encryptString(key, password, checkAccount.getIv());
+
+		accountDao.updatePwdByCheckcode(checkcode, newpassword);
 
 	}
 

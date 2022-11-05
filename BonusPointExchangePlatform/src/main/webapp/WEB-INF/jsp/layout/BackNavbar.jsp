@@ -135,7 +135,7 @@
 
 						<div class="col-xl-5 col-lg-5 d-none d-lg-block">
 							<div class="book_room">
-								<div class="dropdown" style="margin-right: 5px; display: block;"
+								<div class="dropdown" style="margin-right: 5px; display:none;"
 									id="memberdiv">
 									<a class="dropdown-toggle" href="#"
 										style="background-color: transparent" role="button"
@@ -237,11 +237,14 @@
 					if (loginstatus == "") {
 						logoutbtn.style.display = 'none';
 						loginbtn.style.display = 'block';
+						memberdiv.style.display='none';
 
 					} else {
 
 						logoutbtn.style.display = 'block';
 						loginbtn.style.display = 'none';
+						memberdiv.style.display='block';
+
 
 					}
 				}

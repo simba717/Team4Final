@@ -126,5 +126,10 @@ public class LoginService {
 	}
 
 	
+	public void updatePwdByCheckcodeEmp(String checkcode, String password)  {
+		accountDao.updatePwdByCheckcode(checkcode, password);
+
+	}
+	
 	
 }

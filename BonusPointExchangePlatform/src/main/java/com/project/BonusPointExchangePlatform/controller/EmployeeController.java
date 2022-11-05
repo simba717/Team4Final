@@ -405,7 +405,7 @@ public class EmployeeController {
 	@PostMapping("/updatenewpasswordemp")
 	public String updatePasswordByCheckcodeEmp(@RequestParam("checkcode") String checkcode,
 			@RequestParam("password") String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
-		loginService.updatePwdByCheckcode(checkcode, password);
+		loginService.updatePwdByCheckcodeEmp(checkcode, password);
 		return "/backend/entrance/updatesuccessemp";
 	}
 }

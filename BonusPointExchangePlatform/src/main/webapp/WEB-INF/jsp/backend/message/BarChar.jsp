@@ -83,10 +83,10 @@
 
 											var layout = {
 												title : "各類型銷售總數",
-												height: 500,
-												width: 600,
+												height: 600,
+												width: 700,
 												font:{family:'Courier New, monospace',
-													size: 20
+													size: 30
 													}
 											};
 

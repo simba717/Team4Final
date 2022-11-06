@@ -27,7 +27,7 @@
 	</div>
 
 	<div align='center'>
-		<div id="myPlot" style="width: 50%; max-width: 500px"></div>
+		<div id="myPlot" style="width: 100%; max-width: 700px"></div>
 
 		<script>
 			var food = null;
@@ -77,12 +77,12 @@
 													sport ];
 
 											var layout = {
-												title : "銷售類型佔比",
-												height: 500,
-												width: 600,
+												title : "各類型銷售佔比",
+									         	height : 600,
+												width : 700,
 												font : {
 													family : 'Courier New, monospace',
-													size : 20
+													size : 30
 												}
 											};
 

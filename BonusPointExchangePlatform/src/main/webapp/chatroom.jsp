@@ -25,7 +25,7 @@
 			<h1 class="title">Hi 先生/小姐 您好</h1>
 			<form id="usernameForm" name="usernameForm">
 				<div class="form-group">
-					<input type="text" id="name" value="${member.name}"
+					<input readonly type="text" id="name" value="${member.name}"
 						autocomplete="off" class="form-control" />
 				</div>
 				<div class="form-group">

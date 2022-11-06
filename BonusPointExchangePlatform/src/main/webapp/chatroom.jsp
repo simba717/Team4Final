@@ -26,7 +26,7 @@
 			<form id="usernameForm" name="usernameForm">
 				<div class="form-group">
 					<input type="text" id="name" value="${member.name}"
-						autocomplete="off" class="form-control" />
+						autocomplete="off" class="form-control"/>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="accent username-submit">Start

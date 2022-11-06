@@ -379,6 +379,7 @@ function checkbankrepeat() {
 		   var result = JSON.parse(xhr.responseText);
 		   if (result== true) {
 			  bankcheckrepeat=true;
+			  finalcheck();
 			  message = "<font color='green' size='-2'>銀行帳號可使用</font>";
 		   }else {
 			  bankcheckrepeat=false
@@ -809,7 +810,6 @@ window.onload = function() {
 		document.getElementById("account_no").addEventListener("blur", checkacrepeat);
 		document.getElementById("account_no").addEventListener("blur", checkmailrepeat);
 		document.getElementById("account_no").addEventListener("blur", checkbankrepeat);
-		
 		
 		
 		

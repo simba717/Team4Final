@@ -90,7 +90,7 @@
         }
         
         #calendar .dateList .sign {
-            background-image: url("${contextRoot}/img2/2.jpg");
+            background-image: url("${contextRoot}/img2/63.png");
             background-repeat: no-repeat;
             background-position: center;
             color: black;

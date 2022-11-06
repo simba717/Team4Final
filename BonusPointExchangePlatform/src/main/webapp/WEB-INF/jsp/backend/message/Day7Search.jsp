@@ -8,7 +8,7 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
-<title>七天銷售分析</title>
+<title></title>
 </head>
 <body>
 	<jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
@@ -20,7 +20,8 @@
 				<option value="http://localhost:8080/my-app/piechar">圓餅圖</option>
 			</optgroup>
 			<optgroup label="銷售分析">
-				<option value="http://localhost:8080/my-app/day7search" selected="true">七天內銷售</option>
+				<option value="http://localhost:8080/my-app/day7search"
+					selected="true">七天內銷售</option>
 				<option value="http://localhost:8080/my-app/monthsearch">本月銷售</option>
 			</optgroup>
 		</select>
@@ -28,7 +29,7 @@
 
 
 	<div align='center'>
-		<div id="myPlot" style="width: 100%; max-width: 500px"></div>
+		<div id="myPlot" style="width: 100%; max-width: 700px"></div>
 
 		<script>
 			var food = null;
@@ -79,11 +80,11 @@
 
 											var layout = {
 												title : "七天銷售分析",
-												height: 500,
-												width: 600,
+												height : 600,
+												width : 700,
 												font : {
 													family : 'Courier New, monospace',
-													size : 20
+													size : 30
 												}
 											};
 

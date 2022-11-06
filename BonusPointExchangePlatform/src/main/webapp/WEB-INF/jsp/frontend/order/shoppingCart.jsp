@@ -421,6 +421,7 @@ window.onload = function(){
             		$("#surplusAmount").removeClass("invisible").css("color", "red").text("紅利扣除完後尚有餘額請選擇付款方式")
             	}
             })
+            
 //             $("#checkoutButton").click(function(){
 //             	if(bonusCheck==2){
 //             		$("#surplusDividend").css("color", "red").text("紅利點數格式錯誤或點數不足");
@@ -517,7 +518,7 @@ function displayData(data) {
 	htmlSeg += `<div class="col-3 d-flex justify-content-center invisible" id="surplusAmount">儲值金餘額:`+remainingWallet+`</div>`;
 	htmlSeg += `</div>`;
 	htmlSeg += `<div class="row justify-content-center mt-4">`;
-	htmlSeg += `<div class="col-6 d-flex justify-content-end"><a id="returnButton" class="btn btn-info me-3">返回</a><a id="checkoutButton" class="btn btn-success me-5">結帳</a></div>`;
+	htmlSeg += `<div class="col-6 d-flex justify-content-end"><a id="backButton" class="btn btn-info me-3" href="${contextRoot}/showProduct">返回</a><a id="checkoutButton" class="btn btn-success me-5">結帳</a></div>`;
 	htmlSeg += `</div>`;
 	htmlSeg += `<br>`;
 	htmlSeg += `<br>`;

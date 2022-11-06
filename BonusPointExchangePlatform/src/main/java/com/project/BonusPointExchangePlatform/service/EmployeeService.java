@@ -200,7 +200,9 @@ public class EmployeeService {
 		Map<String, Object> map = new HashMap<>();
 		eDao.editEmployeeDetail(name, arrived,employee_no,email, phone, image2, id);
 		System.out.println(123);
-		aDao.editAccountDetail(password, id);
+//		Account account = aDao.showEmployeeById(id);
+//		Integer id2 = account.getId();
+		aDao.editAccountDetailByEmployee(password, id);
 		System.out.println(456);
 		Employee employee = eDao.findById(id).get();
 		Account a = aDao.findById(id).get();

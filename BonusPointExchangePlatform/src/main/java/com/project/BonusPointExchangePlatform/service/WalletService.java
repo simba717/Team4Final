@@ -48,7 +48,7 @@ public class WalletService {
 		wDao.allBonus(id);
 		System.out.println(wDao.allBonus(id));
 
-		if (wDao.allBonus(id) != 0) {
+		if (wDao.allBonus(id) != null) {
 			return wDao.allBonus(id);
 		} else
 			return 0;

@@ -58,6 +58,11 @@
 	margin-top: 5px;
 	width: 35px;
 }
+#news {
+	list-style: none;
+	height: 44px;
+	overflow: hidden;
+}
 </style>
 <script type="text/javaScript">
 //*************載入頁面後立刻觸發功能**********
@@ -66,21 +71,31 @@ window.onload = function() {
 	var div1 = document.getElementById("resp");
 	var value = document.getElementById("bank_amount");
 	var showmessage = document.getElementById("showmessage");
-	var showbank=document.getElementById("showbank");
+	
 	var xhr = new XMLHttpRequest();
 	var showbydate= document.getElementById("showbydate");
 	
 	//**************選定日期按下查詢紅利點數全部紀錄**********
-	showbydate.addEventListener('click', page1);
+ 	showbydate.addEventListener('click', page1);
 	
 	
- 	//**************載入頁面執行儲值金全部紀錄**********
-	page();
+//  	//**************載入頁面執行儲值金全部紀錄**********
+ 	page();
 	
  	
- 	//**************載入紅利點數**********
- 	bonusTotal();
+//  	//**************載入紅利點數**********
+   	bonusTotal();
+ 	
+  	//**********載入銀行資訊************
+  	showbank()
 	
+ 	//*********跑馬燈效果*************
+ 		setInterval(function() {
+				$("#news li:first-child").slideUp(function() {
+					$(this).appendTo($('#news')).slideDown()
+				})
+			}, 3000)
+
 	
 	//**************儲值金跳分頁按鈕事件**********
 	$("#page_ul li").click(function(){
@@ -355,72 +370,28 @@ window.onload = function() {
 					}
 				})
 	})
-	//***********按鈕顯示/隱藏*************
-	function Show_Hidden(showbank){
-		 if(showbank.style.visibility=="visible") {
-			 showmessage.value="顯示"
-			 showbank.style.visibility='hidden';
-		 }else{
-			 showbank.style.visibility='visible';
-			 showmessage.value="隱藏"
-		 }
-		}
+// 	//***********按鈕顯示/隱藏*************
+// 	function Show_Hidden(showbank){
+// 		 if(showbank.style.visibility=="visible") {
+// 			 showmessage.value="顯示"
+// 			 showbank.style.visibility='hidden';
+// 		 }else{
+// 			 showbank.style.visibility='visible';
+// 			 showmessage.value="隱藏"
+// 		 }
+// 		}
 	
 	
 		//*****輸入金額時隨時更新兌換儲值金金額及得到的紅利點數*******
-		addEventListener('keyup',(event) => { 
-			var bank_amount = document.getElementById("bank_amount").value;
-			var wallet_amount = bank_amount;
-			var bonus =bank_amount;
-			var div3 = document.getElementById("resp2");
-			var div4 = document.getElementById("resp3");
-			div3.innerHTML = "<font color='red'>$ "+ wallet_amount +"</font>";
-			div4.innerHTML = "<font color='red'>$ "+  bonus + "</font>";
-		});
+// 		addEventListener('keyup',(event) => { 
+// 			var bank_amount = document.getElementById("bank_amount").value;
+// 			var bonus =bank_amount;
+// 			var showbonus = document.getElementById("showbonus");
+// 			showbonus.innerHTML = "<span style='font-size:36px;color:red'>$ "+  bonus + "</span>";
+// 		});
 		
 		
-		//******************按下按鈕顯示銀行帳號資訊***************
-		showmessage.onclick = function(){
-			$("#showbank").empty();
-			var url="<c:url value='/frontend/bank'/>"
-			var obj = {
-			'account':{'id':2}
-			}
-			var json=JSON.stringify(obj);
-			console.log(json)
-			$.ajax({
-				url:url,
-				method:'post',
-				data:json,
-				contentType:'application/json;charset=UTF-8',
-				dataType:'json',
-				error:function(){
-					alert("ajax error")
-				},
-				
-				success:function(data){
-				console.log(data)
-					
-				var context1;
-				if(data==null){
-					context1="<h3 style='color:red'>無相關資料</h3>"
-				}else{
-				
-				context1 = "<table class='table table-warning' style='height:50px;width:400px;border:2px solid black'>"
-					 +"<tr><td style='border:2px solid black'>銀行名稱 :</td><td style='border:2px solid black'>"+data.name+"</td></tr><tr><td style='border:2px solid black'>銀行代碼 :</td><td style='border:2px solid black'>"+data.bank_code
-					 +"</td></tr><tr><td style='border:2px solid black'>銀行帳戶 :</td><td style='border:2px solid black'>"+data.account_no+"</td></tr><tr><td style='border:2px solid black'>帳戶總額 :</td><td style='border:2px solid black'>"+data.amount+"</td></tr></table><br><br>"
-				}
-				
-				showbank.innerHTML=context1;   
-
-				Show_Hidden(showbank);
-				return false;
-				}
-
-				
-			})	
 		
-	}
 
 	
 }
@@ -453,7 +424,49 @@ var date2;
 
 
 
+//******************顯示銀行帳號資訊***************
+function showbank(){
+	var showmessage = document.getElementById("bank");
+	var url="<c:url value='/frontend/bank'/>"
+	var obj = {
+	'account':{'id':2}
+	}
+	var json=JSON.stringify(obj);
+	console.log(json)
+	$.ajax({
+		url:url,
+		method:'post',
+		data:json,
+		contentType:'application/json;charset=UTF-8',
+		dataType:'json',
+		error:function(){
+			alert("ajax error")
+		},
+		
+		success:function(data){
+		console.log(data)
+			
+		var context1;
+		if(data==null){
+			console.log("aaa")
+			context1="<h3 style='color:red'>無相關資料</h3>"
+		}else{
+		console.log("aaa")
+		context1 = "<table style='height:50px;width:400px;border:2px solid black;font-size:24px'>"
+			 +"<tr style='height:50px'><td style='border:2px solid black'>銀行名稱 :</td><td style='border:2px solid black'>"+data.name+"</td></tr><tr style='height:50px'><td style='border:2px solid black'>銀行代碼 :</td><td style='border:2px solid black'>"+data.bank_code
+			 +"</td></tr ><tr style='height:50px'><td style='border:2px solid black'>銀行帳戶 :</td><td style='border:2px solid black'>"+data.account_no+"</td></tr><tr style='height:50px'><td style='border:2px solid black'>帳戶總額 :</td><td style='border:2px solid black'>"+data.amount+"</td></tr></table><br><br>"
+		}
+		
+		showmessage.innerHTML = context1;   
 
+//			Show_Hidden(showbank);
+//			return false;
+		}
+
+		
+	})	
+
+}
 
 
 
@@ -644,12 +657,9 @@ Swal.fire({
     confirmButtonColor: "#0000e3"
 }).then((result) => {
     if (result.isConfirmed) {
-    	Swal.fire('兌換成功', '', 'success').then((result) => {
+    	
     		 newChange();  
-		    	window.location.reload()
-	    	})
-       
-        
+ 		 
     } else{
     	Swal.fire('取消兌換', '', 'success')
     }
@@ -678,14 +688,19 @@ function newChange(){
 		dataType:'json',
 		error:function(){
 // 			alert("ajax error")
-			 Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error')
+			 Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error').then((result) => {
+				 window.location.reload()
+		    	})
+			 
 		},
 		
 		success:function(data){
 			console.log(data);
 			
 		if(data[0]==null ){
-			Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error')
+			Swal.fire('兌換失敗', '請確認銀行帳戶餘額', 'error').then((result) => {
+				 window.location.reload()
+	    	})
 // 			alert("兌換失敗 , 請確認銀行帳戶餘額")
 		}else{
 			console.log("22222222");
@@ -694,7 +709,9 @@ function newChange(){
 			pageTotal=Math.ceil(rowTotal/pageSize);
 			console.log(pageTotal)
 			currentPage=1;
-			Swal.fire('兌換成功', '可至兌換紀錄做查詢', 'success')
+			Swal.fire('兌換成功', '可至兌換紀錄做查詢', 'success').then((result) => {
+				 window.location.reload()
+	    	})
 // 			alert("兌換成功")
 			$("#table tbody").empty();
 		if(pageTotal==1){
@@ -885,8 +902,8 @@ function bonusTotal(){
 		context1 = data.bonusTotal;
 		}
 		
-		$("#showbonus").attr("value",context1)   
-		}
+		$("#bonusvalue").attr("value",context1)   
+ 		}
 
 		
 	})
@@ -901,64 +918,74 @@ function bonusTotal(){
 	<!--  Quote Request Start -->
 
 	<!-- 		**************儲值金系統********** -->
-	<div class="container-fluid my-5"
-		style="background-color: #fff0ac; height: 500px">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-7 py-5 py-lg-0">
-					<br>
-					<h3 class="mb-4">
-						您的銀行帳戶資訊 : <input type="button" id="showmessage" value="顯示" />
-					</h3>
+	<!-- 	<div class="container-fluid my-5" -->
+	<!-- 		style="background-color: #fff0ac; height: 500px"> -->
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-7 py-5 py-lg-0">
+				<img src="img2/shopline.png"
+					style="float: right; margin-right: -50px" />
+			</div>
 
-					<div class="mb-4" id="showbank"
-						style="visibility: hidden; height: 200px"></div>
-					<div class="row">
-						<div class="col-sm-4">
-							<h6 class="font-weight-bold mb-5">兌換儲值金:</h6>
-							<h4 style="margin-top: -40px; height: 15px" id="resp2"
-								class="text-primary mb-2" data-toggle="counter-up"></h4>
+
+			<div class="col-lg-5">
+				<div class="bg-primary py-5 px-4 px-sm-5"
+					style="height: 700px; width: 650px; margin-left: 150px">
+					<form class="py-5">
+						<fieldset>
+							<h1
+								style="display: flex; justify-content: center; color: white; font-size: 60px">儲值金兌換系統</h1>
+							<br> <br> <br>
+							<h3 class="font-weight-bold mb-4" style="color: black">請輸入欲兌換的金額:</h3>
+							<div class="form-group">
+								<input id="bank_amount" type="text"
+									class="form-control border-0 p-4" placeholder="$$$"
+									required="required" />
+							</div>
+							<div
+								style="display: flex; justify-content: center; margin-top: 30px">
+								<button class="btn btn-dark btn-block border-0 py-3"
+									type="button" id="btn" name="btn" onclick="check();">即刻兌換</button>
+								<button style="margin-left: 10px"
+									class="btn btn-dark btn-block border-0 py-3" type="button"
+									id="btn1" name="btn" data-bs-toggle='modal'
+									data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'>兌換紀錄</button>
+								<button style="margin-left: 10px" type="button"
+									class="btn btn-dark" data-bs-toggle="modal"
+									data-bs-target="#staticBackdrop">帳戶資訊</button>
+							</div>
+							<br>
+							<br>
+							<br>
+							<!-- Button trigger modal -->
+							<div style="text-align: center">
+								<ul id="news">
+									<li style="color:#FFFF37;font-size:36px">**最新會員優惠活動**</li>
+									<li style="color:#FFFF37;font-size:36px">**即日起,會員兌換儲值金**</li>
+									<li style="color:#FFFF37;font-size:36px">**1元現金享有1元紅利回饋**</li>
+									<li style="color:#FFFF37;font-size:36px">**心動不如馬上行動**</li>
+									<li style="color:#FFFF37;font-size:36px">**趕緊透過上方儲值金系統兌換**</li>
+								</ul>
 						</div>
-						<div class="col-sm-4">
-							<h6 class="font-weight-bold mb-5">將可獲得紅利點數:</h6>
-							<h4 style="margin-top: -40px; height: 15px" id="resp3"
-								class="text-primary mb-2" data-toggle="counter-up"></h4>
-						</div>
-					</div>
-				</div>
+							<!-- Modal -->
 
-
-				<div class="col-lg-5">
-					<div class="bg-primary py-5 px-4 px-sm-5" style="height: 500px">
-						<form class="py-5">
-							<fieldset>
-								<h1 style="display: flex; justify-content: center; color: white">儲值金兌換系統</h1>
-								<br> <br>
-								<h3 class="font-weight-bold mb-4">請輸入欲兌換的金額:</h3>
-								<div class="form-group">
-									<input id="bank_amount" type="text"
-										class="form-control border-0 p-4" placeholder="$$$"
-										required="required" />
-								</div>
-								<div
-									style="display: flex; justify-content: center; margin-top: 30px">
-									<button class="btn btn-dark btn-block border-0 py-3"
-										type="button" id="btn" name="btn" onclick="check();">即刻兌換</button>
-									<button style="margin-left: 10px"
-										class="btn btn-dark btn-block border-0 py-3" type="button"
-										id="btn1" name="btn" data-bs-toggle='modal'
-										data-bs-target='#exampleModal'
-										data-bs-whatever='@getbootstrap'>兌換紀錄查詢</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 	</div> -->
 
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!-- 	<input type='button' value='編輯' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap' /> -->
 	<div style="height: 600px" class="modal fade" id="exampleModal"
 		data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -1020,10 +1047,72 @@ function bonusTotal(){
 	</div>
 
 
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #0066cc">
+					<h5 class="modal-title" id="staticBackdropLabel"
+						style="color: white">您目前銀行帳戶資訊</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div id="bank" class="modal-body"
+					style="display: flex; justify-content: center"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">回上頁</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- 		**************紅利點數系統********** -->
-	<div style="height: 600px;">
+	<div style="height: 600px; margin-right: -400px">
 		<div class="container">
+
 			<div class="row align-items-center">
+
+				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6"
+					style="width: 500px; margin-left: -100px; margin-right: 250px">
+					<div class="about_info">
+						<img src="img2/bonus.png"
+							style="height: 200px; width: 200px; bottom: 0; left: 0; margin-left: -200px">
+						<div class="section_title mb-20px" style="width: 600px">
+							<h1 style="font-size: 60px">您目前擁有的紅利 :</h1>
+							<div>
+								<input type="text"
+									style="width: 280px; height: 60px; background-color: #e0e0e0; color: red; font-size: 24px; border-radius: 30px 30px 30px 30px; text-align: center"
+									id="bonusvalue" value="" readonly>
+							</div>
+							<br> <br> <br>
+							<h1 style="font-size: 48px">紅利紀錄查詢:</h1>
+							<h6 style="font-size: 24px; color: grey">(
+								無選取日期或選擇單個日期一律顯示全部 )</h6>
+							<div id="container">
+								<div style="width: 150px;">
+									<span style="font-size: 24px; color: #c6a300">開始日期 :</span><input
+										type="date" id="date1" name="date1" />
+								</div>
+								<div style="width: 150px; margin-left: 40px;">
+									<span style="font-size: 24px; color: #c6a300">結束日期 :</span><input
+										type="date" id="date2" name="date2" />
+								</div>
+								<div>
+									<input
+										style="margin-left: 140px; width: 80px; height: 80px; font-size: 24px; border-radius: 60px 60px 60px 60px;"
+										type="button" class="btn btn-warning" data-bs-toggle='modal'
+										data-bs-target='#exampleModal1'
+										data-bs-whatever='@getbootstrap' value="查詢" id="showbydate" />
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
 				<div class="col-xl-6 col-lg-6 col-md-6">
 					<div id="carouselExampleIndicators" class="carousel slide"
 						data-bs-ride="carousel">
@@ -1038,15 +1127,18 @@ function bonusTotal(){
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="3000">
 								<img src="img2/bonusphoto.png"
-									style="height: 500px; width: 620px" alt="...">
+									style="height: 600px; width: 300px" class="d-block w-100"
+									alt="照片太大妳忍一下">
 							</div>
-							<div class="carousel-item">
+							<div class="carousel-item ">
 								<img src="img2/bonusphoto.png"
-									style="height: 500px; width: 620px" alt="...">
+									style="height: 600px; width: 300px" class="d-block w-100"
+									alt="照片太大妳忍一下">
 							</div>
-							<div class="carousel-item">
+							<div class="carousel-item ">
 								<img src="img2/bonusphoto.png"
-									style="height: 500px; width: 620px" alt="...">
+									style="height: 600px; width: 300px" class="d-block w-100"
+									alt="照片太大妳忍一下">
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
@@ -1061,44 +1153,15 @@ function bonusTotal(){
 						</button>
 					</div>
 				</div>
-				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6"
-					style="width: 500px">
-					<div class="about_info">
-						<div class="section_title mb-20px">
-							<h1>您目前擁有的紅利 :</h1>
-							<div>
-								<input type="text"
-									style="width: 200px; background-color: #e0e0e0; border-radius: 30px 30px 30px 30px; text-align: center"
-									id="showbonus" value="" readonly>
-							</div>
-							<br> <br> <br>
-							<h1>紅利紀錄查詢:</h1>
-							<h6 style="font-size: 14px; color: grey">(
-								無選取日期或選擇單個日期一律顯示全部 )</h6>
-							<div id="container">
-								<div style="width: 150px;">
-									<span style="font-size: 20px; color: #c6a300">開始日期 :</span><input
-										type="date" id="date1" name="date1" />
-								</div>
-								<div style="width: 150px; margin-left: 40px;">
-									<span style="font-size: 20px; color: #c6a300">結束日期 :</span><input
-										type="date" id="date2" name="date2" />
-								</div>
-								<div>
-									<input
-										style="margin-left: 20px; width: 60px; height: 60px; border-radius: 60px 60px 60px 60px;"
-										type="button" class="btn btn-warning" data-bs-toggle='modal'
-										data-bs-target='#exampleModal1'
-										data-bs-whatever='@getbootstrap' value="查詢" id="showbydate" />
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!-- about_area_end -->
 
 	<div style="height: 600px" class="modal fade" id="exampleModal1"

@@ -1,5 +1,8 @@
 package com.project.BonusPointExchangePlatform.service;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +36,10 @@ public class MemberService {
 
 	@Autowired
 	private AccountDao aDao;
+	
+	@Autowired
+	private CipherUtilsService cipherUtilsService;
+	
 
 	SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	SimpleDateFormat DateTimeFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -54,12 +65,27 @@ public class MemberService {
 //	
 	public Account showMemberById(Integer id) {
 		aDao.showMemberById(id);
-		System.out.println(aDao.showMemberById(id));
+//		System.out.println(aDao.showMemberById(id));
 
 		if (aDao.showMemberById(id) != null) {
 			return aDao.showMemberById(id);
 		} else
 			return null;
+	}
+	
+	public void showMemberByIdaddsalt(Integer id) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException{
+		Account account = aDao.showMemberById(id);
+		System.out.println(aDao.showMemberById(id));
+		
+		if (account != null) {
+			String key = "kittymickysnoopy";
+			System.out.println(account.getPassword());
+			String oldPassword = CipherUtilsService.decryptString(key, account.getPassword(), account.getIv());
+//			System.out.println(oldPassword);
+			account.setPassword(oldPassword);}
+//			return account;
+//		} else
+//			return null;
 	}
 
 	public Member showMemberBankById(Integer id) {
@@ -73,14 +99,15 @@ public class MemberService {
 	}
 
 	public Map<String, Object> editMemberDetail(String name, LocalDate birth, String email, String phone,
-			String password, byte[] image, Integer id) {
+		 byte[] image, Integer id) {
 		Map<String, Object> map = new HashMap<>();
+		
 		memberDao.editMemberDetail(name, birth, email, phone, image, id);
-		aDao.editAccountDetail(password, id);
-		Member m = memberDao.findById(id).get();
-		Account a = aDao.findById(id).get();
-		map.put("Member", m);
-		map.put("Account", a);
+//		aDao.editAccountDetail(password, id);
+//		Member m = memberDao.findById(id).get();
+//		Account a = aDao.findById(id).get();
+//		map.put("Member", m);
+//		map.put("Account", a);
 
 		return map;
 	}

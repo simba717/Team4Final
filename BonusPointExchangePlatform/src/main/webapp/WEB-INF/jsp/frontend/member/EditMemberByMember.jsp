@@ -36,8 +36,8 @@
 			inputFileToLoad = document.getElementById("inputFileToLoad");
 			inputFileToLoad.addEventListener('change', loadImageFileAsURL);
 
-			document.getElementById("password").addEventListener("blur",
-					checkPassword);
+// 			document.getElementById("password").addEventListener("blur",
+// 					checkPassword);
 
 			document.getElementById("username").addEventListener("blur",
 					checkName);
@@ -60,11 +60,12 @@
 			}, 3000)
 
 			$("#edit").click(function() {
-				if ($("#password").val() == "") {
-					alert("您尚未填寫密碼");
-					var password = document.getElementById("password");
-					password.focus();
-				} else if ($("#username").val() == "") {
+// 				IF ($("#PASSWORD").VAL() == "") {
+// 					ALERT("您尚未填寫密碼");
+// 					VAR PASSWORD = DOCUMENT.GETELEMENTBYID("PASSWORD");
+// 					PASSWORD.FOCUS();
+// 				} ELSE 
+				if ($("#username").val() == "") {
 					alert("您尚未填寫姓名");
 					var username = document.getElementById("username");
 					username.focus();
@@ -113,7 +114,7 @@
 									.split('/').join('-')
 							$("#exampleInputName1").attr("value",
 									data.account.account);
-							$("#password").attr("value", data.account.password);
+// 							$("#password").attr("value", data.account.password);
 							$("#username").attr("value",
 									data.account.member.name);
 							$("#birth").attr("value", birth);
@@ -161,7 +162,7 @@
 		
 		//***********執行編輯*********
 		function edit() {
-			var password = document.getElementById("password").value
+// 			var password = document.getElementById("password").value
 			var username = document.getElementById("username").value;
 			var birth = document.getElementById("birth").value;
 			var email = document.getElementById("email").value;
@@ -169,9 +170,9 @@
 
 			var url = "<c:url value='/edit/member'/>"
 			var object = {
-				'account' : {
-					'password' : password
-				},
+// 				'account' : {
+// 					'password' : password
+// 				},
 				'image' : fileDataURL,
 				'name' : username,
 				'birth' : birth,
@@ -431,17 +432,17 @@
 							style="backround-color:grey">
 					</div>
 
-					<div class="form-group">
-						<label for="exampleInputEmail3">Password</label><input
-							type="password" class="form-control" id="password"
-							placeholder="password" value="" />
-						<div id="idsp1" style="font-size: 20px"></div>
-						<div
-							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="exampleInputEmail3">Password</label><input -->
+<!-- 							type="password" class="form-control" id="password" -->
+<!-- 							placeholder="password" value="" /> -->
+<!-- 						<div id="idsp1" style="font-size: 20px"></div> -->
+<!-- 						<div -->
+<!-- 							style="text-align: right; margin-right: 12px; margin-bottom: -20px"> -->
+<!-- 							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i> -->
+<!-- 						</div> -->
 
-					</div>
+<!-- 					</div> -->
 					<div class="form-group">
 						<label for="exampleInputPassword4">Name</label> <input type="text"
 							class="form-control" id="username" name="username"
@@ -505,6 +506,7 @@
 				value="確認送出" display="none" onclick="checkedit()">
 			<button class="btn btn-danger" style="margin-left: 20px"
 				onclick="window.location.reload()">取消編輯</button>
+		</div>
 		</div>
 
 

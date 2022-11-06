@@ -52,7 +52,7 @@
 																href="${contextRoot}/frontend/EditMemberByMember">編輯個人資料</a>
 														</li>
 														<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
-														<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a>
+														<li><a href="${contextRoot}/orders/findAllByMember">我的訂單</a>
 														</li>
 														<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
 													</ul>

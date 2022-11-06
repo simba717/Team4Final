@@ -123,6 +123,7 @@
 									.substr(0, 10).split('/').join('-')
 							$("#exampleInputName1").attr("value",
 									data.account.account);
+							
 							$("#password").attr("value", data.account.password);
 							$("#EmployeeName").attr("value",
 									data.employee.name);
@@ -133,9 +134,8 @@
 									data.employee.email);
 							$("#Phone").attr("value",
 									data.employee.phone);
-							if(data.employee.image != "" || !data.employee.image.equals('NULL')){
-							$("#preview_img").attr("src",
-									imageurl + data.employee.image);
+							if(data.employee.image != "" || !data.employee.image.equals('null')){								
+								$("#preview_img").attr("src",imageurl + data.employee.image);
 							}
 							$("#welcome").text(data.employee.name);
 

@@ -169,13 +169,4 @@ public class ProductService {
 		return productDao.monthgroup4();
 	}
 
-	/* 新增多筆商品 */
-	/*
-	 * public List<Product> insertAll(List<Product> product) { Optional<Employee>
-	 * optional = employeeDao.findById(1); for(Product p : product) {
-	 * p.setEmployee(optional.get()); p.setBest_seller(0); p.setButton_switch(true);
-	 * p.setCreate_at(getDate); p.setUpdate_at(getDate); } return
-	 * productDao.saveAll(product); }
-	 */
-
 }

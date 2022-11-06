@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,7 +41,11 @@ public class Account implements Serializable {
 	private Integer account_type;
 	
 	@Column(name = "check_code")
-	private String check_code;	
+	private String check_code;
+	
+	@Lob
+	@Column(name = "iv")
+	private byte[] iv;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -102,6 +107,14 @@ public class Account implements Serializable {
 
 	public void setCheck_code(String check_code) {
 		this.check_code = check_code;
+	}
+
+	public byte[] getIv() {
+		return iv;
+	}
+
+	public void setIv(byte[] iv) {
+		this.iv = iv;
 	}
 
 	public Date getCreate_at() {

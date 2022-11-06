@@ -1,6 +1,9 @@
 package com.project.BonusPointExchangePlatform.controller;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -323,24 +329,26 @@ public class MemberController {
 	/* 確認帳密 */
 	@PostMapping(path = "/home")
 	public String checkAccount(@RequestParam("account") String account, @RequestParam("password") String password,
-			Model m) {
+			Model m) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		boolean result = loginService.checkAccount(account, password);
 
 		if (!result) {
-			return "/frontend/entrance/newlogin";
+			return "/frontend/entrance/newloginfail";
 		} else {
-			Account user = loginService.getBeanByAccPwd(account, password);
+			Account user = loginService.getBeanByAcc(account);
 			Orders orders = ordersService.findUnPaidOrdersByMember(user.getMember());
 			if(orders == null) {
 				ordersService.insertOrder(user.getMember());
 			}
 			m.addAttribute("member", user.getMember());
-			return "/layout/Navbar";
+			return "redirect:/";
 		}
 	}
 
 	@GetMapping(path = "/logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
+		session.removeAttribute("pill");
+		session.removeAttribute("ordersListContent");
 		status.setComplete();
 		return "redirect:/";
 	}
@@ -363,7 +371,7 @@ public class MemberController {
 			return "/frontend/entrance/updatenewpassword";
 
 		} else {
-			return "/frontend/entrance/updatepassword";
+			return "/frontend/entrance/updatepasswordfail";
 		}
 	}
 
@@ -382,7 +390,7 @@ public class MemberController {
 	/* 輸入驗證碼並更改密碼 */
 	@PostMapping("/updatenewpassword")
 	public String updatePasswordByCheckcode(@RequestParam("checkcode") String checkcode,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		loginService.updatePwdByCheckcode(checkcode, password);
 		return "/frontend/entrance/updatesuccess";
 	}

@@ -31,11 +31,7 @@ public class GameController {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat dateFormat2 = new SimpleDateFormat("-MM-dd");
 	
-	@GetMapping(path = "/campaign")
-	public String processMainAction() {
-		return "frontend/campaign/SignIn";
-	}
-	
+	//生日禮
 	@ResponseBody
 	@GetMapping(path = "/checkBirth" ,produces = {"application/json;charset=UTF-8"})
 	public Game checkBirth(HttpSession session) {
@@ -45,7 +41,6 @@ public class GameController {
 		Integer mId = m.getId();
 		String create_at = dateFormat.format(getDate);
 		String create_at2 = dateFormat2.format(getDate);
-		System.out.println(create_at2);
 		Member member = gService.checkBirth("%"+create_at2+"%",mId);
 		if(member!=null) {
 			Game game = gService.checkBirthGift(mId, "%"+create_at+"%");
@@ -66,6 +61,7 @@ public class GameController {
 		
 	}
 	
+	//簽到禮
 	@ResponseBody
 	@GetMapping(path = "/checkSignIn" ,produces = {"application/json;charset=UTF-8"})
 	public Game checkSignin(HttpSession session) {
@@ -94,6 +90,32 @@ public class GameController {
 			return g;
 		}
 	}
+	
+	
+	//魔水晶禮
+	@ResponseBody
+	@GetMapping(path = "/checkCrystal" ,produces = {"application/json;charset=UTF-8"})
+	public Game checkCrystal(HttpSession session) {
+		Date getDate = new Date();
+		Game g = new Game();
+		Member m = (Member)session.getAttribute("member");
+		Integer mId = m.getId();
+		String create_at = dateFormat.format(getDate);
+		Game game = gService.checkCrystalGift(mId, create_at);
+		if(game == null) {
+			gService.insertCrystal(m, getDate);
+			gService.insertCrystalWallet(m, getDate);
+			g.setGame_type("已完成魔水晶遊戲活動");
+			return g;
+		}else {
+			g.setGame_type("您今日已經玩過遊戲了");
+			return g;
+		}
+	}
+	
+	
+	
+	
 	
 	@ResponseBody
 	@GetMapping(path = "/selectDate" ,produces = {"application/json;charset=UTF-8"})

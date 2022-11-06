@@ -47,6 +47,10 @@ public class Account implements Serializable {
 	@Column(name = "iv")
 	private byte[] iv;
 	
+	@Lob
+	@Column(name = "iv")
+	private byte[] iv;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "create_at")

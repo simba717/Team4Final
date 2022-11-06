@@ -85,10 +85,7 @@
 					alert("您尚未填寫員工電話");
 					var Phone = document.getElementById("Phone");
 					Phone.focus();
-				} else {
-					edit();
-					getindex();
-				}
+				} 
 
 			})
 
@@ -134,8 +131,12 @@
 									data.employee.email);
 							$("#Phone").attr("value",
 									data.employee.phone);
-							if(data.employee.image != "" || !data.employee.image.equals('null')){								
-								$("#preview_img").attr("src",imageurl + data.employee.image);
+									
+							if (data.employee.image) {
+								$("#preview_img").attr("src", imageurl + data.employee.image)
+							}
+							else{
+								$("#preview_img").attr("src", "${contextRoot}/img2/nopicture.jpg")
 							}
 							$("#welcome").text(data.employee.name);
 
@@ -143,7 +144,31 @@
 
 					})
 		}
-
+		
+		//**********完成編輯前做確認***********
+		function checkedit(){
+			Swal.fire({
+				icon: 'question',
+				title:'確定完成送出?',
+			    color: "#7373b9",
+			    showCancelButton: true,
+			    cancelButtonText:"取消",
+			    cancelButtonColor: "#FF0000",
+			    confirmButtonText: '確定',
+			    confirmButtonColor: "#0000e3"
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			    	Swal.fire('編輯成功', '', 'success').then((result) => {
+			    	edit();
+	 		    	window.location.reload()
+			    	})
+			    } 
+			})  
+			
+		
+	}
+		
+		//***********執行編輯*********
 		function edit() {
 			var password = document.getElementById("password").value
 			var EmployeeName = document.getElementById("EmployeeName").value;
@@ -175,11 +200,10 @@
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
 				error : function() {
-					alert("編輯失敗,請重新輸入")
+					Swal.fire('編輯失敗', '', 'error')
 				},
 				success : function(data) {
-					alert("編輯成功")
-					window.location.reload();
+					Swal.fire('編輯成功', '', 'success')
 				}
 			});
 
@@ -502,7 +526,7 @@
 				</div>
 			</div>
 			<div style="text-align: center">
-				<img id="preview_img" src="${contextRoot}/img2/nopicture.jpeg"
+				<img id="preview_img" src="#"
 					style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
 				<br> <br> <br>
@@ -518,7 +542,8 @@
 
 				<br> <br>
 				<div style="justify-content: center;">
-					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none">
+					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none"
+						onclick="checkedit()">
 					<button class="btn btn-danger" style="margin-left: 20px"
 						onclick="window.location.reload()">取消編輯</button>
 				</div>

@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -19,6 +20,7 @@
 }
 </style>
 </head>
+
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 	<script type="text/javaScript">
@@ -78,10 +80,7 @@
 					alert("您尚未填寫電話");
 					var phone = document.getElementById("phone");
 					phone.focus();
-				} else {
-					edit();
-					getindex();
-				}
+				} 
 
 			})
 
@@ -108,7 +107,7 @@
 							alert("ajax error")
 						},
 						success : function(data) {
-							console.log(data)
+// 							console.log(data)
 
 							var birth = data.account.member.birth.substr(0, 10)
 									.split('/').join('-')
@@ -122,18 +121,45 @@
 									.attr("value", data.account.member.email);
 							$("#phone")
 									.attr("value", data.account.member.phone);
-							if( data.account.member.image != "" || !data.employee.image.equals('NULL') ){
-							$("#preview_img").attr("src",
-									imageurl +  data.account.member.image);
+							if (data.account.member.image) {
+								$("#preview_img").attr("src", imageurl + data.account.member.image)
 							}
-							$("#welcome").text(data.account.member.name);
+							else{
+								$("#preview_img").attr("src", "${contextRoot}/img2/nopicture.jpg")
+							}
 							
 							
 						}
 
 					})
 		}
+		
+		
+		//**********完成編輯前做確認***********
+		function checkedit(){
+			Swal.fire({
+				icon: 'question',
+				title:'確定完成送出?',
+			    color: "#7373b9",
+			    showCancelButton: true,
+			    cancelButtonText:"取消",
+			    cancelButtonColor: "#FF0000",
+			    confirmButtonText: '確定',
+			    confirmButtonColor: "#0000e3"
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			    	Swal.fire('編輯成功', '', 'success').then((result) => {
+			    	edit();
+	 		    	window.location.reload()
+			    	})
+			    } 
+			})  
+			
+		
+	}
 
+		
+		//***********執行編輯*********
 		function edit() {
 			var password = document.getElementById("password").value
 			var username = document.getElementById("username").value;
@@ -141,7 +167,7 @@
 			var email = document.getElementById("email").value;
 			var phone = document.getElementById("phone").value;
 
-			var url = "<c:url value='/edit/member' />"
+			var url = "<c:url value='/edit/member'/>"
 			var object = {
 				'account' : {
 					'password' : password
@@ -160,11 +186,11 @@
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
 				error : function() {
-					alert("編輯失敗,請重新輸入")
+					Swal.fire('編輯成功', '', 'error')
 				},
 				success : function(data) {
-					alert("編輯成功")
-					window.location.reload();
+					Swal.fire('編輯成功', '', 'success')
+				
 				}
 			});
 
@@ -389,13 +415,13 @@
 
 
 
+
 	<div
 		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
 		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
 		<div class="card" style="border-radius: 30px 30px 30px 30px;">
 			<div class="card-body" style="height: 600px; margin-top: 40px">
 				<h3 class="card-title">會員個人資料編輯</h3>
-
 				<form class="forms-sample" id="form">
 					<div class="form-group">
 						<label for="exampleInputName1">Account</label> <input type="text"
@@ -404,17 +430,16 @@
 							id="exampleInputName1" placeholder="Name" value="" readonly
 							style="backround-color:grey">
 					</div>
+
 					<div class="form-group">
-							<div
-							style="text-align: right; margin-right: 440px; margin-bottom: -22px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
-						<label for="exampleInputEmail3">Password</label>
-							<input
+						<label for="exampleInputEmail3">Password</label><input
 							type="password" class="form-control" id="password"
 							placeholder="password" value="" />
 						<div id="idsp1" style="font-size: 20px"></div>
-					
+						<div
+							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
+							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
+						</div>
 
 					</div>
 					<div class="form-group">
@@ -452,11 +477,15 @@
 					</div>
 
 				</form>
+
+
+
+
 			</div>
 		</div>
 	</div>
 	<div style="text-align: center">
-		<img id="preview_img" src="${contextRoot}/img2/nophoto.png"
+		<img id="preview_img" src="#"
 			style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
 		<br> <br> <br>
@@ -473,7 +502,7 @@
 		<br> <br>
 		<div style="justify-content: center;">
 			<input type="button" id="edit" class="btn btn-primary me-2"
-				value="確認送出" display="none">
+				value="確認送出" display="none" onclick="checkedit()">
 			<button class="btn btn-danger" style="margin-left: 20px"
 				onclick="window.location.reload()">取消編輯</button>
 		</div>
@@ -521,38 +550,38 @@
 
 		<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
 		<script>
-			$("#icon").click(
-					function() {
-						let pass_type = $("#password").attr("type");
-						console.log(pass_type)
+					$("#icon").click(
+						function () {
+							let pass_type = $("#password").attr("type");
+							console.log(pass_type)
 
-						if (pass_type === "password") {
-							$("#password").attr("type", "type");
-							$("#icon").removeClass("fa-solid fa-eye-slash")
+							if (pass_type === "password") {
+								$("#password").attr("type", "type");
+								$("#icon").removeClass("fa-solid fa-eye-slash")
 									.addClass("fa-solid fa-eye")
-						} else {
-							$("#password").attr("type", "password");
-							$("#icon").removeClass("fa-solid fa-eye").addClass(
+							} else {
+								$("#password").attr("type", "password");
+								$("#icon").removeClass("fa-solid fa-eye").addClass(
 									"fa-solid fa-eye-slash")
-						}
+							}
+						})
+
+					$("#inputFileToLoad").change(function () {
+						readURL(this);
 					})
 
-			$("#inputFileToLoad").change(function() {
-				readURL(this);
-			})
+					function readURL(input) {
+						if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							reader.onload = function (e) {
+								$("#preview_img").attr("src", e.target.result);
 
-			function readURL(input) {
-				if (input.files && input.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$("#preview_img").attr("src", e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
 
+						}
 					}
-					reader.readAsDataURL(input.files[0]);
-
-				}
-			}
-		</script>
+				</script>
 </body>
 
 </html>

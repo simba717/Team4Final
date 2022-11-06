@@ -68,6 +68,14 @@ public class GameService {
 		gameDao.insertBirth(member_id, update_at);;
 	}
 	
+	public Game checkCrystalGift(Integer id,String create_at) {
+		return gameDao.checkCrystalGift(id, create_at);
+	}
+	
+	public void insertCrystal(Member member_id,Date update_at) {
+		gameDao.insertCrystal(member_id, update_at);;
+	}
+	
 	public void insertSignWallet(Member member_id,Date update_at) {
 		walletDao.insertSignWallet(member_id, update_at);
 	}
@@ -76,6 +84,9 @@ public class GameService {
 		walletDao.insertBirthWallet(member_id, update_at);
 	}
 
+	public void insertCrystalWallet(Member member_id,Date update_at) {
+		walletDao.insertCrystalWallet(member_id, update_at);
+	}
 	
 //////////////瑋煊的頭//////////////////
 

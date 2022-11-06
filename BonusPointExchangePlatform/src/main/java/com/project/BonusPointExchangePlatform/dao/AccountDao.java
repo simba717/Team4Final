@@ -19,6 +19,8 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 			+ "where account = :account and password = :password ", nativeQuery = true)
 	Account checkAccount(@Param(value = "account") String acc, @Param(value = "password") String pwd);
 	
+	
+	
 
 	@Query(value = "select * from Account "
 			+ "where account = :account ", nativeQuery = true)
@@ -31,6 +33,11 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	@Query(value = "select * from Account "
 			+ "where account = :account and password = :password and account_type= 1 ", nativeQuery = true)
 	Account checkAccountMember(@Param(value = "account") String acc, @Param(value = "password") String pwd);
+	
+	
+	@Query(value = "select * from Account "
+			+ "where account = :account  and account_type= 1 ", nativeQuery = true)
+	Account checkPwdByAcc(@Param(value = "account") String acc);
 	
 	@Query(value ="select a.* from Member m "
 			+ "join account a on m.id = a.member_id "

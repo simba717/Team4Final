@@ -52,7 +52,7 @@
 																href="${contextRoot}/frontend/EditMemberByMember">編輯個人資料</a>
 														</li>
 														<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
-														<li><a href="${contextRoot}/orders/findAllByMember">訂單查詢</a>
+														<li><a href="${contextRoot}/orders/findAllByMember">我的訂單</a>
 														</li>
 														<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
 													</ul>
@@ -97,10 +97,9 @@
 											role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
 											aria-expended="false"><img id="personphoto"  style="object-fit:cover;height: 40px; width: 40px; border-radius: 190px 190px 190px 190px;" ></a>
 											<ul class="dropdown-menu dropdown-menu-dark" aria-lableledby="dropdownMenuLink">
-												<li><a class="dropdown-item" href="#" id="1">編輯個人資料</a></li>
-												<li><a class="dropdown-item" href="#" id="2">個人帳戶查詢</a></li>
-												<li><a class="dropdown-item" href="#" id="3">簽到活動管理</a></li>
-												<li><a class="dropdown-item" href="#" id="4">遊戲紀錄查詢</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/frontend/EditMemberByMember" id="1">編輯個人資料</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/MembergoBankAccount" id="2">查看帳戶資訊</a></li>
+												<li><a class="dropdown-item" href="${contextRoot}/campaign/gameRecord" id="4">遊戲紀錄查詢</a></li>
 												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
 											</ul>
 										</div>

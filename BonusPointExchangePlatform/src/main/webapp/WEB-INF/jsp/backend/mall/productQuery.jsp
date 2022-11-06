@@ -47,7 +47,7 @@ var deleteURL = "<c:url value='/product/delete' />";
 				if(products[i].product.button_switch == false) {						
 					if(products[i].product.best_seller == products[i].product.quantity) {
 						content += "<td style='font-weight: bold'>已完售</td>"
-								+  "<td>" + products[i].employee.name + "</td>"
+								+  "<td>" + products[i].employee.employee_no + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
 								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
@@ -57,7 +57,7 @@ var deleteURL = "<c:url value='/product/delete' />";
 								+  "<td></td></tr></tbody>";
 					} else {
 						content += "<td style='color: red; font-weight: bold'>已下架</td>"
-								+  "<td>" + products[i].employee.name + "</td>"
+								+  "<td>" + products[i].employee.employee_no + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
 								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=true' class='btn btn-primary' role='button'>上架</a>"
@@ -67,7 +67,7 @@ var deleteURL = "<c:url value='/product/delete' />";
 					}				
 				} else {
 					content += "<td style='color: green; font-weight: bold'>販售中</td>"
-							+  "<td>" + products[i].employee.name + "</td>"
+							+  "<td>" + products[i].employee.employee_no + "</td>"
 							+  "<td>" + products[i].product.create_at + "</td>"
 							+  "<td>" + products[i].product.updateDate + "</td>"
 							+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
@@ -104,94 +104,7 @@ var deleteURL = "<c:url value='/product/delete' />";
 		goPage(1);
 		$("body").on("click","a.btn.btn-outline-dark",function() {
 			goPage($(this).attr("data-id"));
-		});
-		
-		
-/*		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "<c:url value='/getAllProducts.json' />", true);
-		xhr.send();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var content = "<table id='idtable' class='table table-bordered'>";
-					content += "<thead><tr style='background-color: lightblue'><th>項目</th><th>照片</th><th>品名</th><th>內容</th>" 
-							+ "<th>類別</th><th>單價</th><th>庫存總數</th><th>熱銷數</th><th>商品狀態</th><th>編輯人</th>"
-							+ "<th>建立時間</th><th>最後編輯時間</th><th>商品控制</th><th>編輯</th><th>刪除</th></tr></thead>";
-							 
-				var products = JSON.parse(xhr.responseText);				
-				
-				for (var i = 0; i < products.length; i++) {	
-					id = i + 1;					
-					if(products[i].product.best_seller == products[i].product.quantity) {
-						content += "<tbody><tr style='background-color:lightgray'><td align='center'>" + id + "</td>";
-					} else {
-						content += "<tbody><tr><td align='center'>" + id + "</td>";
-					}					
-					content += "<td align='center'><img width='40' height='48'" + " src='" + imageURL + "?id=" + products[i].product.id + "'></td>"
-							+ "<td>" + products[i].product.product_name + "</td>"
-							+ "<td>" + products[i].product.product_content + "</td>"
-							+ "<td>" + products[i].product.product_type + "</td>" 
-							+ "<td align='right'>"	+ products[i].product.price + "</td>" 
-							+ "<td align='right'>" + products[i].product.quantity + "</td>"
-							+ "<td align='right'>" + products[i].product.best_seller + "</td>";						
-										
-					if(products[i].product.button_switch == false) {						
-						if(products[i].product.best_seller == products[i].product.quantity) {
-							content += "<td style='font-weight: bold'>已完售</td>"
-									+  "<td>" + products[i].employee_name + "</td>"
-									+  "<td>" + products[i].product.create_at + "</td>"
-									+  "<td>" + products[i].product.update_at + "</td>"
-									+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
-									+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a>"
-									+  "<a class='btn btn-secondary' role='button' aria-disabled='true'>關閉</a></td>"
-									+  "<td></td>"
-									+  "<td></td></tr></tbody>";
-						} else {
-							content += "<td style='color: red; font-weight: bold'>已下架</td>"
-									+  "<td>" + products[i].employee_name + "</td>"
-									+  "<td>" + products[i].product.create_at + "</td>"
-									+  "<td>" + products[i].product.update_at + "</td>"
-									+  "<td width='10.3%'><a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=true' class='btn btn-primary' role='button'>上架</a>"
-									+  "<a style='visibility:hidden' class='btn btn-warning' role='button'>下架</a></td>"									
-									+  "<td><input id='" + products[i].product.id + "' onclick='getindex(this)' type='button' value='編輯' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#edit' data-bs-whatever='@getbootstrap'></button></td>"
-									+  "<td><a onclick='return confirm(`確定刪除嗎?`)' href='" + deleteURL + "?id=" + products[i].product.id + "' class='btn btn-danger' role='button'>刪除</a></td></tr></tbody>";
-						}														
-					} else {
-						content += "<td style='color: green; font-weight: bold'>販售中</td>"
-								+  "<td>" + products[i].employee_name + "</td>"
-								+  "<td>" + products[i].product.create_at + "</td>"
-								+  "<td>" + products[i].product.update_at + "</td>"
-								+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
-								+  "<a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=false' class='btn btn-warning' role='button'>下架</a></td>"
-								+  "<td></td>"
-								+  "<td></td></tr></tbody>";																
-					}							
-				}
-				content += "</table>";
-				
-				var divs = document.getElementById("somedivS");
-				divs.innerHTML = content;
-			}
-		}
-*/		
-		/*分頁*/
-/*		var xhr1 = new XMLHttpRequest();
-		xhr1.open("GET", "<c:url value='/getAllProductsPages.json' />", true);
-		xhr1.send();
-		xhr1.onreadystatechange = function() {
-			if (xhr1.readyState == 4 && xhr1.status == 200) {
-				var page = JSON.parse(xhr1.responseText);
-				console.log(page);
-				console.log(page.content);
-				var pageNum = document.getElementById("pagebtn");
-				var content = "";
-				for(var i = 0; i < page.totalPages; i++) {
-					content += "<a href='?p="+(i+1)+"' class='btn btn-primary'>"+(i+1)+"</a>";
-				}
-				pageNum.innerHTML = content;
-				
-			}
-		}
-*/		
+		});	
 	}
 	
 	function confirm(id){
@@ -760,7 +673,7 @@ function query() {
 						+ "<th>類別</th><th>單價</th><th>庫存總數</th><th>熱銷數</th><th>商品狀態</th><th>編輯人</th>"
 						+ "<th>建立時間</th><th>最後編輯時間</th><th>商品控制</th><th>編輯</th><th>刪除</th></tr></thead>";
 			var products = JSON.parse(xhr1.responseText);	
-			
+			console.log(products)
 			clear(products);			
 			if(products.length == 0) {
 				content += "<tbody><tr><td id='tbody' align='center'style='color:red' colspan='15'></td></tr></tbody>";				
@@ -784,7 +697,7 @@ function query() {
 					if(products[i].product.best_seller == products[i].product.quantity) {
 						
 						content += "<td style='font-weight: bold'>已完售</td>"
-								+  "<td>" + products[i].employee_name + "</td>"
+								+  "<td>" + products[i].product.employee.employee_no + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
 								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"
@@ -794,7 +707,7 @@ function query() {
 								+  "<td></td></tr></tbody>";
 					} else {	
 						content += "<td style='color: red; font-weight: bold'>已下架</td>"
-								+  "<td>" + products[i].employee_name + "</td>"
+								+  "<td>" + products[i].product.employee.employee_no + "</td>"
 								+  "<td>" + products[i].product.create_at + "</td>"
 								+  "<td>" + products[i].product.updateDate + "</td>"
 								+  "<td width='10.3%'><a href='" + controlURL + "?id=" + products[i].product.id + "&button_switch=true' class='btn btn-primary' role='button'>上架</a>"
@@ -804,7 +717,7 @@ function query() {
 					}
 				} else {					
 					content += "<td style='color: green; font-weight: bold'>販售中</td>"
-						+  "<td>" + products[i].employee_name + "</td>"
+						+  "<td>" + products[i].product.employee.employee_no + "</td>"
 						+  "<td>" + products[i].product.create_at + "</td>"
 						+  "<td>" + products[i].product.updateDate + "</td>"
 						+  "<td width='10.3%'><a style='visibility:hidden' class='btn btn-primary' role='button'>上架</a>"

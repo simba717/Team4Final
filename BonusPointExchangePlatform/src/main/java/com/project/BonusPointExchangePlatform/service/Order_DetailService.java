@@ -188,18 +188,6 @@ public class Order_DetailService {
 		ordersDao.updateOrdersTotal(member_id, tmpOrderTotal);
 	}
 
-//	/* 得到商品更新後資料與訂單detail更新後資料的Dto */
-//	public ShoppingCartDto getShoppingCartDto(String productName, Orders orders) {
-//		Product productNew = productDao.findByProductName(productName);
-//		System.out.println("777777777777" + productNew.getBest_seller());
-//		Order_Detail orderDetailNew = order_DetailDao.findOneByOrderDetailIdProductName(orders, productName);
-//		System.out.println("88888888888" + orderDetailNew.getQuantity());
-//		ShoppingCartDto shoppingCartDto = new ShoppingCartDto();
-//		shoppingCartDto.setOrder_Detail(orderDetailNew);
-//		shoppingCartDto.setProduct(productNew);
-//		return shoppingCartDto;
-//	}
-
 	/* 得到商品更新後資料與訂單detail更新後資料的Dto */
 	public OrdersDto getShoppingCartDto(Member member) {
 		Orders order = ordersDao.findUnPaidOrdersByMember(member);

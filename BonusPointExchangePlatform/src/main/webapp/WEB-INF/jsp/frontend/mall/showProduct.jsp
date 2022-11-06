@@ -35,8 +35,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <a href="https://tw.yahoo.com/">
-                    YAYAYAYAYAYA
+                <a id="returnTop">
+                    返回頂部
                 </a>
             </div>
         </div>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div id="membercheck" class="visually-hidden">${member}</div>
-    
+<jsp:include page="../../layout/footer.jsp"></jsp:include> 
 <script>
 
  
@@ -345,6 +345,12 @@ if (toastTrigger) {
         toast.show()
     })
 }
+
+
+//返回頂部
+$("#returnTop").click(function(){
+	scrollTo(0, 0);
+})
 
 </script>
 </body>

@@ -221,11 +221,3 @@ public class EmployeeService {
 	
 	
 }
-
-
-//	/*根據銀行帳號找ID*/
-//	public Bank findIdByAccountNo(String account_no) {
-//		return bankDao.findIdByAccountNo(account_no);
-//	}
-
-

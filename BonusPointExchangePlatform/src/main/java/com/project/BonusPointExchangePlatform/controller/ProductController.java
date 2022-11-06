@@ -42,15 +42,7 @@ public class ProductController {
 		Product product = productDto.getProduct();
 		productService.insert(product, employee);
 	}
-
-	/*
-	 * @PostMapping(path = "/product/getProductInfo", produces = "application/json")
-	 * public @ResponseBody List<Product> getProductInfo(@RequestBody
-	 * List<ConvertDto> convertDto) { List<Product> product = new ArrayList<>();
-	 * for(ConvertDto input : convertDto) { input.convertImage();
-	 * product.add(input.getProduct()); } return productService.insertAll(product);
-	 * }
-	 */
+	
 	/* SELECT */
 	@GetMapping(value = "/getAllProducts.json", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody List<ProductDto> getAllProducts() {
@@ -75,12 +67,7 @@ public class ProductController {
 		return productService.search(search);
 	}
 
-	/* UPDATE */
-	/*
-	 * @GetMapping("/product/{id}") public @ResponseBody Product
-	 * editProduct(@PathVariable Integer id) { Product product =
-	 * productService.findById(id); return product; }
-	 */
+	/* UPDATE */	
 	@PostMapping(path = "/product", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody Product editProduct(@RequestBody Product product) {
 		System.out.println(product.getId());
@@ -349,30 +336,5 @@ public class ProductController {
 		}
 		return total;
 	}
-
-	/*
-	 * @GetMapping(path = "/product/findAll", produces = {
-	 * "application/json; charset=UTF-8" }) public @ResponseBody List<Product>
-	 * findAllProduct() { List<Product> products = productService.findAll(); return
-	 * products; }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @PostMapping(path = "/product/insert") public List<Product>
-	 * insert(@RequestBody List<Product> product) { return
-	 * productService.insertAll(product); }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @PutMapping(path = "/product/update/{id}") public List<Product>
-	 * updateProductById(@RequestParam String product_name, @RequestParam String
-	 * product_content, @RequestParam String product_type, @RequestParam Integer
-	 * price, @RequestParam Blob image, @PathVariable Integer id) { try { if(image
-	 * == null || image.length() == 0) { return productService.update(product_name,
-	 * product_content, product_type, price, null, id); } else { return
-	 * productService.update(product_name, product_content, product_type, price,
-	 * image, id); } } catch (SQLException e) { e.printStackTrace(); return
-	 * productService.update(product_name, product_content, product_type, price,
-	 * null, id); } }
-	 */
+	
 }

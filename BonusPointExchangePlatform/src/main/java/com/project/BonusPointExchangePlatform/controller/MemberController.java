@@ -390,7 +390,7 @@ public class MemberController {
 	/* 輸入驗證碼並更改密碼 */
 	@PostMapping("/updatenewpassword")
 	public String updatePasswordByCheckcode(@RequestParam("checkcode") String checkcode,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		loginService.updatePwdByCheckcode(checkcode, password);
 		return "/frontend/entrance/updatesuccess";
 	}

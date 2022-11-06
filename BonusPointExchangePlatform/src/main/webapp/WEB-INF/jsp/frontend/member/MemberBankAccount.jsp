@@ -58,9 +58,6 @@
 	margin-top: 5px;
 	width: 35px;
 }
-
-
-
 </style>
 <script type="text/javaScript">
 //*************載入頁面後立刻觸發功能**********
@@ -168,7 +165,7 @@ window.onload = function() {
 							$("#page_ul1").empty();
 							$("#table1 tbody").empty();
 							if(rowTotal1 == 0 ){
-								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 							}
 							for (var i = 0; i < pageSize1; i++) {
 									$("#table1 tbody")
@@ -181,6 +178,8 @@ window.onload = function() {
 															+ data[i].name
 															+ "</td><td>"
 															+ data[i].wallet.source_type
+															+ "</td><td>"
+															+ data[i].wallet.wallet_amount
 															+ "</td><td>"
 															+ data[i].wallet.bonus_point
 															+ "</td><td>"
@@ -195,7 +194,7 @@ window.onload = function() {
 							$("#page_ul1").empty();
 							$("#table1 tbody").empty();
 							if(rowTotal1 == 0 ){
-								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 							}
 							for (var i = 0; i < pageSize1; i++) {
 								$("#table1 tbody")
@@ -208,6 +207,8 @@ window.onload = function() {
 												+ data[i].name
 												+ "</td><td>"
 												+ data[i].wallet.source_type
+												+ "</td><td>"
+												+ data[i].wallet.wallet_amount
 												+ "</td><td>"
 												+ data[i].wallet.bonus_point
 												+ "</td><td>"
@@ -281,7 +282,7 @@ window.onload = function() {
 							$("#page_ul1").empty();
 							$("#table1 tbody").empty();
 							if(rowTotal1 == 0 ){
-								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 							}
 							for (var i = 0; i < pageSize1; i++) {
 									$("#table1 tbody")
@@ -294,6 +295,8 @@ window.onload = function() {
 															+ data[i].name
 															+ "</td><td>"
 															+ data[i].wallet.source_type
+															+ "</td><td>"
+															+ data[i].wallet.wallet_amount
 															+ "</td><td>"
 															+ data[i].wallet.bonus_point
 															+ "</td><td>"
@@ -308,7 +311,7 @@ window.onload = function() {
 							$("#page_ul1").empty();
 							$("#table1 tbody").empty();
 							if(rowTotal1 == 0 ){
-								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+								$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 							}
 							for (var i = 0; i < pageSize1; i++) {
 								$("#table1 tbody")
@@ -321,6 +324,8 @@ window.onload = function() {
 												+ data[i].name
 												+ "</td><td>"
 												+ data[i].wallet.source_type
+												+ "</td><td>"
+												+ data[i].wallet.wallet_amount
 												+ "</td><td>"
 												+ data[i].wallet.bonus_point
 												+ "</td><td>"
@@ -481,7 +486,7 @@ function page(){
 			$("#table tbody").empty();
 		if(pageTotal==1){
 			if(rowTotal == 0 ){
-				$("#table tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+				$("#table tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 			}
 				for(var i =0 ;i<pageSize;i++){
 				$("#table tbody").append(
@@ -494,7 +499,7 @@ function page(){
 			}
 		}else{
 			if(rowTotal == 0 ){
-				$("#table tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+				$("#table tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 			}
 			for(var i =0 ;i<pageSize;i++){
 				$("#table tbody").append(
@@ -610,6 +615,8 @@ function gotoPage1(pageNum1){
 								+ "</td><td>"
 								+ data[i].wallet.source_type
 								+ "</td><td>"
+								+ data[i].wallet.wallet_amount
+								+ "</td><td>"
 								+ data[i].wallet.bonus_point
 								+ "</td><td>"
 								+ data[i].usecardamount
@@ -625,16 +632,10 @@ function gotoPage1(pageNum1){
 
 //**********儲值金兌換前做確認***********
 function check(){
-// 	var check = confirm("確定要兌換嗎?");
-	
-// 	if(check==true){
-// 		newChange();
-// 	}else{
-// 		return false;
-// 	}
+
 Swal.fire({
 	icon: 'question',
-	title:'請問是否要兌換',
+	title:'確認否是要兌換',
     color: "#7373b9",
     showCancelButton: true,
     cancelButtonText:"取消",
@@ -643,9 +644,15 @@ Swal.fire({
     confirmButtonColor: "#0000e3"
 }).then((result) => {
     if (result.isConfirmed) {
-        Swal.fire('兌換成功', '', 'success')
-        newChange();
-    } 
+    	Swal.fire('兌換成功', '', 'success').then((result) => {
+    		 newChange();  
+		    	window.location.reload()
+	    	})
+       
+        
+    } else{
+    	Swal.fire('取消兌換', '', 'success')
+    }
 })  
 	
 }
@@ -776,7 +783,7 @@ function page1() {
 						$("#page_ul1").empty();
 						$("#table1 tbody").empty();
 						if(rowTotal1 == 0 ){
-							$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+							$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 						}
 						for (var i = 0; i < pageSize1; i++) {
 								$("#table1 tbody")
@@ -789,6 +796,8 @@ function page1() {
 														+ data[i].name
 														+ "</td><td>"
 														+ data[i].wallet.source_type
+														+ "</td><td>"
+														+ data[i].wallet.wallet_amount
 														+ "</td><td>"
 														+ data[i].wallet.bonus_point
 														+ "</td><td>"
@@ -803,7 +812,7 @@ function page1() {
 						$("#page_ul1").empty();
 						$("#table1 tbody").empty();
 						if(rowTotal1 == 0 ){
-							$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='7'>無相關紀錄</td><tr>"))
+							$("#table1 tbody").append($("<tr><td style='align:center;color:red' colspan='8'>無相關紀錄</td><tr>"))
 						}
 						for (var i = 0; i < pageSize1; i++) {
 							$("#table1 tbody")
@@ -816,6 +825,8 @@ function page1() {
 											+ data[i].name
 											+ "</td><td>"
 											+ data[i].wallet.source_type
+											+ "</td><td>"
+											+ data[i].wallet.wallet_amount
 											+ "</td><td>"
 											+ data[i].wallet.bonus_point
 											+ "</td><td>"
@@ -932,12 +943,12 @@ function bonusTotal(){
 								<div
 									style="display: flex; justify-content: center; margin-top: 30px">
 									<button class="btn btn-dark btn-block border-0 py-3"
-										type="button" id="btn" name="btn" 
-										onclick="check();" >即刻兌換</button>
+										type="button" id="btn" name="btn" onclick="check();">即刻兌換</button>
 									<button style="margin-left: 10px"
 										class="btn btn-dark btn-block border-0 py-3" type="button"
 										id="btn1" name="btn" data-bs-toggle='modal'
-										data-bs-target='#exampleModal' data-bs-whatever='@getbootstrap'>兌換紀錄查詢</button>
+										data-bs-target='#exampleModal'
+										data-bs-whatever='@getbootstrap'>兌換紀錄查詢</button>
 								</div>
 							</fieldset>
 						</form>
@@ -1017,20 +1028,25 @@ function bonusTotal(){
 					<div id="carouselExampleIndicators" class="carousel slide"
 						data-bs-ride="carousel">
 						<ol class="carousel-indicators">
-							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-								class="active"></li>
-							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+							<li data-bs-target="#carouselExampleIndicators"
+								data-bs-slide-to="0" class="active"></li>
+							<li data-bs-target="#carouselExampleIndicators"
+								data-bs-slide-to="1"></li>
+							<li data-bs-target="#carouselExampleIndicators"
+								data-bs-slide-to="2"></li>
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="3000">
-								<img src="img2/bonusphoto.png" style ="height:500px;width:620px" alt="...">
+								<img src="img2/bonusphoto.png"
+									style="height: 500px; width: 620px" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="img2/bonusphoto.png" style ="height:500px;width:620px" alt="...">
+								<img src="img2/bonusphoto.png"
+									style="height: 500px; width: 620px" alt="...">
 							</div>
 							<div class="carousel-item">
-								<img src="img2/bonusphoto.png"  style ="height:500px;width:620px" alt="...">
+								<img src="img2/bonusphoto.png"
+									style="height: 500px; width: 620px" alt="...">
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
@@ -1045,18 +1061,20 @@ function bonusTotal(){
 						</button>
 					</div>
 				</div>
-				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6" style="width:500px">
+				<div class="col-xl-5 col-lg-5 offset-lg-1 col-md-6"
+					style="width: 500px">
 					<div class="about_info">
 						<div class="section_title mb-20px">
 							<h1>您目前擁有的紅利 :</h1>
 							<div>
 								<input type="text"
-									style="width: 200px; background-color: #e0e0e0; border-radius: 30px 30px 30px 30px;text-align:center"
+									style="width: 200px; background-color: #e0e0e0; border-radius: 30px 30px 30px 30px; text-align: center"
 									id="showbonus" value="" readonly>
 							</div>
 							<br> <br> <br>
 							<h1>紅利紀錄查詢:</h1>
-							<h6 style="font-size:14px; color:grey">( 無選取日期或選擇單個日期一律顯示全部 )</h6>
+							<h6 style="font-size: 14px; color: grey">(
+								無選取日期或選擇單個日期一律顯示全部 )</h6>
 							<div id="container">
 								<div style="width: 150px;">
 									<span style="font-size: 20px; color: #c6a300">開始日期 :</span><input
@@ -1070,8 +1088,8 @@ function bonusTotal(){
 									<input
 										style="margin-left: 20px; width: 60px; height: 60px; border-radius: 60px 60px 60px 60px;"
 										type="button" class="btn btn-warning" data-bs-toggle='modal'
-										data-bs-target='#exampleModal1' data-bs-whatever='@getbootstrap'
-										value="查詢" id="showbydate"/>
+										data-bs-target='#exampleModal1'
+										data-bs-whatever='@getbootstrap' value="查詢" id="showbydate" />
 								</div>
 							</div>
 						</div>
@@ -1173,7 +1191,7 @@ function bonusTotal(){
 		</div>
 	</div>
 
-<script>
+	<script>
 
 </script>
 </body>

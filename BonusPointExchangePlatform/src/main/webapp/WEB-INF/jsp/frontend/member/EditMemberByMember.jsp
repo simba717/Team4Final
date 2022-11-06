@@ -1,27 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-		<!DOCTYPE html>
-		<html>
+<!DOCTYPE html>
+<html>
 
-		<head>
-			<script src="https://code.jquery.com/jquery-3.6.1.js"
-				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-			<meta charset="UTF-8">
-			<title>Check and Edit Member</title>
-			<style>
-				#news {
-					list-style: none;
-					height: 25px;
-					overflow: hidden;
-				}
-			</style>
-		</head>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>Check and Edit Member</title>
+<style>
+#news {
+	list-style: none;
+	height: 25px;
+	overflow: hidden;
+}
+</style>
+</head>
 
-		<body>
-			<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
-			<script type="text/javaScript">
+<body>
+	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
+	<script type="text/javaScript">
 		var fileDataURL = null;
 		var inputFileToLoad = null;
 		var submit = null
@@ -78,10 +80,7 @@
 					alert("您尚未填寫電話");
 					var phone = document.getElementById("phone");
 					phone.focus();
-				} else {
-					edit();
-					getindex();
-				}
+				} 
 
 			})
 
@@ -108,7 +107,7 @@
 							alert("ajax error")
 						},
 						success : function(data) {
-							console.log(data)
+// 							console.log(data)
 
 							var birth = data.account.member.birth.substr(0, 10)
 									.split('/').join('-')
@@ -122,18 +121,45 @@
 									.attr("value", data.account.member.email);
 							$("#phone")
 									.attr("value", data.account.member.phone);
-							if( data.account.member.image != "" || !data.employee.image.equals('NULL') ){
-							$("#preview_img").attr("src",
-									imageurl +  data.account.member.image);
+							if (data.account.member.image) {
+								$("#preview_img").attr("src", imageurl + data.account.member.image)
 							}
-							$("#welcome").text(data.account.member.name);
+							else{
+								$("#preview_img").attr("src", "${contextRoot}/img2/nopicture.jpg")
+							}
 							
 							
 						}
 
 					})
 		}
+		
+		
+		//**********完成編輯前做確認***********
+		function checkedit(){
+			Swal.fire({
+				icon: 'question',
+				title:'確定完成送出?',
+			    color: "#7373b9",
+			    showCancelButton: true,
+			    cancelButtonText:"取消",
+			    cancelButtonColor: "#FF0000",
+			    confirmButtonText: '確定',
+			    confirmButtonColor: "#0000e3"
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			    	Swal.fire('編輯成功', '', 'success').then((result) => {
+			    	edit();
+	 		    	window.location.reload()
+			    	})
+			    } 
+			})  
+			
+		
+	}
 
+		
+		//***********執行編輯*********
 		function edit() {
 			var password = document.getElementById("password").value
 			var username = document.getElementById("username").value;
@@ -141,7 +167,7 @@
 			var email = document.getElementById("email").value;
 			var phone = document.getElementById("phone").value;
 
-			var url = "<c:url value='/edit/member' />"
+			var url = "<c:url value='/edit/member'/>"
 			var object = {
 				'account' : {
 					'password' : password
@@ -160,11 +186,11 @@
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
 				error : function() {
-					alert("編輯失敗,請重新輸入")
+					Swal.fire('編輯成功', '', 'error')
 				},
 				success : function(data) {
-					alert("編輯成功")
-					window.location.reload();
+					Swal.fire('編輯成功', '', 'success')
+				
 				}
 			});
 
@@ -382,134 +408,148 @@
 		}
 	</script>
 
-			<br>
-			<br>
-			<br>
-			<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 
 
-			<div class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
-				style="height: 700px; width: 600px; margin-left: 250px; float: left;">
-				<div class="card" style="border-radius: 30px 30px 30px 30px;">
-					<div class="card-body" style="height: 600px; margin-top: 40px">
-						<h3 class="card-title">會員個人資料編輯</h3>
-						<div class="form-group">
+	<div
+		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
+		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
+		<div class="card" style="border-radius: 30px 30px 30px 30px;">
+			<div class="card-body" style="height: 600px; margin-top: 40px">
+				<h3 class="card-title">會員個人資料編輯</h3>
+				<form class="forms-sample" id="form">
+					<div class="form-group">
+						<label for="exampleInputName1">Account</label> <input type="text"
+							class="form-control"
+							style="color: #7b7b7b; background-color: #f0f0f0"
+							id="exampleInputName1" placeholder="Name" value="" readonly
+							style="backround-color:grey">
+					</div>
 
-							<label for="exampleInputEmail3">Password</label><input type="password" class="form-control"
-								id="password" placeholder="password" value="" />
-							<div id="idsp1" style="font-size: 20px"></div>
-							<div style="text-align: right; margin-right: 12px; margin-bottom: -20px">
-								<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-							</div>
-
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword4">Name</label> <input type="text" class="form-control"
-								id="username" name="username" placeholder="username" value="">
-							<div id="idsp2" style="font-size: 20px"></div>
-						</div>
-
-						<div class="form-group">
-							<label for="exampleInputCity1">Birth</label> <input type="date" class="form-control"
-								id="birth" placeholder="birth" value="">
-							<div id="idsp3" style="font-size: 20px"></div>
+					<div class="form-group">
+						<label for="exampleInputEmail3">Password</label><input
+							type="password" class="form-control" id="password"
+							placeholder="password" value="" />
+						<div id="idsp1" style="font-size: 20px"></div>
+						<div
+							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
+							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
 						</div>
 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword4">Name</label> <input type="text"
+							class="form-control" id="username" name="username"
+							placeholder="username" value="">
+						<div id="idsp2" style="font-size: 20px"></div>
+					</div>
 
-						<div class="form-group">
-							<label for="exampleInputCity1">Email</label> <input type="email" class="form-control"
-								id="email" placeholder="email" value="">
-							<div id="idsp4" style="font-size: 20px"></div>
-						</div>
-
-						<div class="form-group">
-							<label for="exampleInputCity1">Phone</label> <input type="text" class="form-control"
-								id="phone" placeholder="phone" value="">
-							<div id="idsp5" style="font-size: 20px"></div>
-						</div>
-
-						<div class="form-group" style="margin-top: 20px">
-							<label>Please select a photo</label><br> <input id="inputFileToLoad" type="file"
-								name="photo" onchange="loadImageFileAsURL()" class="file-upload-default">
+					<div class="form-group">
+						<label for="exampleInputCity1">Birth</label> <input type="date"
+							class="form-control" id="birth" placeholder="birth" value="">
+						<div id="idsp3" style="font-size: 20px"></div>
+					</div>
 
 
-						</div>
+					<div class="form-group">
+						<label for="exampleInputCity1">Email</label> <input type="email"
+							class="form-control" id="email" placeholder="email" value="">
+						<div id="idsp4" style="font-size: 20px"></div>
+					</div>
 
-						</form>
+					<div class="form-group">
+						<label for="exampleInputCity1">Phone</label> <input type="text"
+							class="form-control" id="phone" placeholder="phone" value="">
+						<div id="idsp5" style="font-size: 20px"></div>
+					</div>
 
-
+					<div class="form-group" style="margin-top: 20px">
+						<label>Please select a photo</label><br> <input
+							id="inputFileToLoad" type="file" name="photo"
+							onchange="loadImageFileAsURL()" class="file-upload-default">
 
 
 					</div>
-				</div>
+
+				</form>
+
+
+
+
 			</div>
-			<div style="text-align: center">
-				<img id="preview_img" src="${contextRoot}/img2/nophoto.png"
-					style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
+		</div>
+	</div>
+	<div style="text-align: center">
+		<img id="preview_img" src="#"
+			style="height: 400px; width: 400px; border-radius: 190px 190px 190px 190px;">
 
-				<br> <br> <br>
-				<h2>
-					歡迎您登入編輯頁面 : <span id="welcome"></span>
-				</h2>
-				<br>
-				<ul id="news">
-					<li style="color: red">小編貼心提醒您~~~</li>
-					<li style="color: red">現在參加簽到活動免費贈送紅利點數</li>
-					<li style="color: red">還不趕快透過上方連結簽到 ?</li>
-				</ul>
+		<br> <br> <br>
+		<h2>
+			歡迎您登入編輯頁面 : <span id="welcome"></span>
+		</h2>
+		<br>
+		<ul id="news">
+			<li style="color: red">小編貼心提醒您~~~</li>
+			<li style="color: red">現在參加簽到活動免費贈送紅利點數</li>
+			<li style="color: red">還不趕快透過上方連結簽到 ?</li>
+		</ul>
 
-				<br> <br>
-				<div style="justify-content: center;">
-					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none">
-					<button class="btn btn-danger" style="margin-left: 20px"
-						onclick="window.location.reload()">取消編輯</button>
-				</div>
-
-
-
-				<!-- 							<button id="edit" type="button">Submit</button>  -->
-				<!-- <div> -->
-				<!-- 		<table> -->
-
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>會員密碼：</td> -->
-				<!-- 				<td><input id='password' type="text" name="password" size="10"></td> -->
-				<!-- 			</tr> -->
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>會員姓名：</td> -->
-				<!-- 				<td><input id='username' type="text" name="username" size="20"></td> -->
-				<!-- 			</tr> -->
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>會員生日：</td> -->
-				<!-- 				<td><input id='birth' type="text" name="birth" size="20"></td> -->
-				<!-- 			</tr> -->
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>會員郵件：</td> -->
-				<!-- 				<td><input id='email' type="text" name="email" size="20"></td> -->
-				<!-- 			</tr> -->
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>會員電話：</td> -->
-				<!-- 				<td><input id='phone' type="text" name="phone" size="20"></td> -->
-				<!-- 			</tr> -->
-				<!-- 			<tr height='36'> -->
-				<!-- 				<td width='120' align='right'>圖片名稱：</td> -->
-				<!-- 				<td><input id='photoName' type="text" name="photoName" -->
-				<!-- 					size="20"></td> -->
-				<!-- 				<td><input id="inputFileToLoad" type="file" name="file" -->
-				<!-- 					onchange="loadImageFileAsURL()" /> <img id="preview_img2" -->
-				<!-- 					src="#" style="height: 100px; width: 100px"></td> -->
-				<!-- 			</tr> -->
-
-				<!-- 		</table> -->
-				<!-- 		<input type="button" id="edit" value="編輯會員"> -->
-				<!-- 	</div> -->
+		<br> <br>
+		<div style="justify-content: center;">
+			<input type="button" id="edit" class="btn btn-primary me-2"
+				value="確認送出" display="none" onclick="checkedit()">
+			<button class="btn btn-danger" style="margin-left: 20px"
+				onclick="window.location.reload()">取消編輯</button>
+		</div>
 
 
 
-				<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
-				<script>
+		<!-- 							<button id="edit" type="button">Submit</button>  -->
+		<!-- <div> -->
+		<!-- 		<table> -->
+
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>會員密碼：</td> -->
+		<!-- 				<td><input id='password' type="text" name="password" size="10"></td> -->
+		<!-- 			</tr> -->
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>會員姓名：</td> -->
+		<!-- 				<td><input id='username' type="text" name="username" size="20"></td> -->
+		<!-- 			</tr> -->
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>會員生日：</td> -->
+		<!-- 				<td><input id='birth' type="text" name="birth" size="20"></td> -->
+		<!-- 			</tr> -->
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>會員郵件：</td> -->
+		<!-- 				<td><input id='email' type="text" name="email" size="20"></td> -->
+		<!-- 			</tr> -->
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>會員電話：</td> -->
+		<!-- 				<td><input id='phone' type="text" name="phone" size="20"></td> -->
+		<!-- 			</tr> -->
+		<!-- 			<tr height='36'> -->
+		<!-- 				<td width='120' align='right'>圖片名稱：</td> -->
+		<!-- 				<td><input id='photoName' type="text" name="photoName" -->
+		<!-- 					size="20"></td> -->
+		<!-- 				<td><input id="inputFileToLoad" type="file" name="file" -->
+		<!-- 					onchange="loadImageFileAsURL()" /> <img id="preview_img2" -->
+		<!-- 					src="#" style="height: 100px; width: 100px"></td> -->
+		<!-- 			</tr> -->
+
+		<!-- 		</table> -->
+		<!-- 		<input type="button" id="edit" value="編輯會員"> -->
+		<!-- 	</div> -->
+
+
+
+		<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
+		<script>
 					$("#icon").click(
 						function () {
 							let pass_type = $("#password").attr("type");
@@ -542,6 +582,6 @@
 						}
 					}
 				</script>
-		</body>
+</body>
 
-		</html>
+</html>

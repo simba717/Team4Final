@@ -41,7 +41,7 @@ public class Account implements Serializable {
 	private Integer account_type;
 	
 	@Column(name = "check_code")
-	private String check_code;	
+	private String check_code;
 	
 	@Lob
 	@Column(name = "iv")

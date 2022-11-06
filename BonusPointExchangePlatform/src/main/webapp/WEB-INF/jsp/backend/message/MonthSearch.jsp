@@ -27,7 +27,7 @@
 	</div>
 
 	<div align='center'>
-		<div id="myPlot" style="width: 100%; max-width: 500px"></div>
+		<div id="myPlot" style="width: 100%; max-width: 700px"></div>
 
 		<script>
 			var food = null;
@@ -78,11 +78,11 @@
 
 											var layout = {
 												title : "本月銷售分析",
-												height: 500,
-												width: 600,
+												height : 600,
+												width : 700,
 												font : {
 													family : 'Courier New, monospace',
-													size : 20
+													size : 30
 												}
 											};
 

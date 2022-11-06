@@ -120,6 +120,7 @@
 									.substr(0, 10).split('/').join('-')
 							$("#exampleInputName1").attr("value",
 									data.account.account);
+							
 							$("#password").attr("value", data.account.password);
 							$("#EmployeeName").attr("value",
 									data.employee.name);
@@ -130,7 +131,7 @@
 									data.employee.email);
 							$("#Phone").attr("value",
 									data.employee.phone);
-						
+									
 							if (data.employee.image) {
 								$("#preview_img").attr("src", imageurl + data.employee.image)
 							}
@@ -541,7 +542,8 @@
 
 				<br> <br>
 				<div style="justify-content: center;">
-					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none" onclick="checkedit()">
+					<input type="button" id="edit" class="btn btn-primary me-2" value="確認送出" display="none"
+						onclick="checkedit()">
 					<button class="btn btn-danger" style="margin-left: 20px"
 						onclick="window.location.reload()">取消編輯</button>
 				</div>

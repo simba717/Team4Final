@@ -91,17 +91,6 @@ public class OrdersController {
 		return map;
 	}
 	
-//	/*建立購物車訂單明細*/
-//	@PostMapping(path = "/product/FrontendOrdersListDto" , produces = { "application/json; charset=UTF-8" })
-//	public String orderList(@RequestBody FrontendOrdersListDto frontendOrdersListDto, HttpSession session) {
-//		byte[] orderImage = productService.findById(frontendOrdersListDto.getProduct().getId()).getImage();
-//		frontendOrdersListDto.saveOrderImage(orderImage);
-//		Member member = (Member) session.getAttribute("user");
-//		order_DetailService.insertOrderDetail(ordersService.findUnPaidOrdersByMember(member), frontendOrdersListDto.getProduct(), frontendOrdersListDto.getOrderNumber(), member);
-//		
-//		return "frontend/mall/showProduct";
-//	}
-	
 	/*後臺查詢訂單編號*/
 	@GetMapping(path = "/orders/searchOrder={search}", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody Map<String, Object> searchOrder(@PathVariable String search) {

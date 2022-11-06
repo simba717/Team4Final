@@ -13,7 +13,7 @@ public class WsConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/AAAchat").withSockJS();
+        registry.addEndpoint("/chatroom.jsp").withSockJS();
     }
     
     @Override

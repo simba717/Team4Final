@@ -161,15 +161,6 @@
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
 								<div class="col-xl-9 col-md-9 col-md-12">
-									<div class="slider_text text-center">
-										<div class="deal_text">
-											<span>Mall</span>
-										</div>
-										<h3>
-											Shop <br> Easy
-										</h3>
-										<h4>Maxican</h4>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -178,15 +169,6 @@
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
 								<div class="col-xl-9 col-md-9 col-md-12">
-									<div class="slider_text text-center">
-										<div class="deal_text">
-											<span>Mall</span>
-										</div>
-										<h3>
-											Shop <br> Easy
-										</h3>
-										<h4>Maxican</h4>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -196,15 +178,6 @@
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
 								<div class="col-xl-9 col-md-9 col-md-12">
-									<div class="slider_text text-center">
-										<div class="deal_text">
-											<span>Big Deal</span>
-										</div>
-										<h3>
-											Shop <br> Easy
-										</h3>
-										<h4>Maxican</h4>
-									</div>
 								</div>
 							</div>
 						</div>

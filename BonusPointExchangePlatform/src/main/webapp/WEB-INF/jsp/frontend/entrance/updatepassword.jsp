@@ -279,7 +279,8 @@ z-index
 				<button class="loginbutton" >寄信</button>
 								<br>				
 				
-								<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>				
+								<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>
+										
 				
 			</form>
 			
@@ -288,10 +289,15 @@ z-index
 	</div>
 <jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript">
+	
+	//*****一鍵登入(書瑋用)*******
 	function inputValue(){
 		document.getElementById("account").value="EEIT151";
 		document.getElementById("email").value="eeit15119@outlook.com";
 	}
+	
+	
+	
 	
 	
 

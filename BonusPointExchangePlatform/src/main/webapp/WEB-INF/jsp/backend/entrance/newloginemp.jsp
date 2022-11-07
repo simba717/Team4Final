@@ -271,13 +271,18 @@ z-index
 			
 				<h1 class="logingh1">Sign in</h1>
 				
-				<input type="text" name="account" placeholder="帳號" /> 
-				<input type="password" name="password" placeholder="密碼" /> 
+				<input type="text" name="account" placeholder="帳號"  id="account"/> 
+				<input type="password" name="password" placeholder="密碼" id="password" /> 
 				
 				
 				
 				<a class="logina" href="updatepasswordemp">忘記密碼?</a>
 				<button class="loginbutton" >登入</button>
+					<br>
+				<div>
+				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>	
+				</div>	
 			</form>
 			
 		</div>
@@ -286,8 +291,17 @@ z-index
 
 	<script type="text/javascript">
 
+	//*****一鍵登入(書瑋用)*******
+	function inputValue(){
+		document.getElementById("account").value="root";
+		document.getElementById("password").value="root";
+	}
 	
-
+	//*****一鍵登入(庭偉用)*******
+	function inputValue1(){
+		document.getElementById("account").value="AAA";
+		document.getElementById("password").value="AAA";
+	}
 
 </script>
 

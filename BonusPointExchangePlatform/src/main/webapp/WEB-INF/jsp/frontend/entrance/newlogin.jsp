@@ -280,7 +280,10 @@ z-index
 				<a class="logina" href="updatepassword">忘記密碼?</a>
 				<button class="loginbutton" >登入</button>
 				<br>
-				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>				
+				<div>
+				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>		
+				</div>			
 				
 			</form>
 			
@@ -303,9 +306,17 @@ z-index
 	
 	<script type="text/javascript">
 
+	
+	//*****一鍵登入(書瑋用)*******
 		function inputValue(){
 			document.getElementById("account").value="EEIT151";
 			document.getElementById("password").value="EEIT151!";
+		}
+		
+		//*****一鍵登入(庭偉用)*******
+		function inputValue1(){
+			document.getElementById("account").value="Tom666";
+			document.getElementById("password").value="Tom123!";
 		}
 		
 

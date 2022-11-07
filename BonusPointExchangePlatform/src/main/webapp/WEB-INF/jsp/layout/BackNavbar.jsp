@@ -131,7 +131,7 @@
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo-img">
 								<a href="${contextRoot}/mainsearch"> <img
-									src="${contextRoot}/img/logo.png" alt="">
+									src="${contextRoot}/img/logo2.jpg" alt="">
 								</a>
 							</div>
 						</div>

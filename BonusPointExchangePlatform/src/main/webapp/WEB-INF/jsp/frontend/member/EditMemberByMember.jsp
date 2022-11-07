@@ -23,6 +23,7 @@
 
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
+	
 	<script type="text/javaScript">
 		var fileDataURL = null;
 		var inputFileToLoad = null;
@@ -548,8 +549,8 @@
 		<!-- 		</table> -->
 		<!-- 		<input type="button" id="edit" value="編輯會員"> -->
 		<!-- 	</div> -->
-
-
+<br><br><br><br><br>
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 
 		<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
 		<script>

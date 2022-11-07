@@ -14,11 +14,12 @@
 
 <!-- 商品 -->
 <section class="food_section layout_padding-bottom">
+<br>
         <div class="container">
             <div class="heading_container heading_center">
-                <h2>
+                <h1 style="font-family:Microsoft JhengHei;font-weight:bold;">
                     商城
-                </h2>
+                </h1>
             </div>
 
             <ul class="filters_menu">
@@ -40,6 +41,7 @@
                 </a>
             </div>
         </div>
+        <br>
     </section>
 
 
@@ -142,14 +144,14 @@ function displayData(data) {
                 `<a name=`+list[i].id+` data-bs-toggle="modal" data-bs-target="#productModal" ><img src=`+"${pageContext.request.contextPath}/product/downloadImage/"+list[i].id+" />" +"</a>"
                 +`</div>
                 <div class="detail-box">
-                    <h5 style="color: blue;">`+
+                    <h4 style="color:#FFFFFF;font-family:Microsoft JhengHei;font-weight:bold;">`+
                     list[i].product_name
-                    +`</h5>
-                    <p style="color: red;">`+
+                    +`</h4>
+                    <p style="color:#FFFFFF;font-family:Microsoft JhengHei;font-weight:bold;">`+
                     list[i].product_content
                     +`</p>
                     <div class="options">
-                        <h6>`+
+                        <h6 style="color:#FFD306;">`+
                         "$"+list[i].price
                         +`</h6>
                         <a name=`+list[i].id+` data-bs-toggle="modal" data-bs-target="#productModal">

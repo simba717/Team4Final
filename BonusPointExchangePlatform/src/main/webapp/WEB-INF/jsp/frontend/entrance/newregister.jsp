@@ -504,7 +504,7 @@ window.onload = function() {
 		</form>
 
 	</div>
-
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script>
 		let nameflag, acflag, pwdflag, mailflag ,phoneflag ,birthflag ,bankflag= false;
 

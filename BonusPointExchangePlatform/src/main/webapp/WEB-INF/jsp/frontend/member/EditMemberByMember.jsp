@@ -36,8 +36,8 @@
 			inputFileToLoad = document.getElementById("inputFileToLoad");
 			inputFileToLoad.addEventListener('change', loadImageFileAsURL);
 
-			document.getElementById("password").addEventListener("blur",
-					checkPassword);
+// 			document.getElementById("password").addEventListener("blur",
+// 					checkPassword);
 
 			document.getElementById("username").addEventListener("blur",
 					checkName);
@@ -60,11 +60,12 @@
 			}, 3000)
 
 			$("#edit").click(function() {
-				if ($("#password").val() == "") {
-					alert("您尚未填寫密碼");
-					var password = document.getElementById("password");
-					password.focus();
-				} else if ($("#username").val() == "") {
+// 				if ($("#password").var() == "") {
+// 					alert("您尚未填寫密碼");
+// 					var password = document.getElementById("password");
+// 					password.focus();
+// 				} else 
+				if ($("#username").val() == "") {
 					alert("您尚未填寫姓名");
 					var username = document.getElementById("username");
 					username.focus();
@@ -85,6 +86,7 @@
 			})
 
 		}
+	
 
 		function getindex() {
 			var url = "<c:url value='/frontned/edit/MemberByMember'/>"
@@ -161,7 +163,7 @@
 		
 		//***********執行編輯*********
 		function edit() {
-			var password = document.getElementById("password").value
+ 			var password = document.getElementById("password").value
 			var username = document.getElementById("username").value;
 			var birth = document.getElementById("birth").value;
 			var email = document.getElementById("email").value;
@@ -213,62 +215,62 @@
 			}
 		}
 
-		//************確認密碼*************
-		function checkPassword() {
-			  let c1 = false; let c2 = false; c3 = false;
-              let ThePwdObjVal = document.getElementById("password").value;
-              let showpwd = document.getElementById("idsp1");
-          	let v = document.querySelector("#password");
-              let pwdvallength = ThePwdObjVal.length;
-              if (ThePwdObjVal != "") {
-                  if (pwdvallength >= 6) {
-                      for (let i = 0; i < pwdvallength; i++) {
-                          let ch = ThePwdObjVal.charAt(i).toUpperCase();
-                          if (ch == "\u0021" || ch == "\u0040" || ch == "\u0023" || ch == "\u0022" || ch == "\u0024" || ch == "\u0025" || ch == "\u005e" || ch == "\u0026" || ch == "\u002a") {
-                              c1 = true;
-                          }
-                          if ((ch >= "A" && ch <= "Z")) {
-                              c2 = true;
-                          }
-                          if ((ch >= "0" && ch <= "9")) {
-                              c3 = true
-                          }
-                          if (c1 == true && c2 == true && c3 == true) {
-                              break;
-                          }
-                      }
-                      if (c1 == true && c2 == true && c3 == true) {
-                    		v.classList.remove("is-invalid");
-							v.classList.add("is-valid");
-                    	  showpwd.innerHTML = ("輸入正確");
-                    	  showpwd.style = "color:green;font-size:14px";
-                      } else {
-                      	v.classList.remove("is-valid");
-						v.classList.add("is-invalid");
-                	  showpwd.innerHTML = ("密碼至少包含一個特殊符號、數字、英文");
-                	  showpwd.style = "color:red;font-size:14px";
-                      }
-                  } else {
-                	  	v.classList.remove("is-valid");
-						v.classList.add("is-invalid");
-              	  showpwd.innerHTML = ("密碼最少六位數");
-              	  showpwd.style = "color:red;font-size:14px";
-                  }
-              } else {
-            	  	v.classList.remove("is-valid");
-					v.classList.add("is-invalid");
-            	  showpwd.innerHTML = ("不可輸入空值");
-            	  showpwd.style = "color:red;font-size:14px";
-              }
+// 		//************確認密碼*************
+// 		function checkPassword() {
+// 			  let c1 = false; let c2 = false; c3 = false;
+//               let ThePwdObjVal = document.getElementById("password").value;
+//               let showpwd = document.getElementById("idsp1");
+//           	let v = document.querySelector("#password");
+//               let pwdvallength = ThePwdObjVal.length;
+//               if (ThePwdObjVal != "") {
+//                   if (pwdvallength >= 6) {
+//                       for (let i = 0; i < pwdvallength; i++) {
+//                           let ch = ThePwdObjVal.charAt(i).toUpperCase();
+//                           if (ch == "\u0021" || ch == "\u0040" || ch == "\u0023" || ch == "\u0022" || ch == "\u0024" || ch == "\u0025" || ch == "\u005e" || ch == "\u0026" || ch == "\u002a") {
+//                               c1 = true;
+//                           }
+//                           if ((ch >= "A" && ch <= "Z")) {
+//                               c2 = true;
+//                           }
+//                           if ((ch >= "0" && ch <= "9")) {
+//                               c3 = true
+//                           }
+//                           if (c1 == true && c2 == true && c3 == true) {
+//                               break;
+//                           }
+//                       }
+//                       if (c1 == true && c2 == true && c3 == true) {
+//                     		v.classList.remove("is-invalid");
+// 							v.classList.add("is-valid");
+//                     	  showpwd.innerHTML = ("輸入正確");
+//                     	  showpwd.style = "color:green;font-size:14px";
+//                       } else {
+//                       	v.classList.remove("is-valid");
+// 						v.classList.add("is-invalid");
+//                 	  showpwd.innerHTML = ("密碼至少包含一個特殊符號、數字、英文");
+//                 	  showpwd.style = "color:red;font-size:14px";
+//                       }
+//                   } else {
+//                 	  	v.classList.remove("is-valid");
+// 						v.classList.add("is-invalid");
+//               	  showpwd.innerHTML = ("密碼最少六位數");
+//               	  showpwd.style = "color:red;font-size:14px";
+//                   }
+//               } else {
+//             	  	v.classList.remove("is-valid");
+// 					v.classList.add("is-invalid");
+//             	  showpwd.innerHTML = ("不可輸入空值");
+//             	  showpwd.style = "color:red;font-size:14px";
+//               }
               
-			if ($("#password").val() == "" || $("#username").val() == "" || $("#birth").val() == ""
-				|| $("#email").val() == ""
-				|| $("#phone").val() == "" ) {
-			$("#edit").prop("disabled", true)
-		} else {
-			$("#edit").prop("disabled", false)
-		}
-		}
+// 			if ($("#password").val() == "" || $("#username").val() == "" || $("#birth").val() == ""
+// 				|| $("#email").val() == ""
+// 				|| $("#phone").val() == "" ) {
+// 			$("#edit").prop("disabled", true)
+// 		} else {
+// 			$("#edit").prop("disabled", false)
+// 		}
+// 		}
 
 		//*********確認名字***********
 		function checkName() {
@@ -418,7 +420,7 @@
 
 	<div
 		class="col-12 grid-margin stretch-card shadow p-3 mb-5 bg-body rounded"
-		style="height: 700px; width: 600px; margin-left: 250px; float: left;">
+		style="height: 700px; width: 600px; margin-left: 300px; float: left;">
 		<div class="card" style="border-radius: 30px 30px 30px 30px;">
 			<div class="card-body" style="height: 600px; margin-top: 40px">
 				<h3 class="card-title">會員個人資料編輯</h3>
@@ -431,15 +433,15 @@
 							style="backround-color:grey">
 					</div>
 
-					<div class="form-group">
-						<label for="exampleInputEmail3">Password</label><input
+					<div class="form-group" style="">
+						<label for="exampleInputEmail3">Password</label><a href="../updatepassword"><input type="button" value="修改密碼"  style="margin-top:10px;margin-left:10px;margin-bottom: 10px"></a><input
 							type="password" class="form-control" id="password"
-							placeholder="password" value="" />
+							placeholder="password" value="" style="color: #7b7b7b; background-color: #f0f0f0" readonly/>
 						<div id="idsp1" style="font-size: 20px"></div>
-						<div
-							style="text-align: right; margin-right: 12px; margin-bottom: -20px">
-							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i>
-						</div>
+<!-- 						<div -->
+<!-- 							style="text-align: right; margin-right: 12px; margin-bottom: -20px"> -->
+<!-- 							<i class="show_pass fa-solid fa-eye-slash" id="icon"></i> -->
+<!-- 						</div> -->
 
 					</div>
 					<div class="form-group">
@@ -506,6 +508,7 @@
 			<button class="btn btn-danger" style="margin-left: 20px"
 				onclick="window.location.reload()">取消編輯</button>
 		</div>
+		</div>
 
 
 
@@ -550,21 +553,21 @@
 
 		<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
 		<script>
-					$("#icon").click(
-						function () {
-							let pass_type = $("#password").attr("type");
-							console.log(pass_type)
+// 					$("#icon").click(
+// 						function () {
+// 							let pass_type = $("#password").attr("type");
+// 							console.log(pass_type)
 
-							if (pass_type === "password") {
-								$("#password").attr("type", "type");
-								$("#icon").removeClass("fa-solid fa-eye-slash")
-									.addClass("fa-solid fa-eye")
-							} else {
-								$("#password").attr("type", "password");
-								$("#icon").removeClass("fa-solid fa-eye").addClass(
-									"fa-solid fa-eye-slash")
-							}
-						})
+// 							if (pass_type === "password") {
+// 								$("#password").attr("type", "type");
+// 								$("#icon").removeClass("fa-solid fa-eye-slash")
+// 									.addClass("fa-solid fa-eye")
+// 							} else {
+// 								$("#password").attr("type", "password");
+// 								$("#icon").removeClass("fa-solid fa-eye").addClass(
+// 									"fa-solid fa-eye-slash")
+// 							}
+// 						})
 
 					$("#inputFileToLoad").change(function () {
 						readURL(this);

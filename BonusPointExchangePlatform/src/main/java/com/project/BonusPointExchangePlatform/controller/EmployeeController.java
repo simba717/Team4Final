@@ -368,7 +368,7 @@ public class EmployeeController {
 			m.addAttribute("account", user);
 
 
-			return "/layout/BackNavbar";
+			return "redirect:/mainsearch";
 		}
 	}
 

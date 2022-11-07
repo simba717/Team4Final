@@ -62,11 +62,12 @@ public class WalletController {
 		
 		System.out.println(123);
 		WalletDto all = new WalletDto();
-		int allBonus = wService.allBonus(id);		
-		if(allBonus>0) {
+		int allBonus = wService.allBonus(id);	
+		System.out.println(allBonus);
+		if(allBonus !=0) {
 			all.setBonusTotal(allBonus);
 		}else {
-			all.setMessage("目前尚未擁有紅利點數");
+			all.setMessage("尚未擁有紅利點數");
 		}
 		return all;
 		

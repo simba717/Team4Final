@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -42,6 +43,7 @@ import com.project.BonusPointExchangePlatform.model.Employee;
 import com.project.BonusPointExchangePlatform.model.Member;
 import com.project.BonusPointExchangePlatform.model.Orders;
 import com.project.BonusPointExchangePlatform.model.goodphoto;
+import com.project.BonusPointExchangePlatform.service.CipherUtilsService;
 import com.project.BonusPointExchangePlatform.service.EmployeeService;
 import com.project.BonusPointExchangePlatform.service.LoginService;
 import com.project.BonusPointExchangePlatform.service.MailService;
@@ -66,6 +68,9 @@ public class MemberController {
 	
 	@Autowired
 	private OrdersService ordersService; 
+	
+	@Autowired
+	private CipherUtilsService cipherUtilsService;
 	
 	
 	SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -226,7 +231,7 @@ public class MemberController {
 		//***********前台會員個人編輯載入後頁面*********
 		@ResponseBody
 		@PostMapping(path = "/frontned/edit/MemberByMember", produces = {"application/json;charset=UTF-8"})
-		public MemberDto editMemberByMember(@RequestBody MemberDto dto, HttpSession session ) {
+		public MemberDto editMemberByMember(@RequestBody MemberDto dto, HttpSession session ) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 			
 			Member member = (Member)session.getAttribute("member");
 			Integer id = member.getId();
@@ -247,21 +252,35 @@ public class MemberController {
 			
 			Member member = (Member)session.getAttribute("member");
 			Integer id = member.getId();
-			
+			System.out.println(id);
 			String password = dto.getAccount().getPassword();
-//		    System.out.println(dto.convertImage()); 
+//			System.out.println(password);
+			//加密過程
+//			String key = "kittymickysnoopy"; // 對稱式金鑰
+////			byte[] iv = new byte[128 / 8]; // 初始向量
+////			SecureRandom srnd = new SecureRandom();
+////			srnd.nextBytes(iv);
+//			Account account = mService.showMemberById(id);
+//			System.out.println(account.getIv());
+//			String newpassword = CipherUtilsService.encryptString(key, password, account.getIv());
+//			System.out.println(newpassword);
+			//
 			String name = dto.getName();
 			LocalDate birth = LocalDate.parse(dto.getBirth());
 			String email = dto.getEmail();
 			String phone = dto.getPhone();
+			System.out.println(name);
+			System.out.println(birth);
+			System.out.println(email);
+			System.out.println(phone);
 			
 			if(dto.getImage()==null) {
 			MemberDto m1 = mService.findOnebyId(id);
 			byte[] image2 = m1.getMember().getImage();
-			mService.editMemberDetail(name, birth, email, phone, password,image2, id);
+			mService.editMemberDetail(name, birth, email, phone,password,image2, id);
 			}else {
 			byte[] image = dto.convertImage();
-			mService.editMemberDetail(name, birth, email, phone, password,image, id);
+			mService.editMemberDetail(name, birth, email, phone,password,image, id);
 			}
 			MemberDto dto1 =new MemberDto();
 			dto1.setAccount(mService.showMemberById(id));

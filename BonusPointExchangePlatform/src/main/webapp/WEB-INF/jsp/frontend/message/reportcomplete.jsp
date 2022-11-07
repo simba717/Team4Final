@@ -306,13 +306,13 @@ z-index
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 	<div class="loginbody">
-		<h2 class="logingh2">回報問題</h2>
+		<h2 class="logingh2">回報問題完成</h2>
 		<div class="logincontainer" id="logincontainer">
 
 			<div class="form-logincontainer sign-in-container">
 
 				<div style="position: absolute; top: 36%; left: 41%;">
-					<h1 class="logingh1">回報問題完成</h1>
+					<h1 class="logingh1" align="center"></h1>
 
 
 					<br> <br>

@@ -41,13 +41,18 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	
 	@Query(value ="select a.* from Member m "
 			+ "join account a on m.id = a.member_id "
-			+ "where m.id= :id " , nativeQuery = true)
+			+ "where m.id = :id " , nativeQuery = true)
 	Account showMemberById(@Param(value="id") Integer id); 
 	
 	@Modifying 
 	@Transactional
 	@Query(value="update Account set password = :password , update_at = getdate() where member_id = :id ",nativeQuery = true)
 	void editAccountDetail(@Param(value="password") String password ,@Param(value="id") Integer id);
+	
+	@Modifying 
+	@Transactional
+	@Query(value="update Account set password = :password , update_at = getdate() where employee_id = :id ",nativeQuery = true)
+	void editAccountDetailByEmployee(@Param(value="password") String password ,@Param(value="id") Integer id);
 	
 	@Query(value = "select * from Account a "
 			+ "join Member m on m.id = a.member_id "

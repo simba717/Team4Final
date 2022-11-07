@@ -198,19 +198,19 @@ body {
 	<div id="myPlot" style="width: 100%; max-width: 700px" padding=1></div>
 
 	<div class="login-box">
-		<h2>主查詢</h2>
+		<h2 style="font-family:Microsoft JhengHei;font-weight:bold;">主查詢</h2>
 		<form>
 			<div class="user-box">
 			 <!-- <input type="text" name="id" > <label>Input</label> -->	
 			</div>
 
-			<button class="button" formaction="barchar" >
+			<button class="button" formaction="barchar" style="font-family:Microsoft JhengHei;font-weight:bold;">
 			<span></span>
 			<span></span> 
 			<span></span> 
 			<span></span> 總數-長條圖 </button>
 			
-			<button class="button" formaction="piechar"> 
+			<button class="button" formaction="piechar" style="font-family:Microsoft JhengHei;font-weight:bold;"> 
 			<span></span> 
 			<span></span>
 			<span></span> 
@@ -218,7 +218,7 @@ body {
 			
 			
 			
-			<button class="button" formaction="day7search"> 
+			<button class="button" formaction="day7search" style="font-family:Microsoft JhengHei;font-weight:bold;"> 
 			<span></span> 
 			<span></span> 
 			<span></span>
@@ -226,13 +226,13 @@ body {
 			
 			
 			
-			<button class="button" formaction="monthsearch"> 
+			<button class="button" formaction="monthsearch" style="font-family:Microsoft JhengHei;font-weight:bold;"> 
 			<span></span> 
 			<span></span> 
 			<span></span>
 			<span></span> 本月銷售情況</button> 
 			</form>
 	
-
+</div>
 </body>
 </html>

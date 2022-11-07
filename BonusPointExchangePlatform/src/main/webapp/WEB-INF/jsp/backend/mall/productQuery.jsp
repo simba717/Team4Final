@@ -505,7 +505,7 @@ var deleteURL = "<c:url value='/product/delete' />";
 	<div class='col-lg-12 grid-margin stretch-card'>
 		<div class='card'>
 			<div class='card-body'>				
-   				<h2 class='card-title'>商品資料總覽</h2>
+   				<h2 class='card-title' style="font-family:Microsoft JhengHei;font-weight:bold;">商品資料總覽</h2>
    				<div id='pagebtn'></div>
 				<div style="margin-right: 2000px; margin-top: -50px; width: 200px">
 					<button class='btn btn-info' style='font-size:15pt' data-bs-toggle='modal' data-bs-target='#create' data-bs-whatever='@getbootstrap'>+ 商品新增</button>					

@@ -330,18 +330,24 @@ public class MemberController {
 	@PostMapping(path = "/home")
 	public String checkAccount(@RequestParam("account") String account, @RequestParam("password") String password,
 			Model m) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
-		boolean result = loginService.checkAccount(account, password);
+		String result = loginService.checkAccount(account, password);
 
-		if (!result) {
+		if (result.equals("NO")) {
 			return "/frontend/entrance/newloginfail";
 		} else {
+			if(result.equals("OK")) {
 			Account user = loginService.getBeanByAcc(account);
 			Orders orders = ordersService.findUnPaidOrdersByMember(user.getMember());
 			if(orders == null) {
 				ordersService.insertOrder(user.getMember());
 			}
 			m.addAttribute("member", user.getMember());
-			return "redirect:/";
+			return "redirect:/";}
+			else {
+				return "/frontend/entrance/newloginfailrestore";
+			}
+			
+			
 		}
 	}
 

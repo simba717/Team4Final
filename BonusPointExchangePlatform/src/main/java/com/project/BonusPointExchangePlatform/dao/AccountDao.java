@@ -36,7 +36,7 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 	
 	
 	@Query(value = "select * from Account "
-			+ "where account = :account  and account_type= 1 ", nativeQuery = true)
+			+ "where account = :account  and (account_type= 1 or account_type=0)", nativeQuery = true)
 	Account checkPwdByAcc(@Param(value = "account") String acc);
 	
 	@Query(value ="select a.* from Member m "

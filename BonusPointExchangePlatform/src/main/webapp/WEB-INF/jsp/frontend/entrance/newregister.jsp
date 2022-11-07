@@ -494,14 +494,17 @@ window.onload = function() {
 									<span id="imageHelp"></span> 
 								</label> <br>
 							</div>
+			
 							<input type="Submit" class="signupbutton" value="註冊"
-								id="idsubmit">
+								id="idsubmit">	
+								<br>		
+									<a  onclick="inputValue()" class="signupbutton" id="preset">一鍵輸入註冊資料</a>				
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
-
+		
 	</div>
 
 	<script>
@@ -818,6 +821,21 @@ window.onload = function() {
 		
 		
 		
+
+		
+
+		function inputValue(){
+			document.getElementById("account").value="EEIT151";
+			document.getElementById("password").value="EEIT151!";
+			document.getElementById("name").value="姿澈慧";
+			document.getElementById("email").value="eeit15119@outlook.com";			
+			document.getElementById("phone").value="0972324316";
+			document.getElementById("birth").value="1979-07-24";
+			document.getElementById("account_no").value="1511314520";
+		}
+		
+		
+		
 		
 		
 		
@@ -831,6 +849,8 @@ window.onload = function() {
 				document.getElementById("idsubmit").setAttribute("disabled","true");
 			}
 		}
+		
+		
 	</script>
 
 

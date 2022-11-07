@@ -272,13 +272,15 @@ z-index
 			
 				<h1 class="logingh1">Change Password</h1>
 				
-				<input type="text" name="account" placeholder="帳號" /> 
-				<input type="text" name="email" placeholder="會員信箱" /> 
+				<input type="text" name="account" placeholder="帳號" id="account"/> 
+				<input type="text" name="email" placeholder="會員信箱" id="email"/> 
 				<br>
-				<br>
-				
-				
+				<br>				
 				<button class="loginbutton" >寄信</button>
+								<br>				
+				
+								<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>				
+				
 			</form>
 			
 		</div>
@@ -286,7 +288,11 @@ z-index
 	</div>
 <jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript">
-
+	function inputValue(){
+		document.getElementById("account").value="EEIT151";
+		document.getElementById("email").value="eeit15119@outlook.com";
+	}
+	
 	
 
 

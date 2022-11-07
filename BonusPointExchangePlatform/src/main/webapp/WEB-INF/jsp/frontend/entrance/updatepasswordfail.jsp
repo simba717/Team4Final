@@ -285,7 +285,7 @@ z-index
 		</div>
 	</div>
 	</div>
-
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 
 	

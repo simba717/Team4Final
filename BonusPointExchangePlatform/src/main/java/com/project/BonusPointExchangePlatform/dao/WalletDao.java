@@ -61,7 +61,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * from Wallet where member_id=:member_id and source_type!='回饋' ", nativeQuery = true)
 	List<Wallet> findMemberWalletAmount(@Param(value = "member_id") Member member_id);
 
-	@Query(value = "select * from Wallet where member_id=:member_id and source_type!='回饋' ", nativeQuery = true)
+	@Query(value = "select * from Wallet where member_id=:member_id  ", nativeQuery = true)
 	List<Wallet> findMemberBonusAmount(@Param(value = "member_id") Member member_id);
 
 	@Modifying

@@ -42,12 +42,8 @@
                 <div class="col-md-4 footer-col">
                     <div class="footer_detail">
                         <a class="footer-logo">
-                            欸過來e-shop
+                            <img src="${contextRoot}/img2/footer.png">
                         </a>
-                        <p>
-                            Necessary, making this the first true generator on the Internet. It uses a dictionary of
-                            over 200 Latin words, combined with
-                        </p>
                         <div class="footer_social">
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>

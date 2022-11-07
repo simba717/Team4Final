@@ -379,6 +379,7 @@ function checkbankrepeat() {
 		   var result = JSON.parse(xhr.responseText);
 		   if (result== true) {
 			  bankcheckrepeat=true;
+			  finalcheck();
 			  message = "<font color='green' size='-2'>銀行帳號可使用</font>";
 		   }else {
 			  bankcheckrepeat=false
@@ -506,7 +507,7 @@ window.onload = function() {
 		</form>
 		
 	</div>
-
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	<script>
 		let nameflag, acflag, pwdflag, mailflag ,phoneflag ,birthflag ,bankflag= false;
 
@@ -833,7 +834,6 @@ window.onload = function() {
 			document.getElementById("birth").value="1979-07-24";
 			document.getElementById("account_no").value="1511314520";
 		}
-		
 		
 		
 		

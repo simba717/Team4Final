@@ -5,17 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-	crossorigin="anonymous">
-<!-- CDN -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous">
-	
-</script>
+<!-- <link -->
+<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet" -->
+<!-- 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" -->
+<!-- 	crossorigin="anonymous"> -->
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" -->
+<!-- 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" -->
+<!-- 	crossorigin="anonymous"> -->
+<!-- </script> -->
 <title>會員遊戲紀錄</title>
 <script>
 	window.onload = function() {
@@ -54,14 +53,17 @@
 </head>
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
+	<br>
 	<div id='wrapper' align='center'>
 		<div id="header">
-			<h1>遊戲紀錄列表</h1>
+			<h1 style="font-family:Microsoft JhengHei;font-weight:bold;">遊戲紀錄列表</h1>
 			<hr>
 		</div>
 		<div id="container">
 			<div id="content"></div>
 		</div>
 	</div>
+	<br>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </body>
 </html>

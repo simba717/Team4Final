@@ -7,13 +7,19 @@
 <meta charset="UTF-8">
 <title>shoppingCart</title>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+
+<style>
+ #showshow{
+            font-weight: bold !important;
+            font-family: Microsoft JhengHei !important;
+    }
+</style>
 </head>
 <body>
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 
-<div id="showshow" class="container"></div>
+<div id="showshow" class="container-fluid" style="background-image:url(${contextRoot}/img2/haobacking.png) ;background-repeat: repeat-y;"></div>
 
-<div id="showNew"></div>
 <form  id="checkId" action="orders/checkoutCreditCard" method="post" enctype="multipart/form-data" class="visually-hidden">
 <input type="text" name="sendBonus" id="sendBonus" />
 <input type="text" name="sendWallet" id="sendWallet" />
@@ -466,6 +472,11 @@ function displayData(data) {
     remainingBonus = order.remainingBonus;
     remainingWallet = order.remainingWallet;
     if (order != null) {
+    	if(order.orders.order_detail.length ==0){
+    		htmlSeg += `<div class="col-12 g-0 align-middle">`;
+    		htmlSeg += `<img src="${contextRoot}/img2/58.png" class="rounded mx-auto d-block" style="width:450px;height:450px">`
+    		htmlSeg +=	`</div>`;
+    	}
     	for(var i in order.orders.order_detail){
     	htmlSeg += `<div class="row">`;
     	htmlSeg += `<div class="col-5 g-0">`;

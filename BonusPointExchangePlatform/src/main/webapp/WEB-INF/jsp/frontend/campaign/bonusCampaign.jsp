@@ -81,7 +81,7 @@
         }
 
         #calendar .dateList .red {
-            background: #F90;
+            background:#FFDC35;
             color: #fff;
         }
 
@@ -90,7 +90,7 @@
         }
         
         #calendar .dateList .sign {
-            background-image: url("${contextRoot}/img2/2.jpg");
+            background-image: url("${contextRoot}/img2/correct.png");
             background-repeat: no-repeat;
             background-position: center;
             color: black;
@@ -105,15 +105,15 @@
 		<div class="row justify-content-between">
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameSign"><img src="https://picsum.photos/300/200/?random=10" class="w-100"></a>
+					<a id="gameSign"><img src="${contextRoot}/img2/Campaign1.png" class="w-100"></a>
 					<div class="accordion" id="gameOne">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseOne"
-							aria-expanded="false" aria-controls="collapseOne">簽到活動</button>
+							aria-expanded="false" aria-controls="collapseOne" style="font-family:Microsoft JhengHei;font-weight:bold;">簽到活動</button>
 						<div id="collapseOne" class="accordion-collapse collapse"
 							aria-labelledby="headingOne" data-bs-parent="#gameOne">
 							<div class="accordion-body">
-								<p>每天登入獲得500紅利點，單月無上限，登入越多領取越多!想參加活動直接點及圖片就可參加，還沒簽到的會員們還不馬上點擊。</p>
+								<p style="font-family:Microsoft JhengHei;font-weight:bold;">每天登入獲得500紅利點，單月無上限，登入越多領取越多!想參加活動直接點及圖片就可參加，還沒簽到的會員們還不馬上點擊。</p>
 								<button id="btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dateModal" style="margin-left:60px">查詢簽到日期</button>
 							</div>
 						</div>
@@ -122,16 +122,16 @@
 			</div>
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameBirthGift"><img src="https://picsum.photos/300/200/?random=10" class="w-100"></a>
+					<a id="gameBirthGift"><img src="${contextRoot}/img2/Campaign2.png" class="w-100"></a>
 					<div class="accordion" id="gameTwo">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-							aria-expanded="false" aria-controls="collapseTwo">生日禮活動
+							aria-expanded="false" aria-controls="collapseTwo" style="font-family:Microsoft JhengHei;font-weight:bold;">生日禮活動
 						</button>
 						<div id="collapseTwo" class="accordion-collapse collapse"
 							aria-labelledby="headingTwo" data-bs-parent="#gameTwo">
 							<div class="accordion-body">
-								<p>一年一度生日大禮只要生日當天點擊圖片，即可獲得紅利一萬點，你今天生日了嗎?</p>
+								<p style="font-family:Microsoft JhengHei;font-weight:bold;">一年一度生日大禮只要生日當天點擊圖片，即可獲得紅利一萬點，你今天生日了嗎?</p>
 							</div>
 						</div>
 					</div>
@@ -139,17 +139,17 @@
 			</div>
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameCrystalGift"><img src="https://picsum.photos/300/200/?random=10"
+					<a id="gameCrystalGift"><img src="${contextRoot}/img2/Campaign3.png"
 						class="w-100"></a>
 					<div class="accordion" id="gameThree">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseThree"
-							aria-expanded="false" aria-controls="collapseThree">
+							aria-expanded="false" aria-controls="collapseThree" style="font-family:Microsoft JhengHei;font-weight:bold;">
 							本月遊戲</button>
 						<div id="collapseThree" class="accordion-collapse collapse"
 							aria-labelledby="headingThree" data-bs-parent="#gameThree">
 							<div class="accordion-body">
-								<p>本月的小遊戲採集魔水晶，驚險刺激的遊玩看你能採到幾個黃水晶，每日一次只要遊玩就能獲得500紅利點數，還不快點擊圖片去體驗遊戲。</p>
+								<p style="font-family:Microsoft JhengHei;font-weight:bold;">本月的小遊戲採集魔水晶，驚險刺激的遊玩看你能採到幾個黃水晶，每日一次只要遊玩就能獲得500紅利點數，還不快點擊圖片去體驗遊戲。</p>
 							</div>
 						</div>
 					</div>
@@ -189,8 +189,9 @@
         </div>
  </div>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div id="membercheck" class="visually-hidden">${member}</div>
-	
+<jsp:include page="../../layout/footer.jsp"></jsp:include>	
 	<script>
 	//hover
 	$(".item a").hover(function () {

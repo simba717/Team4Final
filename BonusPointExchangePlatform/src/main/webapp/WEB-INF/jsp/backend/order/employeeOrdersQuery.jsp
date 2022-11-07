@@ -90,7 +90,7 @@
 	<div class='col-lg-12 grid-margin stretch-card'>
 		<div class='card'>
 			<div class='card-body'>				
-   				<h2 class='card-title'>訂單資料總覽</h2>   				   				
+   				<h2 class='card-title' style="font-family:Microsoft JhengHei;font-weight:bold;">訂單資料總覽</h2>   				   				
    				<div class='table-responsive pt-3'>
 					<div id='somedivS'></div>
 					<hr>

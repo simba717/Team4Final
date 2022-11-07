@@ -84,13 +84,14 @@
 </head>
 <body>
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>
+<br>
 <div align='center'>
 	訂單搜尋：<input type="text" name="query" id='query' placeholder='訂單號碼'>
 	<input type='submit' id='queryData' value="查詢">	<br><br> 
 	<div class='col-lg-12 grid-margin stretch-card'>
 		<div class='card'>
 			<div class='card-body'>				
-   				<h2 class='card-title'>訂單資料總覽</h2>   				   				
+   				<h2 class='card-title' style="font-family:Microsoft JhengHei;font-weight:bold;">訂單資料總覽</h2>   				   				
    				<div class='table-responsive pt-3'>
 					<div id='somedivS'></div>
 					<hr>
@@ -100,6 +101,7 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 <script>
 document.getElementById("queryData").addEventListener('click', query);
 

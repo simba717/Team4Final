@@ -201,6 +201,10 @@ public class OrdersController {
 		byte[] orderImage = productService.findById(frontendOrdersListDto.getProduct().getId()).getImage();
 		frontendOrdersListDto.saveOrderImage(orderImage);
 		Member member = (Member) session.getAttribute("member");
+		Orders orders = ordersService.findUnPaidOrdersByMember(member);
+		if(orders == null) {
+			ordersService.insertOrder(member);
+		}		
 		order_DetailService.insertOrderDetail(ordersService.findUnPaidOrdersByMember(member), frontendOrdersListDto.getProduct(), frontendOrdersListDto.getOrderNumber(), member);
 		
 		List<FrontendOrdersListDto> list = (List<FrontendOrdersListDto>)session.getAttribute("ordersListContent");

@@ -152,11 +152,12 @@ public class ProductController {
 	}
 
 	// pill ordersListContent session清掉
-	@ResponseBody
+	
 	@GetMapping("/product/pillSessionClear")
-	public void processMainAction3(HttpSession httpSession) {
+	public String processMainAction3(HttpSession httpSession) {
 		httpSession.removeAttribute("pill");
 		httpSession.removeAttribute("ordersListContent");
+		return "redirect:/shoppingCart";
 	}
 
 	@GetMapping("/product/downloadImage/{id}")

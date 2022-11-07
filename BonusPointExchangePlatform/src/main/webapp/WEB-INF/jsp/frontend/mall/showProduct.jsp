@@ -68,7 +68,7 @@
  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="${contextRoot}/img2/2.jpg" style="height: 50px;width: 50px;" class="rounded me-2">
+                <img src="${contextRoot}/img2/correct.png" style="height: 50px;width: 50px;" class="rounded me-2">
                 <strong class="me-auto">通知</strong>
                 <small>1秒前</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

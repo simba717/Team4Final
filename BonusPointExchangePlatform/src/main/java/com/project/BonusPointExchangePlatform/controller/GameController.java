@@ -138,14 +138,14 @@ public class GameController {
 //////////////瑋煊的頭//////////////////////////////////
 
 /////////////// 員工查詢遊戲發放的紅利/////////////////////////////////////////////
-// navbar連結JSP
+//navbar連結JSP
 @GetMapping("/game/GameBonus")
 public String getGameBonus() {
 
 return "/backend/campaign/memberGameBonus";
 }
 
-// 將所有遊戲發放的紅利資料JSON傳到後台
+//將所有遊戲發放的紅利資料JSON傳到後台
 @GetMapping(value = "/backend/campaign/getGameBonusOfAllMember", produces = { "application/json; charset=UTF-8" })
 @ResponseBody
 public List<GameDto> getGameBonusOfAllMember() {
@@ -158,21 +158,21 @@ return allMemberGameBonus;
 @GetMapping(value = "/backend/campaign/getGameBonusOfOneMember", produces = { "application/json; charset=UTF-8" })
 @ResponseBody
 public List<GameDto> getGameBonusOfOneMember(
-	@RequestParam int member_id) {
+@RequestParam int member_id) {
 List<GameDto> oneMemberGameBonus = gService.findGameBonusOfOneMember(member_id);
 
 return oneMemberGameBonus;
 }
 
 /////////////////////// 會員查詢遊戲紀錄OK//////////////////////////
-// navbar連結JSP
+//navbar連結JSP
 @GetMapping("/campaign/gameRecord")
 public String gameRecord() {
 
 return "frontend/campaign/gameRecord";
 }
 
-// 將會員遊戲紀錄的JSON傳到前台
+//將會員遊戲紀錄的JSON傳到前台
 @GetMapping(value = "/frontend/campaign/memberGameRecords", produces = { "application/json; charset=UTF-8" })
 @ResponseBody
 public List<GameDto> getGameRecordsByMember(HttpSession session) {
@@ -185,7 +185,7 @@ return memberGameRecords;
 
 /////////////////////// 會員查詢遊戲紀錄OK//////////////////////////
 
-// 連結遊戲頁面
+//連結遊戲頁面
 @GetMapping("/campaign/game")
 public String gamePage() {
 
@@ -193,6 +193,6 @@ return "frontend/campaign/game";
 }
 
 //////////////瑋煊的腳//////////////////////////////////
-	
+
 	
 }

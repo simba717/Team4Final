@@ -22,14 +22,16 @@ public class GameDto implements Serializable{
 	
 	private int gameScore;
 	
-	private  Date playTime;
+//	private  Date playTime;
+	
+	private  String playTime;
+
 	
 	private int bonusPoint;
 	
 
 	public GameDto() {
 	}
-	
 	
 	
 	public int getMemberId() {
@@ -79,12 +81,12 @@ public class GameDto implements Serializable{
 		this.gameScore = gameScore;
 	}
 
-	public Date getPlayTime() {
+	public String getPlayTime() {
 		return playTime;
 	}
 
 
-	public void setPlayTime(Date playTime) {
+	public void setPlayTime(String playTime) {
 		this.playTime = playTime;
 	}
 

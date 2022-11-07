@@ -93,7 +93,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * "
 			+ "	from Wallet w "
 			+ "	join Game g on w.game_id = g.id "
-			+ "	where w.source_type = '遊戲'", nativeQuery = true)
+			+ "	where w.source_type = '活動獎勵'", nativeQuery = true)
 	List<Wallet> findGameBonusOfAllMember();
 	
 	
@@ -102,7 +102,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * "
 			+ "	from Wallet w "
 			+ "	join Game g on w.game_id = g.id "
-			+ "	where w.source_type = '遊戲' and member_id = :member_id", nativeQuery = true)
+			+ "	where w.source_type = '活動獎勵' and member_id = :member_id", nativeQuery = true)
 	List<Wallet> findGameBonusOfOneMember(@Param(value = "member_id") int member_id);
 	
 

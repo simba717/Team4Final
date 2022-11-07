@@ -26,7 +26,7 @@
 		xhr.onload = function() {
 			if (xhr.status == 200) {
 				var content = "<table id='idtable' class='table table-bordered table-sm'>";
-				content += "<thead><tr style='background-color: lightblue'>"
+				content += "<thead><tr style='background-color: coral'>"
 						+ "<th>會員ID</th>"
 						+ "<th>會員名稱</th>" 
 						+ "<th>遊戲名稱</th>" 
@@ -37,16 +37,28 @@
 
 				for (var i = 0; i < games.length; i++) {
 					content += "<tbody><tr>" 
-							+ "<td>" + games[i].memberId
-							+ "<td>" + games[i].memberName
-							+ "</td>" + "<td>" + games[i].gameType + "</td>"
-							+ "<td>" + games[i].playTime + "</td>" + "<td>"
-							+ games[i].bonusPoint + "</td>" + "</tr></tbody>";
+							+ "<td>" + games[i].memberId + "</td>"
+							+ "<td>" + games[i].memberName + "</td>"
+							+ "<td>" + games[i].gameType + "</td>"
+							+ "<td>" + games[i].playTime + "</td>" 
+							+ "<td>" + games[i].bonusPoint + "</td>"
+							+ "</tr></tbody>";
 				}
 				content += "</table>";
 
 				var divs = document.getElementById("content");
 				divs.innerHTML = content;
+				
+				//顯示紅利加總
+				let sum = document.getElementById("sum");
+				let count = 0;
+				for (var i = 0; i < games.length; i++) {
+					count += games[i].bonusPoint;
+				}
+				
+				sum.innerHTML = '總發放紅利: ' + count + '點';
+				
+				
 
 			}
 		}
@@ -62,17 +74,18 @@
 		</div>
 		<div id="container">
 			<div id="content"></div>
-			<h2 align='left'>總發放紅利</h2>
-			<div id="sum"></div>
+			<div id="sum" align="left" style="font-size:32px"></div>
 			<br> <br> <br>
-			<h1>查詢單一會員取得紅利</h1>
+			<h1>查詢單一會員遊戲紅利</h1>
 
-			<label for="memberId">會員ID:</label> <input id="memberIdText"
-				type="text" name="memberId" /> <input id='searchBtn' type='submit'
-				value="查詢" class="btn btn-primary" /> <input id='clearBtn'
-				type='button' value="清除查詢" class="btn btn-primary" /> <br>
+			<label for="memberId">會員ID:</label> 
+			<input id="memberIdText" type="text" name="memberId" /> 
+			<input id='searchBtn' type='submit' value="查詢" class="btn btn-primary" /> 
+			<input id='clearBtn' type='button' value="清除查詢" class="btn btn-primary" /> <br>
 			<hr>
 			<div id="content2"></div>
+			<div id="sum2" align="left" style="font-size:32px"></div>
+			<br> <br> <br>
 		</div>
 	</div>
 	<script>
@@ -95,7 +108,7 @@
 				//顯示資料
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					var content = "<table id='idtable' class='table table-bordered table-sm'>";
-					content += "<thead><tr style='background-color: lightblue'>"
+					content += "<thead><tr style='background-color: coral'>"
 							+ "<th>會員ID</th>"
 							+ "<th>會員名稱</th>"
 							+ "<th>遊戲名稱</th>"
@@ -108,17 +121,30 @@
 						content += "<tbody><tr>" 
 								+ "<td>" + games[i].memberId + "</td>" 
 								+ "<td>" + games[i].memberName + "</td>" 
-								+ "<td>" + games[i].gameType
-								+ "</td>" + "<td>" + games[i].playTime
-								+ "</td>" + "<td>" + games[i].bonusPoint
-								+ "</td>" + "</tr></tbody>";
+								+ "<td>" + games[i].gameType + "</td>"
+								+ "<td>" + games[i].playTime + "</td>"
+								+ "<td>" + games[i].bonusPoint + "</td>"
+								+ "</tr></tbody>";
 					}
 					content += "</table>";
 
 					var divs = document.getElementById("content2");
 					divs.innerHTML = content;
+					
+					//顯示紅利加總
+					let sum = document.getElementById("sum2");
+					let count = 0;
+					for (var i = 0; i < games.length; i++) {
+						count += games[i].bonusPoint;
+					}
+					
+					sum.innerHTML = '總發放紅利: ' + count + '點';
 
+					
+					
 				}
+				
+				
 
 				
 				

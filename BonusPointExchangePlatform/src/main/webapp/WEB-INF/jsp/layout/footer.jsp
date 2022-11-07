@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-4 footer-col">
                     <div class="footer_contact">
-                        <h4>
+                        <h4 style="color:#FFFFFF;">
                             Contact Us
                         </h4>
                         <div class="contact_link_box">
@@ -45,26 +45,26 @@
                             <img src="${contextRoot}/img2/footer.png">
                         </a>
                         <div class="footer_social">
-                            <a href="">
+                            <a>
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a>
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a>
                                 <i class="fa fa-linkedin" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a>
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a>
                                 <i class="fa fa-pinterest" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 footer-col">
-                    <h4>
+                    <h4 style="color:#FFFFFF;">
                         Opening Hours
                     </h4>
                     <p>

@@ -81,7 +81,7 @@
         }
 
         #calendar .dateList .red {
-            background: #F90;
+            background:#FFDC35;
             color: #fff;
         }
 
@@ -90,7 +90,7 @@
         }
         
         #calendar .dateList .sign {
-            background-image: url("${contextRoot}/img2/63.png");
+            background-image: url("${contextRoot}/img2/correct.png");
             background-repeat: no-repeat;
             background-position: center;
             color: black;
@@ -105,7 +105,7 @@
 		<div class="row justify-content-between">
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameSign"><img src="https://picsum.photos/300/200/?random=10" class="w-100"></a>
+					<a id="gameSign"><img src="${contextRoot}/img2/Campaign1.png" class="w-100"></a>
 					<div class="accordion" id="gameOne">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -122,7 +122,7 @@
 			</div>
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameBirthGift"><img src="https://picsum.photos/300/200/?random=10" class="w-100"></a>
+					<a id="gameBirthGift"><img src="${contextRoot}/img2/Campaign2.png" class="w-100"></a>
 					<div class="accordion" id="gameTwo">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseTwo"
@@ -139,7 +139,7 @@
 			</div>
 			<div class="col-12 col-md-3">
 				<div class="item">
-					<a id="gameCrystalGift"><img src="https://picsum.photos/300/200/?random=10"
+					<a id="gameCrystalGift"><img src="${contextRoot}/img2/Campaign3.png"
 						class="w-100"></a>
 					<div class="accordion" id="gameThree">
 						<button class="accordion-button collapsed" type="button"

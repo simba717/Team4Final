@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 
-<div id="showshow" class="container-fluid"></div>
+<div id="showshow" class="container-fluid" style="background-image:url(${contextRoot}/img2/haobacking.png) ;background-repeat: repeat-y;"></div>
 
 <div id="showNew"></div>
 <form  id="checkId" action="orders/checkoutCreditCard" method="post" enctype="multipart/form-data" class="visually-hidden">
@@ -27,7 +27,7 @@
 <input type="text" name="sendCreditCard2" id="sendCreditCard2" />
 <input type="submit" value="提交" >
 </form>
-<jsp:include page="../layout/footer.jsp"></jsp:include>
+<jsp:include page="../../layout/footer.jsp"></jsp:include>
 <script >
 var remainingBonus = 0;
 var remainingWallet = 0;

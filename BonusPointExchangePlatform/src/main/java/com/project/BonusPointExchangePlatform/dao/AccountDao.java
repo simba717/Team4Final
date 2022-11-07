@@ -44,12 +44,12 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
 			+ "where m.id = :id " , nativeQuery = true)
 	Account showMemberById(@Param(value="id") Integer id); 
 	
-	@Modifying 
+	@Modifying(clearAutomatically = true) 
 	@Transactional
 	@Query(value="update Account set password = :password , update_at = getdate() where member_id = :id ",nativeQuery = true)
 	void editAccountDetail(@Param(value="password") String password ,@Param(value="id") Integer id);
 	
-	@Modifying 
+	@Modifying(clearAutomatically = true) 
 	@Transactional
 	@Query(value="update Account set password = :password , update_at = getdate() where employee_id = :id ",nativeQuery = true)
 	void editAccountDetailByEmployee(@Param(value="password") String password ,@Param(value="id") Integer id);

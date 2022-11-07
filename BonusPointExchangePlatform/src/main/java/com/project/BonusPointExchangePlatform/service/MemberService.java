@@ -73,20 +73,20 @@ public class MemberService {
 			return null;
 	}
 	
-	public void showMemberByIdaddsalt(Integer id) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException{
-		Account account = aDao.showMemberById(id);
-		System.out.println(aDao.showMemberById(id));
-		
-		if (account != null) {
-			String key = "kittymickysnoopy";
-			System.out.println(account.getPassword());
-			String oldPassword = CipherUtilsService.decryptString(key, account.getPassword(), account.getIv());
+//	public Account showMemberByIdaddsalt(Integer id) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException{
+//		Account account = aDao.showMemberById(id);
+//		System.out.println(aDao.showMemberById(id));
+//		
+//		if (account != null) {
+//			String key = "kittymickysnoopy";
+//			System.out.println(account.getPassword());
+//			String oldPassword = CipherUtilsService.decryptString(key, account.getPassword(), account.getIv());
 //			System.out.println(oldPassword);
-			account.setPassword(oldPassword);}
+//			account.setPassword(oldPassword);
 //			return account;
 //		} else
 //			return null;
-	}
+//	}
 
 	public Member showMemberBankById(Integer id) {
 		memberDao.showMemberBankById(id);
@@ -98,12 +98,12 @@ public class MemberService {
 			return null;
 	}
 
-	public Map<String, Object> editMemberDetail(String name, LocalDate birth, String email, String phone,
+	public Map<String, Object> editMemberDetail(String name, LocalDate birth, String email, String phone,String password,
 		 byte[] image, Integer id) {
 		Map<String, Object> map = new HashMap<>();
 		
 		memberDao.editMemberDetail(name, birth, email, phone, image, id);
-//		aDao.editAccountDetail(password, id);
+		aDao.editAccountDetail(password, id);
 //		Member m = memberDao.findById(id).get();
 //		Account a = aDao.findById(id).get();
 //		map.put("Member", m);

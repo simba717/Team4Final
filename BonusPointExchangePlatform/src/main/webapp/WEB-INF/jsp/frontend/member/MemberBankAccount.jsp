@@ -1126,19 +1126,19 @@ function bonusTotal(){
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="3000">
-								<img src="img2/bonusphoto.png"
+								<a href=""><img src="img2/bonusphoto.png" 
 									style="height: 600px; width: 300px" class="d-block w-100"
-									alt="照片太大妳忍一下">
+									alt="照片太大妳忍一下"></a>
 							</div>
 							<div class="carousel-item ">
-								<img src="img2/bonusphoto.png"
+								<a href=""><img src="img2/bonusphoto.png"
 									style="height: 600px; width: 300px" class="d-block w-100"
-									alt="照片太大妳忍一下">
+									alt="照片太大妳忍一下"></a>
 							</div>
 							<div class="carousel-item ">
-								<img src="img2/bonusphoto.png"
+								<a href=""><img src="img2/bonusphoto.png"
 									style="height: 600px; width: 300px" class="d-block w-100"
-									alt="照片太大妳忍一下">
+									alt="照片太大妳忍一下"></a>
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"

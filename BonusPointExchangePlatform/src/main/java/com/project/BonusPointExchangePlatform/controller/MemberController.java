@@ -248,15 +248,15 @@ public class MemberController {
 		//***********前台會員完成個人編輯*********
 		@ResponseBody
 		@PostMapping(path="/edit/member", produces = {"application/json;charset=UTF-8"})
-		public MemberDto editMemberById(@RequestBody MemberDto dto,HttpSession session ) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException{
+		public MemberDto editMemberById(@RequestBody MemberDto dto,HttpSession session ) {
 			
 			Member member = (Member)session.getAttribute("member");
 			Integer id = member.getId();
 			System.out.println(id);
-//			String password = dto.getAccount().getPassword();
+			String password = dto.getAccount().getPassword();
 //			System.out.println(password);
 			//加密過程
-			String key = "kittymickysnoopy"; // 對稱式金鑰
+//			String key = "kittymickysnoopy"; // 對稱式金鑰
 ////			byte[] iv = new byte[128 / 8]; // 初始向量
 ////			SecureRandom srnd = new SecureRandom();
 ////			srnd.nextBytes(iv);
@@ -277,13 +277,13 @@ public class MemberController {
 			if(dto.getImage()==null) {
 			MemberDto m1 = mService.findOnebyId(id);
 			byte[] image2 = m1.getMember().getImage();
-			mService.editMemberDetail(name, birth, email, phone,image2, id);
+			mService.editMemberDetail(name, birth, email, phone,password,image2, id);
 			}else {
 			byte[] image = dto.convertImage();
-			mService.editMemberDetail(name, birth, email, phone,image, id);
+			mService.editMemberDetail(name, birth, email, phone,password,image, id);
 			}
 			MemberDto dto1 =new MemberDto();
-			mService.showMemberById(id);
+			dto1.setAccount(mService.showMemberById(id));
 			
 			return dto1;
 			

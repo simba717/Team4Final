@@ -434,7 +434,7 @@
 					</div>
 
 					<div class="form-group" style="">
-						<label for="exampleInputEmail3">Password</label><a href="../updatepassword"><input type="button" value="修改密碼"  style="margin-top:10px;margin-left:10px;margin-bottom: 10px"></a><input
+						<label for="exampleInputEmail3">Password</label><a href="${contextRoot}/updatepassword"><input type="button" value="修改密碼"  style="margin-top:10px;margin-left:10px;margin-bottom: 10px"></a><input
 							type="password" class="form-control" id="password"
 							placeholder="password" value="" style="color: #7b7b7b; background-color: #f0f0f0" readonly/>
 						<div id="idsp1" style="font-size: 20px"></div>

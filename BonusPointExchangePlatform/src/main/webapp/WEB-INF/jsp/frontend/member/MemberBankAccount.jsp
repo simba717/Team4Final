@@ -1126,17 +1126,17 @@ function bonusTotal(){
 						</ol>
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="3000">
-								<a href=""><img src="img2/bonusphoto.png" 
+								<a href="${contextRoot}/campaign/bonusCampaign"><img src="img2/Campaign1.png" 
 									style="height: 600px; width: 300px" class="d-block w-100"
 									alt="照片太大妳忍一下"></a>
 							</div>
 							<div class="carousel-item ">
-								<a href=""><img src="img2/bonusphoto.png"
+								<a href="${contextRoot}/campaign/bonusCampaign"><img src="img2/Campaign2.png"
 									style="height: 600px; width: 300px" class="d-block w-100"
 									alt="照片太大妳忍一下"></a>
 							</div>
 							<div class="carousel-item ">
-								<a href=""><img src="img2/bonusphoto.png"
+								<a href="${contextRoot}/campaign/bonusCampaign"><img src="img2/Campaign3.png"
 									style="height: 600px; width: 300px" class="d-block w-100"
 									alt="照片太大妳忍一下"></a>
 							</div>

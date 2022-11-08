@@ -283,6 +283,7 @@ z-index
 					<div>
 				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
 				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>		
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset2">會員三</a>		
 				</div>			
 				
 			</form>
@@ -309,8 +310,13 @@ z-index
 		document.getElementById("password").value="EEIT151!";
 	}
 	
-	//*****一鍵登入(庭偉用)*******
 	function inputValue1(){
+		document.getElementById("account").value="EEIT151";
+		document.getElementById("password").value="EEIT151!!!";
+	}
+	
+	//*****一鍵登入(庭偉用)*******
+	function inputValue2(){
 		document.getElementById("account").value="Tom666";
 		document.getElementById("password").value="Tom123!";
 	}

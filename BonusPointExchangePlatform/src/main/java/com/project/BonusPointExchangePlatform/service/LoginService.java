@@ -37,7 +37,7 @@ public class LoginService {
 			if (oldPassword.equals(password)) {
 				return "OK";
 			}else {
-				return "BAD";
+				return "NO";
 			}
 			
 		}else if(checkAccount != null && checkAccount.getAccount_type() ==0) {
@@ -49,6 +49,7 @@ public class LoginService {
 
 	}
 
+		
 	/* 確認員工帳密 */
 	public boolean checkAccountEmp(String account, String password) {
 		Account checkAccount = accountDao.checkAccountEmp(account, password);

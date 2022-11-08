@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<title>showProduct</title>
+<title>紅利商城</title>
 </head>
 <body>
 <jsp:include page="../../layout/Navbar.jsp"></jsp:include>

@@ -60,7 +60,6 @@
 												<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
 													<ul class="submenu">
 													    <li><a href="${contextRoot}/frontend/campaign/findAll">活動總覽</a></li>
-														<li><a href="${contextRoot}/campaign/game">商城小遊戲</a></li>
 														<li><a href="${contextRoot}/campaign/bonusCampaign">紅利活動</a>
 														</li>
 													</ul>

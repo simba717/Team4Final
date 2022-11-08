@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>遊戲</title>
+<title>商城小遊戲</title>
 </head>
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
-	<h1>本月遊戲: 採集魔水晶</h1>
+	<h1 align='center'>本月遊戲: 採集魔水晶</h1>
 	<hr>
 	<h3>遊戲規則:</h3>
 	<ul>
@@ -18,12 +18,18 @@
 		<li>得分方式: 每採集1個黃水晶, 可獲得100分；倒數10秒時會出現幸運星, 碰到幸運星可獲得300分</li>
 		<li>遊戲結束: 觸碰到紫水晶3次(每次扣生命點數1點)；時間歸零。</li>
 	</ul>
-	<div id="game3">
+	<div id="game" align='center'>
 		<iframe src="https://syuan0902.github.io/" width=960 height=600></iframe>
 	</div>
 
 
 
-<jsp:include page="../../layout/footer.jsp"></jsp:include>
+<script>
+	function GetScore(score) {
+    var point = score;
+    window.alert('恭喜大大獲得分數: ' + point + '分');
+  };
+
+</script>
 </body>
 </html>

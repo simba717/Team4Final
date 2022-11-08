@@ -539,12 +539,32 @@ function displayData(data) {
 
 
 function checkout(){
-	$("#checkId").submit()
+	Swal.fire({
+        title: "確定要用信用卡嗎",
+        color: "#FF0000",
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        confirmButtonColor: "#4EFEB3"
+    }).then((result) => {
+    	if (result.isConfirmed) {
+    	$("#checkId").submit()
+    	}
+    })
 }
 
 
 function checkout2(){
-	$("#checkId2").submit()
+	Swal.fire({
+        title: "確定支付方法嗎",
+        color: "#FF0000",
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        confirmButtonColor: "#4EFEB3"
+    }).then((result) => {
+    	if (result.isConfirmed) {
+        	$("#checkId2").submit()
+        	}
+    })
 }
 </script>
 </body>

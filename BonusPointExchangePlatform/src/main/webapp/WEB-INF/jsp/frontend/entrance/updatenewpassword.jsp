@@ -288,7 +288,8 @@ z-index
 				
 				
 				<button class="loginbutton" id="idsubmit" >確認修改</button>
-		
+		<br>				
+								<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員二</a>
 			</form>
 			
 		</div>
@@ -419,7 +420,12 @@ document.getElementById("checkcode").addEventListener("blur", finalcheck)
 						"true");
 			}
 		}
-
+	//*****一鍵登入(書瑋用)*******
+	function inputValue(){
+		document.getElementById("password").value="EEIT151!!!";
+	}
+	
+	
 
 </script>
 

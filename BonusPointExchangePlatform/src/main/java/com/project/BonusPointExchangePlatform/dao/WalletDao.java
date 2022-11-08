@@ -26,7 +26,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 			+ "  order by create_at desc offset :offsetpage rows fetch next 5 rows only", nativeQuery = true)
 	List<Wallet> findAllBySourceType(@Param(value = "id") int id, @Param(value = "offsetpage") int offsetpage);
 
-	@Query(value = "select * from Wallet where member_id=:id order by create_at desc", nativeQuery = true)
+	@Query(value = "select * from Wallet where member_id=:id and source_type in ('兌換') order by create_at desc", nativeQuery = true)
 	List<Wallet> findAllById(@Param(value = "id") int id);
 
 	@Query(value = "select * from Wallet where member_id=:id order by create_at Desc", nativeQuery = true)

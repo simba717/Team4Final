@@ -73,7 +73,7 @@ public class ProductService {
 		Date getDate = new Date();
 		product.setEmployee(employee);
 		product.setBest_seller(0);
-		product.setButton_switch(true);
+		product.setButton_switch(false);
 		product.setCreate_at(getDate);
 		product.setUpdateDate(getDate);
 		productDao.save(product);

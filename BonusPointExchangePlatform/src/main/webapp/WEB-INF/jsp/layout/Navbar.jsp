@@ -54,12 +54,12 @@
 														<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
 														<li><a href="${contextRoot}/orders/findAllByMember">我的訂單</a>
 														</li>
-														<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
+														<li><a href="${contextRoot}/campaign/gameRecord">活動紅利查詢</a></li>
 													</ul>
 												</li>
 												<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
 													<ul class="submenu">
-													    <li><a href="${contextRoot}/frontend/campaign/findAll">活動總覽</a></li>
+													    <li><a href="${contextRoot}/frontend/campaign/findAll">限時活動</a></li>
 														<li><a href="${contextRoot}/campaign/bonusCampaign">紅利活動</a>
 														</li>
 													</ul>

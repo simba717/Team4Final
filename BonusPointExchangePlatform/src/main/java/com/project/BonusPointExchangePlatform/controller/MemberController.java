@@ -82,7 +82,7 @@ public class MemberController {
 			Member member = (Member)session.getAttribute("member");
 			
 			if( member == null) {
-			return "/frontend/entrance/newlogin";
+			return "redirect:/login";
 			
 			}else
 			return "frontend/member/EditMemberByMember";

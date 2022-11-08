@@ -38,7 +38,7 @@ public class CampaignService {
 	public void insert(Campaign campaign) {
 		
 		Date getDate = new Date();
-		campaign.setButton_switch(true);
+		campaign.setButton_switch(false);
 		campaign.setCreate_at(getDate);
 		campaign.setUpdate_at(getDate);
 

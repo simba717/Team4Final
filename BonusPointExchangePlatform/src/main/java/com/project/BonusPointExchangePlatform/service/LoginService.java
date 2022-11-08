@@ -118,6 +118,10 @@ public class LoginService {
 			}
 		}
 		String checkcode = sb.toString();
+		if(checkcode.length() > 10) {
+			checkcode = checkcode.substring(0, 10);
+		}
+		
 		return checkcode;
 	}
 

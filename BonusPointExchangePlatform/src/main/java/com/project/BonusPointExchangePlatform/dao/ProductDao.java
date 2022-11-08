@@ -40,7 +40,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	@Query(value = "select * from product where product_name like :search or product_content like :search or product_type like :search order by update_at desc", nativeQuery = true)
 	List<Product> search(@Param(value = "search") String search);
 
-	@Query(value = "select * from product where button_switch = 1 ", nativeQuery = true)
+	@Query(value = "select * from product where button_switch = 1 order by update_at desc ", nativeQuery = true)
 	List<Product> findAllBySwitchOn();
 
 	@Transactional

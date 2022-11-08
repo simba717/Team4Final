@@ -93,6 +93,7 @@ window.onload = function(){
                         	needPaid = parseInt($("#dividendValue").val())/100;
                 			$("#paymentAmount").val(parseInt($("#totalPrice").text().substring(1))-needPaid)
                             $("#surplusAmount").addClass("invisible")
+                            bonusCheck = 4;
                 		} else if ($("#selectPayment :selected").val() == 2) {
                 			needPaid = parseInt($("#dividendValue").val())/100;
                 			$("#paymentAmount").val(parseInt($("#totalPrice").text().substring(1))-needPaid)
@@ -101,6 +102,7 @@ window.onload = function(){
                 				bonusCheck = 3;
                 			}else{
                 				$("#surplusAmount").removeClass("invisible").css("color", "black").text("儲值金餘額:"+(remainingWallet-$("#paymentAmount").val()))
+                				bonusCheck = 4;
                 			}
                 		}
                     }

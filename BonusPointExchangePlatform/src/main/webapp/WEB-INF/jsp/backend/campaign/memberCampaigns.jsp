@@ -91,7 +91,7 @@ window.onload = function() {
 	}
 }
 
-/*用表單更新活動內容Update*/
+/*用表單編輯活動內容Update*/
 
 
 function getindex(node) {
@@ -275,13 +275,13 @@ function getindex(node) {
 	    	        	campaignName1.classList.remove('is-valid');
 	    	        	campaignName1.classList.add('is-invalid');
 	    	        	campaignName1_msg.classList.add('invalid-feedback');
-	    	        	campaignName1_msg.innerHTML = "(名稱必須為中文、英文、數字)";
+	    	        	campaignName1_msg.innerHTML = "(活動名稱必須為中文、英文或數字)";
 	    	        }
 	    	    } else {
 	    	    	campaignName1.classList.remove('is-valid');
 	    	    	campaignName1.classList.add('is-invalid');
 	    	    	campaignName1_msg.classList.add('invalid-feedback');
-	    	    	campaignName1_msg.innerHTML = "(名稱字數限制20)";
+	    	    	campaignName1_msg.innerHTML = "(活動名稱字數限制20字內)";
 	    	    }
 	    	}
 	    	
@@ -318,43 +318,114 @@ function getindex(node) {
 	    	        	campaignContent1.classList.remove('is-valid');
 	    	        	campaignContent1.classList.add('is-invalid');
 	    	        	campaignContent1_msg.classList.add('invalid-feedback');
-	    	        	campaignContent1_msg.innerHTML = "(名稱必須為中文、英文、數字)";
+	    	        	campaignContent1_msg.innerHTML = "(活動內容必須為中文、英文或數字)";
 	    	        }
 	    	    } else {
 	    	    	campaignContent1.classList.remove('is-valid');
 	    	    	campaignContent1.classList.add('is-invalid');
 	    	    	campaignContent1_msg.classList.add('invalid-feedback');
-	    	    	campaignContent1_msg.innerHTML = "(名稱字數限制50)";
+	    	    	campaignContent1_msg.innerHTML = "(活動內容字數限制50字內)";
 	    	    }
 	    	}
 	    	
-	    	//檢查開始時間
+	    	//檢查開始和結束時間
 	    	function checkStartTime(){
-	    		if (campaignStart_atValue1 > campaignEnd_atValue1) {
-	    			campaignStart_at1.classList.remove('is-valid');
-	    			campaignStart_at1.classList.add('is-invalid');
-	    			campaignStart_at1_msg.classList.add('invalid-feedback');
-	    			campaignStart_at1_msg.innerHTML = "(開始日期不得大於結束日期)";
-	    			flag3 = false;
+	    		let JStoday = new Date();
+	    		let JStoday2 = null;
+	    		if(JStoday.getDate() < 10){
+	    			JStoday2 = JStoday.getFullYear() + "-" + (JStoday.getMonth()+1) + "-0" + JStoday.getDate();
 	    		} else {
-	    			campaignStart_at1.classList.remove('is-invalid');
-	    			campaignStart_at1.classList.add('is-valid');
+	    			JStoday2 = JStoday.getFullYear() + "-" + (JStoday.getMonth()+1) + "-" + JStoday.getDate();
 	    		}
+	    		
+	    		let campaignStart_at1 = document.getElementById("campaignStart_at1");
+	    		let campaignStart_atValue = campaignStart_at.value;
+	    		let campaignStart_at_msg = document.getElementById("campaignStart_at_msg");
+	    		
+	    		let campaignEnd_at = document.getElementById("campaignEnd_at");
+	    		let campaignEnd_atValue = campaignEnd_at.value;
+	    		
+	    		console.log("開始msg" + campaignStart_at_msg);
+	    		
+	    		//取得表單選取日期的時間戳
+	    		let ST = Date.parse(campaignStart_atValue);
+	    		//取得當天的時間戳
+	    		let Today = Date.parse(JStoday2);
+	    		if(campaignStart_atValue != ""){
+	    			if (ST < Today) {
+	    				campaignStart_at.classList.remove('is-valid');
+	    				campaignStart_at.classList.add('is-invalid');
+	    				campaignStart_at_msg.classList.add('invalid-feedback');
+	    				campaignStart_at_msg.innerHTML = "(開始日期不得小於今天)";
+	    				
+	    			} else {
+	    				campaignStart_at.classList.remove('is-invalid');
+	    				campaignStart_at.classList.add('is-valid');
+	    			}
+	    		} else{
+	    			
+	    			campaignStart_at.classList.remove('is-valid');
+	    			campaignStart_at.classList.add('is-invalid');
+	    			campaignStart_at_msg.classList.add('invalid-feedback');
+	    			campaignStart_at_msg.innerHTML = "(請選取開始時間)";
+	    		}
+	    	}
+
+	    	function checkEndTime(){
+	    		let JStoday = new Date();
+	    		let JStoday2 = null;
+	    		if(JStoday.getDate() < 10){
+	    			JStoday2 = JStoday.getFullYear() + "-" + (JStoday.getMonth()+1) + "-0" + JStoday.getDate();
+	    		} else {
+	    			JStoday2 = JStoday.getFullYear() + "-" + (JStoday.getMonth()+1) + "-" + JStoday.getDate();
+	    		}
+	    		
+	    		let campaignStart_at = document.getElementById("campaignStart_at");
+	    		let campaignStart_atValue = campaignStart_at.value;
+	    		
+	    		let campaignEnd_at = document.getElementById("campaignEnd_at");
+	    		let campaignEnd_atValue = campaignEnd_at.value;
+	    		let campaignEnd_at_msg = document.getElementById("campaignEnd_at_msg");
+	    		console.log("9+++++++++++++++++++++++++++" + campaignEnd_at_msg);
+	    		//取得表單選取日期的時間戳
+	    		let ET = Date.parse(campaignEnd_atValue);
+	    		
+	    		//取得當天的時間戳
+	    		let Today = Date.parse(JStoday2);
+	    		if(campaignEnd_atValue != ""){
+	    			if (ET < Today) {
+	    				console.log("1+++++++++++++++++++++++++++");
+	    				campaignEnd_at.classList.remove('is-valid');
+	    				campaignEnd_at.classList.add('is-invalid');
+	    				campaignEnd_at_msg.classList.add('invalid-feedback');
+	    				campaignEnd_at_msg.innerHTML = "(結束日期不得小於今天)";
+	    			console.log("結束msg" + campaignEnd_at_msg);
+	    			
+	    			
+	    				
+	    			} else if (campaignStart_atValue > campaignEnd_atValue) {
+	    				console.log("2+++++++++++++++++++++++++++");
+	    				campaignEnd_at.classList.remove('is-valid');
+	    				campaignEnd_at.classList.add('is-invalid');
+	    				campaignEnd_at_msg.classList.add('invalid-feedback');
+	    				campaignEnd_at_msg.innerHTML = "(結束日期不得小於開始日期)";
+	    				console.log("結束msg1" + campaignEnd_at_msg);
+
+	    				
+	    			} else {
+	    				campaignEnd_at.classList.remove('is-invalid');
+	    				campaignEnd_at.classList.add('is-valid');
+	    				console.log("結束msg2" + campaignEnd_at_msg);
+	    			}
+	    		} else{
+	    			campaignEnd_at.classList.remove('is-valid');
+	    			campaignEnd_at.classList.add('is-invalid');
+	    			campaignEnd_at_msg.classList.add('invalid-feedback');
+	    			campaignEnd_at_msg.innerHTML = "(請選取結束日期)";
+	    		}
+	    		
 	    	}
 	    	
-	    	//檢查結束時間
-	    	function checkEndTime(){
-	    		if (campaignStart_atValue1 > campaignEnd_atValue1) {
-	    			campaignStart_at1.classList.remove('is-valid');
-	    			campaignStart_at1.classList.add('is-invalid');
-	    			campaignStart_at1_msg.classList.add('invalid-feedback');
-	    			campaignStart_at1_msg.innerHTML = "(開始日期不得大於結束日期)";
-	    			flag3 = false;
-	    		} else {
-	    			campaignStart_at1.classList.remove('is-invalid');
-	    			campaignStart_at1.classList.add('is-valid');
-	    		}
-	    	}
 	    	
 	    	//顯示上載圖片
 	    	function loadImageFileAsURL(){
@@ -579,13 +650,13 @@ function checkCampaignName() {
       	campaignName.classList.remove('is-valid');
       	campaignName.classList.add('is-invalid');
       	campaignName_msg.classList.add('invalid-feedback');
-      	campaignName_msg.innerHTML = "(名稱必須為中文、英文、數字)";
+      	campaignName_msg.innerHTML = "(活動名稱必須為中文、英文或數字)";
       }
   } else {
   	campaignName.classList.remove('is-valid');
   	campaignName.classList.add('is-invalid');
   	campaignName_msg.classList.add('invalid-feedback');
-  	campaignName_msg.innerHTML = "(名稱字數限制20)";
+  	campaignName_msg.innerHTML = "(活動名稱字數限制20字內)";
   }
 }
 
@@ -620,13 +691,13 @@ function checkCampaignContent() {
       	campaignContent.classList.remove('is-valid');
       	campaignContent.classList.add('is-invalid');
       	campaignContent_msg.classList.add('invalid-feedback');
-      	campaignContent_msg.innerHTML = "(名稱必須為中文、英文、數字)";
+      	campaignContent_msg.innerHTML = "(活動內容必須為中文、英文或數字)";
       }
   	} else {
   	campaignContent.classList.remove('is-valid');
   	campaignContent.classList.add('is-invalid');
   	campaignContent_msg.classList.add('invalid-feedback');
-  	campaignContent_msg.innerHTML = "(名稱字數限制50)";
+  	campaignContent_msg.innerHTML = "(活動內容字數限制20字內)";
   	}
 }
 

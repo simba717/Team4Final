@@ -26,9 +26,9 @@
 		xhr.onload = function() {
 			if (xhr.status == 200) {
 				var content = "<table id='idtable' class='table table-bordered table-sm'>";
-				content += "<thead><tr style='background-color: lightblue'>"
-						+ "<th>遊戲名稱</th>"
-						+ "<th>遊戲時間</th>"
+				content += "<thead><tr style='background-color: coral'>"
+						+ "<th>紅利活動</th>"
+						+ "<th>參加時間</th>"
 						+ "<th>取得紅利</th>"
 						+ "</tr></thead>";
 				var games = JSON.parse(xhr.responseText);

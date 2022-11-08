@@ -16,21 +16,23 @@
 	crossorigin="anonymous">
 	
 </script>
-<title>會員活動管理</title>
-<script>
-	
-</script>
+<title>新增會員活動</title>
 </head>
 <body>
-	<jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
+<jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
 	<div id='wrapper' align='center'>
 		<div id="header">
-			<h1>會員活動管理</h1>
+			<h1>新增會員活動</h1>
 			<hr>
 		</div>
-		<div id="container">
+		<div id="container" align="center">
 			<div id="content">
-				<div id='contents'></div>
+			<form>
+			<label for="campaingnName">活動名稱:</label>
+			<input id="campaingnName" type="text" name="campaingnName" /> 
+			
+			
+			</form>
 			</div>
 		</div>
 	</div>

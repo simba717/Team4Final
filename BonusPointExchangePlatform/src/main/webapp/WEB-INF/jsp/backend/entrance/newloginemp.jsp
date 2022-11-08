@@ -280,8 +280,8 @@ z-index
 				<button class="loginbutton" >登入</button>
 					<br>
 				<div>
-				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
-				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>	
+				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">root</a>	
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">Nick</a>	
 				</div>	
 			</form>
 			
@@ -299,8 +299,8 @@ z-index
 	
 	//*****一鍵登入(庭偉用)*******
 	function inputValue1(){
-		document.getElementById("account").value="AAA";
-		document.getElementById("password").value="AAA";
+		document.getElementById("account").value="Nick";
+		document.getElementById("password").value="Nick";
 	}
 
 </script>

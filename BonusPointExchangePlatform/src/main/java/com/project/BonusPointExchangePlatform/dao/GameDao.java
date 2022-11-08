@@ -64,7 +64,7 @@ public interface GameDao extends JpaRepository<Game, Integer> {
 	
 	@Modifying
 	@Query(value = "insert into Game(game_type, check_status, game_score) "
-			+ "values('採集魔水晶', 1, null) "
+			+ "values('採集魔水晶', 1, 100) "
 			+ "insert into Member_Game(member_id, game_id) "
 			+ "values( :member_id, (select top 1.id from game where game_type='採集魔水晶' and update_at >:update_at "
 			+ "order by update_at desc))" , nativeQuery = true)

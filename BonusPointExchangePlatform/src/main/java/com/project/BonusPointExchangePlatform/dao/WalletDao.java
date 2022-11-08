@@ -26,7 +26,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 			+ "  order by create_at desc offset :offsetpage rows fetch next 5 rows only", nativeQuery = true)
 	List<Wallet> findAllBySourceType(@Param(value = "id") int id, @Param(value = "offsetpage") int offsetpage);
 
-	@Query(value = "select * from Wallet where member_id=:id order by create_at desc", nativeQuery = true)
+	@Query(value = "select * from Wallet where member_id=:id and source_type in ('兌換') order by create_at desc", nativeQuery = true)
 	List<Wallet> findAllById(@Param(value = "id") int id);
 
 	@Query(value = "select * from Wallet where member_id=:id order by create_at Desc", nativeQuery = true)
@@ -93,7 +93,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * "
 			+ "	from Wallet w "
 			+ "	join Game g on w.game_id = g.id "
-			+ "	where w.source_type = '遊戲'", nativeQuery = true)
+			+ "	where w.source_type = '活動獎勵'", nativeQuery = true)
 	List<Wallet> findGameBonusOfAllMember();
 	
 	
@@ -102,7 +102,7 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	@Query(value = "select * "
 			+ "	from Wallet w "
 			+ "	join Game g on w.game_id = g.id "
-			+ "	where w.source_type = '遊戲' and member_id = :member_id", nativeQuery = true)
+			+ "	where w.source_type = '活動獎勵' and member_id = :member_id", nativeQuery = true)
 	List<Wallet> findGameBonusOfOneMember(@Param(value = "member_id") int member_id);
 	
 

@@ -188,6 +188,10 @@ public class OrdersController {
 		if( member == null) {
 		return "/frontend/entrance/newlogin";
 		}else {
+			Orders orders = ordersService.findUnPaidOrdersByMember(member);
+			if(orders == null) {
+				ordersService.insertOrder(member);
+			}
 			return "frontend/order/shoppingCart";
 		}
 

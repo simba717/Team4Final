@@ -14,6 +14,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" -->
 <!-- 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" -->
 <!-- 	crossorigin="anonymous"> -->
+	
 <!-- </script> -->
 <title>會員遊戲紀錄</title>
 <script>
@@ -27,7 +28,6 @@
 				var content = "<table id='idtable' class='table table-bordered table-sm'>";
 				content += "<thead><tr style='background-color: lightblue'>"
 						+ "<th>遊戲名稱</th>"
-						+ "<th>遊戲得分</th>"
 						+ "<th>遊戲時間</th>"
 						+ "<th>取得紅利</th>"
 						+ "</tr></thead>";
@@ -36,7 +36,6 @@
 				for (var i = 0; i < games.length; i++) {
 					content += "<tbody><tr>" 
 							+ "<td>" + games[i].gameType + "</td>" 
-							+ "<td>" + games[i].gameScore + "</td>"
 							+ "<td>" + games[i].playTime + "</td>" 
 							+ "<td>" + games[i].bonusPoint + "</td>" 
 							+ "</tr></tbody>";
@@ -53,17 +52,14 @@
 </head>
 <body>
 	<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
-	<br>
 	<div id='wrapper' align='center'>
 		<div id="header">
-			<h1 style="font-family:Microsoft JhengHei;font-weight:bold;">遊戲紀錄列表</h1>
+			<h1>遊戲紀錄列表</h1>
 			<hr>
 		</div>
 		<div id="container">
 			<div id="content"></div>
 		</div>
 	</div>
-	<br>
-	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.project.BonusPointExchangePlatform.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,42 +8,57 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.BonusPointExchangePlatform.model.Campaign;
+import com.project.BonusPointExchangePlatform.model.Employee;
 
 @Repository
 public interface CampaignDao extends JpaRepository<Campaign, Integer> {
-	
-	
+
 //////////////瑋煊的頭//////////////////
-// 第一種寫法 ? (跨資料庫)
-// 回傳一筆資料
-//@Query(value = "from Campaign where content like %?%1")
-//Campaign findCampaignByContent(String content);
+//前台會員查詢所有活動	OK
+	@Query(value = "select * from Campaign c " + "	join Employee e " + "	on c.employee_id = e.id "
+			+ " where button_switch = 1 order by c.update_at DESC", nativeQuery = true)
+	List<Campaign> findMemberCampaigns();
 
-// 第二種寫法 HQL的@Param (跨資料庫), 操作的屬性是Entity的欄位
-// 回傳多筆資料
-//@Query(value = "from Campaign where content like %:content%")
-//List<Campaign> findCampaignByContent2(@Param("content") String content);
-
-// 第三種寫法 原生SQL(沒有跟Hibernate做mapping, 不能跨資料庫), 操作的屬性是資料庫Table的欄位
-
-//查詢所有會員活動: 
-//@Query(value = "select * from Campaign", nativeQuery = true)
-//List<Campaign> findCampaignByContent3(@Param("content") String content);
-//
-
-
-// 回傳多筆資料
-@Query(value = "select * from Campaign where content like %:content%", nativeQuery = true)
-List<Campaign> findCampaignByContent3(@Param("content") String content);
-
-// 查詢並修改或刪除資料 @Modifying
-@Modifying
-@Query(value = "delete from Campaign where id = :id", nativeQuery = true)
-void deleteCampaignById(@Param("id") Integer id);
-
+//後台員工查詢所有活動(圖片 名稱 內容 開始和結束時間 上下架狀態 新增和修改時間 員工ID + 編輯的"員工編號")OK
+	@Query(value = "select * from Campaign c " + "	join Employee e "
+			+ "	on c.employee_id = e.id order by c.update_at DESC", nativeQuery = true)
+	List<Campaign> findAllCampaign();
+	
+//查詢單一活動ByID(圖片 名稱 內容 開始和結束時間 上下架狀態 新增和修改時間 員工ID + 編輯的"員工編號")OK
+//		@Query(value = "select * from Campaign "
+//				+ " where employee_id = :employee_id ", nativeQuery = true)
+//		Campaign findOneCampaignById(@Param(value = "employee_id") Integer id);
+	
+	
 //跨資料表模糊查詢
+//要登入員工帳號才有ID
+//更新活動 Param的值是DB表單欄位名稱 對應的值是前端表單的name屬性
+	@Transactional
+	@Modifying
+	@Query(value = "update Campaign set "
+			+ " title = :title,"
+			+ " content = :content, "
+			+ " begin_at = :begin_at, "
+			+ " end_at = :end_at, "
+			+ " image = :image, "
+			+ " button_switch = :button_switch, "
+			+ " employee_id = :employee_id, "
+			+ " update_at = getdate() "
+			+ " where id = :id ", nativeQuery = true)
+	void updateCampaignById(
+			@Param(value = "title") String title, 
+			@Param(value = "content") String content, 
+			@Param(value = "begin_at") String begin_at, 
+			@Param(value = "end_at") String end_at, 
+			@Param(value = "image") byte[] image,
+			@Param(value = "button_switch") boolean button_switch, 
+			@Param(value = "employee_id") Integer employee_id, 
+			@Param(value = "id") Integer id);
+
+
 
 //////////////瑋煊的腳/////////////////////	
 

@@ -1,5 +1,6 @@
 package com.project.BonusPointExchangePlatform.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,7 @@ public class GameService {
 	@Autowired
 	private WalletDao walletDao;
 	
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public Member getMemberById(Integer id) {
 		Optional<Member> query = memberDao.findById(id);
@@ -89,6 +91,8 @@ public class GameService {
 	}
 	
 //////////////瑋煊的頭//////////////////
+	
+
 
 //前台將會員遊戲紀錄塞進Dto
 public List<GameDto> findGameRecordsByMember(int member_id) {
@@ -96,18 +100,19 @@ public List<GameDto> findGameRecordsByMember(int member_id) {
 List<Game> gameRecords = gameDao.findGameRecordsByMember(member_id);
 
 List<GameDto> gameDto = new ArrayList<>();
-//
+
 for(Game gameRecord : gameRecords) {
-	GameDto gameRecordDto = new GameDto();
-	gameRecordDto.setGameId(gameRecord.getId());
-	gameRecordDto.setGameType(gameRecord.getGame_type());
-	gameRecordDto.setGameScore(gameRecord.getGame_score());
-	gameRecordDto.setPlayTime(gameRecord.getCreate_at());
-	gameRecordDto.setBonusPoint(gameRecord.getWallet().getBonus_point());
-	
-//	gameRecordDto.setGame(gameRecord);
-//	gameRecordDto.setWallet(gameRecord.getWallet());
-	gameDto.add(gameRecordDto);
+GameDto gameRecordDto = new GameDto();
+gameRecordDto.setGameId(gameRecord.getId());
+gameRecordDto.setGameType(gameRecord.getGame_type());
+gameRecordDto.setGameScore(gameRecord.getGame_score());
+String dateString = dateFormat.format(gameRecord.getCreate_at());
+gameRecordDto.setPlayTime(dateString);
+gameRecordDto.setBonusPoint(gameRecord.getWallet().getBonus_point());
+
+//gameRecordDto.setGame(gameRecord);
+//gameRecordDto.setWallet(gameRecord.getWallet());
+gameDto.add(gameRecordDto);
 }	
 
 return gameDto;
@@ -120,12 +125,14 @@ List<Wallet> allMemberGameBonus = walletDao.findGameBonusOfAllMember();
 List<GameDto> allMemberGameBonusDto = new ArrayList<>();
 
 for(Wallet memberGameBonus : allMemberGameBonus) {
-	GameDto memberGameBonusDto = new GameDto();
-	memberGameBonusDto.setMemberId(memberGameBonus.getMember().getId());
-	memberGameBonusDto.setMemberName(memberGameBonus.getMember().getName());
-	memberGameBonusDto.setGameType(memberGameBonus.getGame().getGame_type());
-	memberGameBonusDto.setBonusPoint(memberGameBonus.getBonus_point());
-	allMemberGameBonusDto.add(memberGameBonusDto);
+GameDto memberGameBonusDto = new GameDto();
+memberGameBonusDto.setMemberId(memberGameBonus.getMember().getId());
+memberGameBonusDto.setMemberName(memberGameBonus.getMember().getName());
+memberGameBonusDto.setGameType(memberGameBonus.getGame().getGame_type());
+String dateString = dateFormat.format(memberGameBonus.getGame().getCreate_at());
+memberGameBonusDto.setPlayTime(dateString);
+memberGameBonusDto.setBonusPoint(memberGameBonus.getBonus_point());
+allMemberGameBonusDto.add(memberGameBonusDto);
 }	
 
 return allMemberGameBonusDto;
@@ -138,23 +145,21 @@ List<Wallet> oneMemberGameBonus = walletDao.findGameBonusOfOneMember(member_id);
 List<GameDto> oneMemberGameBonusDto = new ArrayList<>();
 
 for(Wallet GameBonus : oneMemberGameBonus) {
-	GameDto GameBonusDto = new GameDto();
-	GameBonusDto.setMemberId(GameBonus.getMember().getId());
-	GameBonusDto.setMemberName(GameBonus.getMember().getName());
-	GameBonusDto.setGameType(GameBonus.getGame().getGame_type());
-	GameBonusDto.setBonusPoint(GameBonus.getBonus_point());
-	oneMemberGameBonusDto.add(GameBonusDto);
+GameDto GameBonusDto = new GameDto();
+GameBonusDto.setMemberId(GameBonus.getMember().getId());
+GameBonusDto.setMemberName(GameBonus.getMember().getName());
+GameBonusDto.setGameType(GameBonus.getGame().getGame_type());
+String dateString = dateFormat.format(GameBonus.getGame().getCreate_at());
+GameBonusDto.setPlayTime(dateString);
+GameBonusDto.setBonusPoint(GameBonus.getBonus_point());
+
+oneMemberGameBonusDto.add(GameBonusDto);
 }	
 
 return oneMemberGameBonusDto;
 }
 
 //////////////瑋煊的腳//////////////////
-	
-	
-	
-	
-	
 	
 	
 	

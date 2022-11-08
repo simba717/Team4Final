@@ -54,12 +54,12 @@
 														<li><a href="${contextRoot}/MembergoBankAccount">查看帳戶資訊</a></li>
 														<li><a href="${contextRoot}/orders/findAllByMember">我的訂單</a>
 														</li>
-														<li><a href="${contextRoot}/campaign/gameRecord">遊戲紀錄</a></li>
+														<li><a href="${contextRoot}/campaign/gameRecord">活動紅利查詢</a></li>
 													</ul>
 												</li>
 												<li><a href="#">最新活動<i class="ti-angle-down"></i></a>
 													<ul class="submenu">
-														<li><a href="${contextRoot}/campaign/game">商城小遊戲</a></li>
+													    <li><a href="${contextRoot}/frontend/campaign/findAll">限時活動</a></li>
 														<li><a href="${contextRoot}/campaign/bonusCampaign">紅利活動</a>
 														</li>
 													</ul>
@@ -100,7 +100,7 @@
 												<li><a class="dropdown-item" href="${contextRoot}/frontend/EditMemberByMember" id="1">編輯個人資料</a></li>
 												<li><a class="dropdown-item" href="${contextRoot}/MembergoBankAccount" id="2">查看帳戶資訊</a></li>
 												<li><a class="dropdown-item" href="${contextRoot}/campaign/gameRecord" id="4">遊戲紀錄查詢</a></li>
-												<li><a class="dropdown-item" href="#" id="5">登出</a></li>
+												
 											</ul>
 										</div>
 										

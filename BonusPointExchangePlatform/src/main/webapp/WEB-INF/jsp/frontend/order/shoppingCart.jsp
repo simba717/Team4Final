@@ -93,6 +93,7 @@ window.onload = function(){
                         	needPaid = parseInt($("#dividendValue").val())/100;
                 			$("#paymentAmount").val(parseInt($("#totalPrice").text().substring(1))-needPaid)
                             $("#surplusAmount").addClass("invisible")
+                            bonusCheck = 4;
                 		} else if ($("#selectPayment :selected").val() == 2) {
                 			needPaid = parseInt($("#dividendValue").val())/100;
                 			$("#paymentAmount").val(parseInt($("#totalPrice").text().substring(1))-needPaid)
@@ -101,6 +102,7 @@ window.onload = function(){
                 				bonusCheck = 3;
                 			}else{
                 				$("#surplusAmount").removeClass("invisible").css("color", "black").text("儲值金餘額:"+(remainingWallet-$("#paymentAmount").val()))
+                				bonusCheck = 4;
                 			}
                 		}
                     }
@@ -539,12 +541,32 @@ function displayData(data) {
 
 
 function checkout(){
-	$("#checkId").submit()
+	Swal.fire({
+        title: "確定要用信用卡嗎",
+        color: "#FF0000",
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        confirmButtonColor: "#4EFEB3"
+    }).then((result) => {
+    	if (result.isConfirmed) {
+    	$("#checkId").submit()
+    	}
+    })
 }
 
 
 function checkout2(){
-	$("#checkId2").submit()
+	Swal.fire({
+        title: "確定支付方法嗎",
+        color: "#FF0000",
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        confirmButtonColor: "#4EFEB3"
+    }).then((result) => {
+    	if (result.isConfirmed) {
+        	$("#checkId2").submit()
+        	}
+    })
 }
 </script>
 </body>

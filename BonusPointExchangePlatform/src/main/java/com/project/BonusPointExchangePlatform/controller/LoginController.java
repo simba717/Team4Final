@@ -41,7 +41,7 @@ public class LoginController {
 		session.removeAttribute("pill");
 		session.removeAttribute("ordersListContent");
 		status.setComplete();
-		return "/layout/BackNavbar";
+		return "redirect:/loginEmp";
 	}
 
 	
@@ -50,7 +50,7 @@ public class LoginController {
 		session.removeAttribute("pill");
 		session.removeAttribute("ordersListContent");
 		status.setComplete();
-		return "/layout/Navbar";
+		return "redirect:/showProduct";
 	}
 	
 

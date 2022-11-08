@@ -26,22 +26,26 @@ public class LoginService {
 	
 	
 	/* 確認帳密 */
-	public boolean checkAccount(String account, String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+	public String checkAccount(String account, String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 
 		Account checkAccount = accountDao.checkPwdByAcc(account);
 
-		if (checkAccount != null) {
+		if (checkAccount != null&& checkAccount.getAccount_type() ==1) {
 			String key = "kittymickysnoopy";
 			String oldPassword = cipherUtilsService.decryptString(key, checkAccount.getPassword(), checkAccount.getIv());
 
 			if (oldPassword.equals(password)) {
-				return true;
+				return "OK";
 			}else {
-				return false;
+				return "BAD";
 			}
 			
+		}else if(checkAccount != null && checkAccount.getAccount_type() ==0) {
+					return "BAD";
+
+		}else {
+			return "NO";
 		}
-		return false;
 
 	}
 

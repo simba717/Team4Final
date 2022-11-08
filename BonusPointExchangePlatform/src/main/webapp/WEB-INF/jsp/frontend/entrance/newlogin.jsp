@@ -272,13 +272,19 @@ z-index
 			
 				<h1 class="logingh1">Sign in</h1>
 				
-				<input type="text" name="account" placeholder="帳號" /> 
-				<input type="password" name="password" placeholder="密碼" /> 
+				<input type="text" name="account" placeholder="帳號" id="account" /> 
+				<input type="password" name="password" placeholder="密碼"  id="password"/> 
 				
 				
 				
 				<a class="logina" href="updatepassword">忘記密碼?</a>
 				<button class="loginbutton" >登入</button>
+				<br>
+				<div>
+				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>		
+				</div>			
+				
 			</form>
 			
 		</div>
@@ -288,20 +294,36 @@ z-index
 				<div class="overlay-panel overlay-right">
 					<h1 style="color:white;">Hello, Friend!</h1>
 					<p class="loginp" >加入我們吧!</p>
-					<button class="signupbutton"  onclick="location.href='register'" id="signUp">註冊</button>
+					<button class="signupbutton"  onclick="location.href='register'" id="signUp">註冊</button>					
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	
+	</div>	
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+	
+	
 	<script type="text/javascript">
 
 	
+	//*****一鍵登入(書瑋用)*******
+		function inputValue(){
+			document.getElementById("account").value="EEIT151";
+			document.getElementById("password").value="EEIT151!";
+		}
+		
+		//*****一鍵登入(庭偉用)*******
+		function inputValue1(){
+			document.getElementById("account").value="Tom666";
+			document.getElementById("password").value="Tom123!";
+		}
+		
 
 
 </script>
 
+	
 
 
 </body>

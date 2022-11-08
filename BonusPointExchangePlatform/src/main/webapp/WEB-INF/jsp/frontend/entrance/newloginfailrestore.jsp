@@ -23,7 +23,7 @@
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
+	height: 70vh;
 	margin: -20px 0 50px;
 }
 
@@ -134,7 +134,7 @@ input {
 
 .sign-in-container {
 	left: 0;
-	width: 100%;
+	width: 50%;
 	z-index: 2;
 }
 
@@ -262,30 +262,41 @@ z-index
 
 </head>
 <body>
-<jsp:include page="../../layout/BackNavbar.jsp"></jsp:include>
+<jsp:include page="../../layout/Navbar.jsp"></jsp:include>
 <div class="loginbody">
+<!-- 	<h2 class="logingh2">會員登入</h2> -->
 	<div class="logincontainer" id="logincontainer">
 	
 		<div class="form-logincontainer sign-in-container">
-				<form class="loginform" action="emphome" method="post">
+				<form class="loginform" action="home" method="post">
 			
 				<h1 class="logingh1">Sign in</h1>
 				
 				<input type="text" name="account" placeholder="帳號" id="account" /> 
-				<input type="password" name="password" placeholder="密碼" id="password" /> 
-				<p style="text-align:center;color: red;font-weight:bold;">帳號密碼錯誤</p>
+				<input type="password" name="password" placeholder="密碼" id="password"/> 
+				<p style="text-align:center;color: red;font-weight:bold;">你已被停權,請聯絡客服人員</p>
 				
 				
-				
-				<a class="logina" href="updatepasswordemp">忘記密碼?</a>
+				<a class="logina" href="updatepassword">忘記密碼?</a>
 				<button class="loginbutton" >登入</button>
 				<br>
-			<div>
+					<div>
 				<a  onclick="inputValue()" style="border: 2px solid orange;" id="preset">會員一</a>	
-				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>	
-				</div>	
+				<a  onclick="inputValue1()" style="border: 2px solid orange;" id="preset1">會員二</a>		
+				</div>			
+				
 			</form>
 			
+		</div>
+		<div class="overlay-logincontainer">
+			<div class="loginoverlay">
+				
+				<div class="overlay-panel overlay-right">
+					<h1 style="color:white;">Hello, Friend!</h1>
+					<p class="loginp" >加入我們吧!</p>
+					<button class="signupbutton"  onclick="location.href='register'" id="signUp">註冊</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	</div>
@@ -294,14 +305,14 @@ z-index
 	
 	//*****一鍵登入(書瑋用)*******
 	function inputValue(){
-		document.getElementById("account").value="root";
-		document.getElementById("password").value="root";
+		document.getElementById("account").value="EEIT151";
+		document.getElementById("password").value="EEIT151!";
 	}
 	
 	//*****一鍵登入(庭偉用)*******
 	function inputValue1(){
-		document.getElementById("account").value="AAA";
-		document.getElementById("password").value="AAA";
+		document.getElementById("account").value="Tom666";
+		document.getElementById("password").value="Tom123!";
 	}
 
 	

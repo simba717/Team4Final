@@ -59,32 +59,25 @@ public class CampaignController {
 
 	@Autowired
 	private CampaignService campaignService;
-	
+
 	private SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 
 ///////////////////////瑋煊的頭///////////////////////////////
 
-	//控制上下架按鈕OK
-	
+	// 控制上下架按鈕OK
+
 	@GetMapping(value = "/campaign/control")
 	public String switchControl(@RequestParam Integer id, @RequestParam boolean button_switch, HttpSession session) {
 		Campaign campaign = campaignService.findById(id);
-		
-		Employee sessionemployee =(Employee)session.getAttribute("employee");
-		
-		campaignService.update(
-				campaign.getTitle(), 
-				campaign.getContent(),
-				dateFormat1.format(campaign.getBegin_at()),
-				dateFormat1.format(campaign.getEnd_at()),
-				campaign.getImage(),
-				button_switch, 
-				sessionemployee.getId(),
+
+		Employee sessionemployee = (Employee) session.getAttribute("employee");
+
+		campaignService.update(campaign.getTitle(), campaign.getContent(), dateFormat1.format(campaign.getBegin_at()),
+				dateFormat1.format(campaign.getEnd_at()), campaign.getImage(), button_switch, sessionemployee.getId(),
 				id);
 		return "redirect:/campaign/findAll";
 	}
-	
-	
+
 	// 新增活動OK
 	@PostMapping(path = "/campaign/insert", produces = "application/json; charset=UTF-8 ")
 	public void insert(@RequestBody CampaignDto campaignDto, HttpSession session) {
@@ -92,7 +85,7 @@ public class CampaignController {
 		Campaign campaign = new Campaign();
 		campaign.setTitle(campaignDto.getCampaignName());
 		campaign.setContent(campaignDto.getCampaignContent());
-		
+
 		Date date = null;
 		try {
 			date = new SimpleDateFormat("yyyy-MM-dd").parse(campaignDto.getCampaignStart_at());
@@ -100,7 +93,7 @@ public class CampaignController {
 			e.printStackTrace();
 		}
 		campaign.setBegin_at(date);
-		
+
 		Date date2 = null;
 		try {
 			date2 = new SimpleDateFormat("yyyy-MM-dd").parse(campaignDto.getCampaignEnd_at());
@@ -108,13 +101,13 @@ public class CampaignController {
 			e.printStackTrace();
 		}
 		campaign.setEnd_at(date2);
-		
-		campaign.setEmployee((Employee)session.getAttribute("employee"));
-		System.out.println("+++++++++++++" + (Employee)session.getAttribute("employee"));
+
+		campaign.setEmployee((Employee) session.getAttribute("employee"));
+		System.out.println("+++++++++++++" + (Employee) session.getAttribute("employee"));
 		campaign.setImage(campaignDto.convertImage());
 		campaignService.insert(campaign);
 	}
-		
+
 	// 刪除活動ok
 	@GetMapping("/campaign/delete")
 	public String deleteCampaign(@RequestParam Integer id) {
@@ -122,7 +115,7 @@ public class CampaignController {
 		return "redirect:/campaign/findAll";
 	}
 
-	 //取得圖片OK
+	// 取得圖片OK
 	@GetMapping("/getCampaignImage")
 	public ResponseEntity<byte[]> getCampaignImage(@RequestParam("id") Integer id) {
 		Campaign campaign = campaignService.findById(id);
@@ -144,68 +137,60 @@ public class CampaignController {
 		campaignDto.setCampaignEnd_at(endAt);
 		campaignDto.setCampaignPhoto(result.getImage());
 		System.out.println(campaignDto.getCampaignStart_at());
-		
+
 		return campaignDto;
-		
+
 	}
-	
+
 //編輯活動2 OK
 	@PutMapping(value = "/campaigns/{id}", consumes = { "application/json" }, produces = {
-	"application/json; charset=UTF-8" })
-@ResponseBody
-public Map<String, String> updateCampaign(@RequestBody CampaignDto campaignDto,
-	@PathVariable Integer id, HttpSession session) {
-Map<String, String> map = new HashMap<>();
-Employee employee = (Employee)session.getAttribute("employee");
+			"application/json; charset=UTF-8" })
+	@ResponseBody
+	public Map<String, String> updateCampaign(@RequestBody CampaignDto campaignDto, @PathVariable Integer id,
+			HttpSession session) {
+		Map<String, String> map = new HashMap<>();
+		Employee employee = (Employee) session.getAttribute("employee");
 
-try {
-	// 沒有要更新圖片的話
-	if (campaignDto.getFileDataUrl() == null) {
+		try {
+			// 沒有要更新圖片的話
+			if (campaignDto.getFileDataUrl() == null) {
 //		Campaign campaign = campaignService.findById(id);
-		campaignService.update(
-				campaignDto.getCampaignName(), 
-				campaignDto.getCampaignContent(),
-				campaignDto.getCampaignStart_at(), 
-				campaignDto.getCampaignEnd_at(),
-				campaignDto.convertImage(), 
-				campaignDto.getCampaignStatus(), 
-				employee.getId(),
-				id);
+				campaignService.update(campaignDto.getCampaignName(), campaignDto.getCampaignContent(),
+						campaignDto.getCampaignStart_at(), campaignDto.getCampaignEnd_at(), campaignDto.convertImage(),
+						campaignDto.getCampaignStatus(), employee.getId(), id);
 
-		// 有要更新圖片的話
-	} else {
-		Campaign campaign = campaignService.findById(id);
-		campaignDto.convertImage();
-		System.out.println("+++++++++++++++++++++++++");
-		campaignService.update(campaignDto.getCampaignName(), 
-				campaignDto.getCampaignContent(),
-				campaignDto.getCampaignStart_at(), 
-				campaignDto.getCampaignEnd_at(),
-				campaignDto.convertImage(),
-				campaignDto.getCampaignStatus(), 
-				employee.getId(),
-				id);
+				// 有要更新圖片的話
+			} else {
+				Campaign campaign = campaignService.findById(id);
+				campaignDto.convertImage();
+				System.out.println("+++++++++++++++++++++++++");
+				campaignService.update(campaignDto.getCampaignName(), campaignDto.getCampaignContent(),
+						campaignDto.getCampaignStart_at(), campaignDto.getCampaignEnd_at(), campaignDto.convertImage(),
+						campaignDto.getCampaignStatus(), employee.getId(), id);
 
+			}
+			map.put("success", "更新成功");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("fail", "更新失敗");
+		}
+		return map;
 	}
-	map.put("success", "更新成功");
 
-} catch (Exception e) {
-	e.printStackTrace();
-	map.put("fail", "更新失敗");
-}
-return map;
-}
-	
-	
-	
-	
 //	
 
 	// 後台員工查詢所有活動 navbar連結JSP OK
 	@GetMapping("/campaign/findAll")
-	public String findAllCampaigns() {
+	public String findAllCampaigns(HttpSession session) {
+		Employee employee = (Employee) session.getAttribute("employee");
 
+		if (employee == null) {
+			return "redirect:/loginEmp";
+
+		}else {
 		return "/backend/campaign/memberCampaigns";
+		}
 	}
 
 	// 後台員工查詢所有活動 OK
@@ -235,22 +220,19 @@ return map;
 
 	}
 
-	//雙十一紅利加倍活動
-		@GetMapping("/campaign/bonusCampaign")
-		public String double11() {
-			return "/frontend/campaign/bonusCampaign";
-		}
+	// 雙十一紅利加倍活動
+	@GetMapping("/campaign/bonusCampaign")
+	public String double11() {
+		return "/frontend/campaign/bonusCampaign";
+	}
 
 ////////////////////////瑋煊的腳//////////////////////////////////
-
-	
 
 //	// 用id查詢活動
 //	@GetMapping("/campaigns/{id}")
 //	public Optional<Campaign> readById(@PathVariable Integer id) {
 //		return campaignService.findById(id);
 //	}
-
 
 	// 查詢分頁
 	@ResponseBody
@@ -286,7 +268,6 @@ return map;
 //	public List<Campaign> findCampaignByContent3(String content) {
 //		return campaignService.findCampaignByContent3(content);
 //	}
-
 
 // 取得玩家ID
 //		@GetMapping("/userID")

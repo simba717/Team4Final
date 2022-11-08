@@ -38,7 +38,7 @@
 			for (var i = 0; i < campaigns.length; i++) {
 				content += "<tbody><tr>" 
 						+ "<td width='200'>" + campaigns[i].campaignName + "</td>"
-						+ "<td width='600'><img width='600' height='400'" + " src='" + imageURL + campaigns[i].campaignPhoto + "'></td>"
+						+ "<td width='300'><img width='300' height='300'" + " src='" + imageURL + campaigns[i].campaignPhoto + "'></td>"
 						+ "<td>" + campaigns[i].campaignContent + "</td>"
 						+ "<td width='100'>" + campaigns[i].campaignStart_at + "</td>"
 						+ "<td width='100'>" + campaigns[i].campaignEnd_at + "</td>"

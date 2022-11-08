@@ -470,6 +470,7 @@ function getindex(node) {
 				</form>
 			</div>
 			<div class="modal-footer">
+				<button id="autoInput" class="btn btn-secondary">自動輸入</button>
 				<a id="a" href="${contextRoot}/campaign/insert"><input type="submit" id="submitdata" onclick="checkValue()" class="btn btn-primary me-2" style="margin-left:130px" value="新增" ></a>
 				<a href=""><button class="btn btn-secondary" style="margin-left:20px">返回</button></a>
 			</div>
@@ -536,6 +537,15 @@ document.getElementById("campaignContent").addEventListener("blur", checkCampaig
 document.getElementById("campaignStart_at").addEventListener("blur", checkStartTime);
 document.getElementById("campaignEnd_at").addEventListener("blur", checkEndTime);
 document.getElementById("campaignPhoto").addEventListener("change", loadImageFileAsURL);
+document.getElementById("autoInput").addEventListener("click", autoInput);
+
+function autoInput() {
+	document.getElementById("campaignName").value = "自動";
+	document.getElementById("campaignContent").value = "自動產生";
+	document.getElementById("campaignStart_at").value = "2022-11-08";
+	document.getElementById("campaignEnd_at").value = "2022-11-18";
+}
+
 
 //檢查活動名稱
 function checkCampaignName() {

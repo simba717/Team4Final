@@ -362,7 +362,15 @@
 				if (xhr4.readyState == 4 && xhr4.status == 200) {
 					let signAlert3 = JSON.parse(xhr4.responseText);
 					if(signAlert3.game_type=="已完成魔水晶遊戲活動"){
-						Swal.fire("成功!",signAlert3.game_type, "success")
+						Swal.fire({
+							icon: 'success',
+							title:'歡迎體驗本月遊戲',
+							color: "#7373b9",		    				
+							confirmButtonText: '確定',
+							confirmButtonColor: "#0000e3"
+						}).then((result) => {
+							window.location.href = "${contextRoot}/campaign/game";
+						})
 					}else{
 						Swal.fire("失敗!",signAlert3.game_type, "error")
 					}

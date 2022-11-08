@@ -189,9 +189,13 @@ public class GameController {
 
 //連結遊戲頁面
 	@GetMapping("/campaign/game")
-	public String gamePage() {
-
+	public String gamePage(HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		if(member == null) {
+			return "redirect:/login";
+		}else {
 		return "frontend/campaign/game";
+		}
 	}
 
 //////////////瑋煊的腳//////////////////////////////////

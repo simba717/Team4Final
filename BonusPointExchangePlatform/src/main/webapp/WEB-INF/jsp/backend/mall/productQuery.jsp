@@ -764,10 +764,10 @@ document.getElementById("quantity1").addEventListener("blur", checkQuantity);
 document.getElementById("inputFileToLoad1").addEventListener("change", loadImageFileAsURL);
 
 function inputValue() {
-	document.getElementById("product_name1").value = "沙發";
-	document.getElementById("product_content1").value = "牛皮製";
-	document.getElementById("price1").value = 10000;
-	document.getElementById("quantity1").value = 20;	
+	document.getElementById("product_name1").value = "巧克力餅乾";
+	document.getElementById("product_content1").value = "手工餅乾";
+	document.getElementById("price1").value = 150;
+	document.getElementById("quantity1").value = 120;	
 }
 function checkProduct_Name() {
 	let button = document.querySelector('#submitdata');

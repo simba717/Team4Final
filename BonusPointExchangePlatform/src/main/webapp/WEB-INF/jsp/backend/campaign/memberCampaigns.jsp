@@ -540,10 +540,10 @@ document.getElementById("campaignPhoto").addEventListener("change", loadImageFil
 document.getElementById("autoInput").addEventListener("click", autoInput);
 
 function autoInput() {
-	document.getElementById("campaignName").value = "自動";
-	document.getElementById("campaignContent").value = "自動產生";
-	document.getElementById("campaignStart_at").value = "2022-11-08";
-	document.getElementById("campaignEnd_at").value = "2022-11-18";
+	document.getElementById("campaignName").value = "蛋特賣會";
+	document.getElementById("campaignContent").value = "蛋大特價先搶先贏只有前50組";
+	document.getElementById("campaignStart_at").value = "2022-11-09";
+	document.getElementById("campaignEnd_at").value = "2022-11-20";
 }
 
 
